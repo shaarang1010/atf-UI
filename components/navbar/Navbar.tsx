@@ -1,5 +1,4 @@
 import { Box, Button, Flex, Spacer } from "@chakra-ui/react";
-import { NextPage } from "next";
 import { useRouter } from "next/router";
 
 type NavOptions = {
@@ -12,9 +11,9 @@ type NavbarProps = {
   navColor: string;
 };
 
-const NavBar: NextPage<NavbarProps> = ({ navOptions, navColor }) => {
+const NavBar: React.FC<NavbarProps> = ({ navOptions, navColor }) => {
   const router = useRouter();
-  const onClickNavigate = (e, link) => {
+  const onClickNavigate = (e: any, link: string) => {
     e.preventDefault();
     router.push(link);
   };
@@ -23,15 +22,17 @@ const NavBar: NextPage<NavbarProps> = ({ navOptions, navColor }) => {
       <Flex>
         <Spacer />
         {navOptions.map((option, index) => {
-          <Box key={index}>
-            <Button
-              colorScheme={option.optionColor}
-              variant='outline'
-              onClick={(e) => onClickNavigate(e, option.optionLink)}
-            >
-              {option.optionName}
-            </Button>
-          </Box>;
+          return (
+            <Box key={index}>
+              <Button
+                colorScheme={option.optionColor}
+                variant='outline'
+                onClick={(e) => onClickNavigate(e, option.optionLink)}
+              >
+                {option.optionName}
+              </Button>
+            </Box>
+          );
         })}
       </Flex>
     </Box>
