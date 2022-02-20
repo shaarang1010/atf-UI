@@ -2,16 +2,38 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import { ChakraProvider } from "@chakra-ui/react";
+import { ChakraProvider, Container } from "@chakra-ui/react";
 import NavBar from "../components/navbar/Navbar";
 import Footer from "../components/footer/Footer";
 import theme from "../styles/theme";
+import React, { useState } from "react";
+import LoginComponent from "../components/forms/login/Login";
+import { getTherapyDetailsById } from "../util/graphql-queries";
+import client from "../util/apollo-client";
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ token }) => {
   const navOptions = [
     {
       optionName: "Login",
       optionLink: "/login",
+      optionColor: "blue"
+    },
+    {
+      optionName: "About",
+      optionLink: "/about",
+      optionColor: "blue"
+    }
+  ];
+
+  const accountOptions = [
+    {
+      optionName: "Account Settings",
+      optionLink: "/login",
+      optionColor: "blue"
+    },
+    {
+      optionName: "Logout",
+      optionLink: "/about",
       optionColor: "blue"
     }
   ];
@@ -59,6 +81,11 @@ const Home: NextPage = () => {
     footerLinkColor: "White",
     footerLinkInfo: footerLinkOptions
   };
+
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
+  const [forgotPassword, setForgotPassword] = useState(false);
+
   return (
     <ChakraProvider theme={theme}>
       <Head>
@@ -67,7 +94,13 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <NavBar navColor='red' navOptions={navOptions} />
+      <NavBar
+        navColor='white'
+        navOptions={navOptions}
+        isAuthenticated={true}
+        protectedNavOptions={navOptions}
+        accountOptions={accountOptions}
+      />
 
       <main className={styles.main}>
         <h1 className={styles.title}>
@@ -77,31 +110,16 @@ const Home: NextPage = () => {
         <p className={styles.description}>
           Get started by editing <code className={styles.code}>pages/index.tsx</code>
         </p>
-
-        <div className={styles.grid}>
-          <a href='https://nextjs.org/docs' className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href='https://nextjs.org/learn' className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a href='https://github.com/vercel/next.js/tree/canary/examples' className={styles.card}>
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
-        </div>
+        <Container>
+          <LoginComponent
+            userEmail={userEmail}
+            userPassword={userPassword}
+            setUserEmail={(e) => setUserEmail(e.target.value)}
+            setUserPassword={(e) => setUserPassword(e.target.value)}
+            forgotPassword={forgotPassword}
+            setForgotPassword={() => setForgotPassword(!forgotPassword)}
+          />
+        </Container>
       </main>
 
       <Footer
@@ -113,5 +131,15 @@ const Home: NextPage = () => {
     </ChakraProvider>
   );
 };
+
+export async function getServerSideProps() {
+  const { data } = await client.query({ query: getTherapyDetailsById(1) });
+  console.log(data);
+  return {
+    props: {
+      token: data
+    }
+  };
+}
 
 export default Home;

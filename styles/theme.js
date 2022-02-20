@@ -9,6 +9,7 @@ const theme = extendTheme({
       900: "#171923"
     },
     darkBlue: "#0A2A66",
+    lightBlue: "#90CDF4",
     primaryBlue: "#1865F2"
   },
   fonts: {
@@ -21,14 +22,19 @@ const theme = extendTheme({
       fontSize: "30px",
       fontWeight: "bold",
       fontFamily: "Roboto",
-      lineHeight: "35px",
-      letterSpacing: "-2%"
+      lineHeight: "35px"
     },
     h2: {
-      fontSize: ["36px", "48px"],
-      fontWeight: "semibold",
-      lineHeight: "110%",
-      letterSpacing: "-1%"
+      fontSize: "24px",
+      fontWeight: "bold",
+      fontFamily: "Roboto",
+      lineHeight: "28px"
+    },
+    h4: {
+      fontSize: "14px",
+      fontWeight: "normal",
+      fontFamily: "Roboto",
+      lineHeight: "16px"
     }
   }
 });
