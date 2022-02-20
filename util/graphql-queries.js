@@ -13,6 +13,7 @@ const authenticateUser = (email, password) => {
 
 const getTherapyDetailsById = (id) => {
   const therapyQuery = gql`
+  query {
     therapyProfile(id: ${id}){
         created_at
         updated_at
@@ -63,6 +64,7 @@ const getTherapyDetailsById = (id) => {
         alternativeNames
         published_at
     }
+  }
 `;
   return therapyQuery;
 };
