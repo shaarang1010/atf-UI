@@ -23,11 +23,13 @@ interface LinkItemProps {
   icon: IconType;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: "Home", icon: FiHome },
-  { name: "Trending", icon: FiTrendingUp },
-  { name: "Explore", icon: FiCompass },
-  { name: "Favourites", icon: FiStar },
-  { name: "Settings", icon: FiSettings }
+  { name: "Summary Statement", icon: FiStar },
+  { name: "Level of Evidence", icon: FiStar },
+  { name: "Targets", icon: FiStar },
+  { name: "Ingredients", icon: FiStar },
+  { name: "Mechanism of Action", icon: FiStar },
+  { name: "Additional Resources", icon: FiStar },
+  { name: "Keywords", icon: FiStar }
 ];
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
