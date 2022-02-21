@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import styles from "./Login.module.css";
+import { useRouter } from "next/router";
 
 interface LoginProps {
   userEmail: String;
@@ -22,7 +23,11 @@ const LoginComponent: React.FC<LoginProps> = ({
   setUserPassword
 }) => {
   const [sendResetLink, setSendResetLink] = useState(false);
-
+  const router = useRouter();
+  const onClickNavigate = (e: any, link: string) => {
+    e.preventDefault();
+    router.push(link);
+  };
   return (
     <>
       {forgotPassword ? (
@@ -71,10 +76,12 @@ const LoginComponent: React.FC<LoginProps> = ({
             <Link href='/'>Forgot Password?</Link>
           </GridItem>
           <GridItem colStart={4} colEnd={6}>
-            <Button colorScheme='blue'>Login</Button>
+            <Button colorScheme='blue' onClick={(e) => onClickNavigate(e, "/therapyprofile")}>
+              Login
+            </Button>
           </GridItem>
           <GridItem colStart={4} colEnd={6} mt='4'>
-            <Link href='/'>Create Account</Link>
+            <Link href='/therapyprofile'>Create Account</Link>
           </GridItem>
         </Grid>
       )}
