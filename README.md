@@ -1,8 +1,10 @@
+## This repo is WIP. For any suggestions and queries are welcome through issues section.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Repo Info
 
-### WIP: This is a repo for Aphasia Therapy Finder
+### This is a repo for Aphasia Therapy Finder
 
 ### Problem Statment
 
