@@ -3,11 +3,7 @@ import type { NextPage } from "next";
 import SimpleSidebar from "../components/sidebar/Sidebar";
 
 const TherapyProfile = () => {
-  return (
-    <div>
-      <SimpleSidebar>{""}</SimpleSidebar>
-    </div>
-  );
+  return <div></div>;
 };
 
 export default TherapyProfile;
