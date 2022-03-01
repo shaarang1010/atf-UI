@@ -1,5 +1,6 @@
 import React from "react";
 import { TherapyInfoProps } from "./TherapyProps";
+import { Accordian } from "../accordian/Accordian";
 import { Grid, GridItem, Heading } from "@chakra-ui/react";
 
 const TherapyInfo: React.FC<TherapyInfoProps> = ({

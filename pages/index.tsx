@@ -43,10 +43,10 @@ const Home: NextPage = ({ token }) => {
 };
 
 export async function getServerSideProps() {
-  const { data } = await client.query({ query: getTherapyDetailsById(1) });
+  //const { data } = await client.query({ query: getTherapyDetailsById(1) });
   return {
     props: {
-      token: data
+      token: ""
     }
   };
 }
