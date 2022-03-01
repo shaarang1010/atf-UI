@@ -7,12 +7,11 @@ interface AccordianPanelProps {
 }
 
 interface AccordianItemProps {
-  title: string;
   currentKey: number;
   accordianItems: AccordianPanelProps[];
 }
 
-const AccordianComponent: React.FC<AccordianItemProps> = ({ title, currentKey, accordianItems }) => {
+const AccordianComponent: React.FC<AccordianItemProps> = ({ currentKey, accordianItems }) => {
   return (
     <Accordion defaultIndex={[currentKey]}>
       {accordianItems.map((item, index) => {
