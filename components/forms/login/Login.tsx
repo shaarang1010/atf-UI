@@ -49,7 +49,7 @@ const LoginComponent: React.FC<LoginProps> = ({
           </Box>
         </Flex>
       ) : (
-        <Grid gap={5}>
+        <Grid templateColumns={"repeat(5,1fr)"} gap={5}>
           <GridItem colSpan={6}>
             <Button className={styles.socialLogin} leftIcon={<FcGoogle />} isFullWidth={true}>
               Login with Google
@@ -75,12 +75,17 @@ const LoginComponent: React.FC<LoginProps> = ({
           <GridItem colSpan={6} mt='4'>
             <Link href='/'>Forgot Password?</Link>
           </GridItem>
-          <GridItem colStart={4} colEnd={6}>
-            <Button colorScheme='blue' onClick={(e) => onClickNavigate(e, "/therapyprofile")}>
+          <GridItem colStart={2} colEnd={5}>
+            <Button
+              colorScheme='blue'
+              size='lg'
+              isFullWidth={true}
+              onClick={(e) => onClickNavigate(e, "/therapyprofile")}
+            >
               Login
             </Button>
           </GridItem>
-          <GridItem colStart={4} colEnd={6} mt='4'>
+          <GridItem colStart={3} colEnd={6} mt='4'>
             <Link href='/therapyprofile'>Create Account</Link>
           </GridItem>
         </Grid>
