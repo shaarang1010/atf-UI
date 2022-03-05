@@ -1,19 +1,25 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import theme from "../styles/theme";
 import styles from "../styles/Home.module.css";
 import { Container, SimpleGrid, Box } from "@chakra-ui/react";
-import theme from "../styles/theme";
 import React, { useState } from "react";
 import LoginComponent from "../components/forms/login/Login";
+import InformationPane from "../components/infopane/InformationPane";
 import { getTherapyDetailsById } from "../util/graphql-queries";
 import client from "../util/apollo-client";
-import Layout from "../components/layout/Layout";
 
 const Home: NextPage = ({ token: string }) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
+
+  const informationText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae nibh mauris. Proin at ante tortor. Donec lacus diam, convallis et laoreet ac, varius sed ante. Donec condimentum tempor aliquam. Vestibulum vitae efficitur velit, nec convallis nibh. Etiam nec ipsum nibh. Vestibulum ac blandit ligula, auctor molestie ipsum. Sed porttitor ullamcorper lacus nec imperdiet. Donec nisl urna, efficitur in felis non, mollis mollis erat. Nam ligula odio, aliquet varius lectus eget, faucibus lacinia erat. Nulla enim justo, placerat non mauris quis, pretium eleifend magna. Vivamus at velit mi. Curabitur tincidunt sed justo sit amet varius.
+  # Nunc ullamcorper, leo a consectetur vestibulum, urna sapien molestie est, ac porttitor nulla quam a mi. Integer vitae scelerisque odio. Curabitur aliquet, elit sagittis mollis vehicula, eros nibh viverra neque, non porttitor urna nisl vitae neque. Aenean eget arcu eros. Donec eleifend metus et ultrices pharetra. Sed commodo nulla at tempor pellentesque. Phasellus dapibus eros id nisi dapibus porttitor. Curabitur luctus pharetra justo.
+  # Nulla enim justo, placerat non mauris quis, pretium eleifend magna. Vivamus at velit mi. Curabitur tincidunt sed justo sit amet varius.
+  # Nunc ullamcorper, leo a consectetur vestibulum, urna sapien molestie est, ac porttitor nulla quam a mi. 
+  `;
 
   return (
     <>
@@ -33,7 +39,7 @@ const Home: NextPage = ({ token: string }) => {
         <p className={styles.description}>Get started by logining in or sign-up</p>
         <Container maxW='container.lg'>
           <SimpleGrid columns={{ sm: 2, md: 2 }} spacing={10}>
-            <Box maxWidth={"lg"}>
+            <Box maxWidth={"lg"} mt='20'>
               <LoginComponent
                 userEmail={userEmail}
                 userPassword={userPassword}
@@ -43,7 +49,9 @@ const Home: NextPage = ({ token: string }) => {
                 setForgotPassword={() => setForgotPassword(!forgotPassword)}
               />
             </Box>
-            <Box maxWidth={"lg"}>Hellow world</Box>
+            <Box maxWidth={"lg"} boxShadow={"sm"}>
+              <InformationPane backgroundColor={theme.colors.gray.default} informationText={informationText} />
+            </Box>
           </SimpleGrid>
         </Container>
       </main>
