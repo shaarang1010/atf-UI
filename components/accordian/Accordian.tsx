@@ -2,33 +2,31 @@ import React from "react";
 import { Accordion, AccordionItem, AccordionButton, AccordionPanel, AccordionIcon, Box } from "@chakra-ui/react";
 
 interface AccordianPanelProps {
-  panelProps: React.ReactNode;
+  accordianTitle?: string;
+  accordianChildNode: React.ReactNode;
 }
 
 interface AccordianItemProps {
-  title: string;
   currentKey: number;
-  children?: AccordianPanelProps;
+  accordianItems: AccordianPanelProps[];
 }
 
-const AccordianComponent: React.FC<AccordianItemProps> = ({ title, currentKey, children }) => {
+const AccordianComponent: React.FC<AccordianItemProps> = ({ currentKey, accordianItems }) => {
   return (
     <Accordion defaultIndex={[currentKey]}>
-      <AccordionItem>
-        <h2>
-          <AccordionButton>
-            <Box flex='1' textAlign='left'>
-              Section 1 title
-            </Box>
-            <AccordionIcon />
-          </AccordionButton>
-        </h2>
-        <AccordionPanel pb={4}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat.
-        </AccordionPanel>
-      </AccordionItem>
+      {accordianItems.map((item, index) => {
+        <AccordionItem key={index}>
+          <h2>
+            <AccordionButton>
+              <Box flex='1' textAlign='left'>
+                {item.accordianTitle}
+              </Box>
+              <AccordionIcon />
+            </AccordionButton>
+          </h2>
+          <AccordionPanel pb={4}>{item.accordianChildNode}</AccordionPanel>
+        </AccordionItem>;
+      })}
     </Accordion>
   );
 };

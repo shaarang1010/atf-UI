@@ -1,6 +1,6 @@
 import React from "react";
 import type { NextPage } from "next";
-import SimpleSidebar from "../components/sidebar/Sidebar";
+//import { TherapyInfo } from "../components/therapyinfo/TherapyInfo";
 
 const TherapyProfile = () => {
   return <div></div>;

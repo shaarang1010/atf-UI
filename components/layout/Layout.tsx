@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
-import { Container } from "@chakra-ui/react";
 
 interface LayoutProps {
   children: React.ReactNode;

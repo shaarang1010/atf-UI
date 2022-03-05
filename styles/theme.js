@@ -1,10 +1,12 @@
 import { extendTheme } from "@chakra-ui/react";
+import "@fontsource/roboto";
 const theme = extendTheme({
   colors: {
     transparent: "transparent",
     black: "#000",
     white: "#fff",
     gray: {
+      default: "#C4C4C4",
       50: "#f7fafc",
       900: "#171923"
     },
