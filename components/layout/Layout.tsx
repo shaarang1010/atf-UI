@@ -81,7 +81,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <NavBar
         navColor='white'
         navOptions={navOptions}
-        isAuthenticated={true}
+        isAuthenticated={false}
         protectedNavOptions={navOptions}
         accountOptions={accountOptions}
       />

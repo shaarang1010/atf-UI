@@ -1,7 +1,8 @@
 import React from "react";
 import { TherapyInfoProps } from "./TherapyProps";
 import AccordianComponent from "../accordian/Accordian";
-import { Grid, GridItem, Heading } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, Badge } from "@chakra-ui/react";
+import Link from "next/link";
 
 const TherapyInfo: React.FC<TherapyInfoProps> = ({
   therapyIngredients,
@@ -14,23 +15,34 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
   levelOfEvidence,
   relatedTherapies
 }) => {
+  const accordianItems = [{}];
   return (
-    <Grid gap={4}>
+    <Grid gap={6}>
       <GridItem colSpan={6}>
         <Heading as='h2'>{therapyName}</Heading>
       </GridItem>
       <GridItem colSpan={6}>
-        {/**
-         * TODO:
-         * 1. Add accordian components
-         * Each accordian should have title, info and other React.Node components based on the type
-         * of data be displayed.
-         *
-         * 2. Display, info text 3 lines with option to expand the accordian section
-         *
-         * 3. Check for assets and render based on type
-         *
-         */}
+        <h3>Alternative names: </h3>
+        {alternativeNames?.split("\n").map((name, index) => {
+          return (
+            <Badge key={index} variant='solid' colorScheme={"blue"}>
+              {name}
+            </Badge>
+          );
+        })}
+      </GridItem>
+      <GridItem colSpan={6}>
+        <h3>Similar or related therapies: </h3>
+        {relatedTherapies?.split("\n").map((name, index) => {
+          return (
+            <Link href={"/index"} key={index}>
+              {name}
+            </Link>
+          );
+        })}
+      </GridItem>
+      <GridItem colSpan={6}>
+        <AccordianComponent currentKey={0} accordianItems={[]} />
       </GridItem>
     </Grid>
   );
