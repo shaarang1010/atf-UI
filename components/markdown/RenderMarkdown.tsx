@@ -9,7 +9,6 @@ interface MarkdownProps {
 
 const RenderMarkdownToHTML: React.FC<MarkdownProps> = ({ markdownText }) => {
   const formattedMarkdownText = formatMarkdownText(markdownText, { from: "NEWLINE", to: "\n \n " });
-  console.log(formattedMarkdownText);
   return <ReactMarkdown remarkPlugins={[gfm]}>{formattedMarkdownText}</ReactMarkdown>;
 };
 

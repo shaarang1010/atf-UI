@@ -4,7 +4,6 @@ const httpLink = new HttpLink({ uri: process.env.ATF_GRAPHQL_URL });
 
 const authLink = new ApolloLink((operation, forward) => {
   const token = typeof window !== "undefined" ? localStorage.getItem("id_token") : "";
-
   operation.setContext({
     headers: {
       authorization: token ? `Bearer ${token}` : ""

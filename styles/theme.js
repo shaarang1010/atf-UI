@@ -15,12 +15,12 @@ const theme = extendTheme({
     primaryBlue: "#1865F2"
   },
   fonts: {
-    heading: `"Roboto",Arial, Helvetica, sans-serif`,
-    description: `"Roboto",Arial, Helvetica, sans-serif`
+    heading: "Roboto",
+    description: "Roboto",
+    body: "Roboto"
   },
   textStyles: {
     h1: {
-      // you can also use responsive styles
       fontSize: "30px",
       fontWeight: "bold",
       fontFamily: "Roboto",
@@ -34,7 +34,7 @@ const theme = extendTheme({
     },
     h4: {
       fontSize: "14px",
-      fontWeight: "normal",
+      fontWeight: "bold",
       fontFamily: "Roboto",
       lineHeight: "16px"
     }

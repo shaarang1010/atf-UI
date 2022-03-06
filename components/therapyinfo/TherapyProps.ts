@@ -1,54 +1,54 @@
 interface LevelOfEvidence {
-  evidenceStatement?: String;
-  additionalText?: String;
+  evidenceStatement?: string;
+  additionalText?: string;
 }
 
 interface TherapyResources {
-  videoFile?: String;
-  literature?: String;
-  other?: String;
+  videoFile?: string;
+  literature?: string;
+  other?: string;
 }
 
 interface TherapyMode {
-  setting?: String;
-  groupSize?: String;
-  doseAndSchedule?: String;
-  teleHealth?: String;
+  setting?: string;
+  groupSize?: string;
+  doseAndSchedule?: string;
+  teleHealth?: string;
 }
 
 interface ClientSelection {
-  aphasiaText?: String;
-  aphasiaSeverity?: String;
-  aphasiaAetiology?: String;
-  timeSinceOnsetOfAphasia?: String;
+  aphasiaText?: string;
+  aphasiaSeverity?: string;
+  aphasiaAetiology?: string;
+  timeSinceOnsetOfAphasia?: string;
 }
 
 interface TherapyIngredients {
-  therapyProtocol?: String;
-  keyTherapeuticPrincipals?: String;
+  therapyProtocol?: string;
+  keyTherapeuticPrincipals?: string;
   therapyMode?: TherapyMode;
-  therapyMethod?: String;
-  resources?: String;
+  therapyMethod?: string;
+  resources?: string;
 }
 
 interface TherapyTargets {
-  icfDomains?: String;
-  therapeuticTargets?: String;
+  icfDomains?: string;
+  therapeuticTargets?: string;
   clientSelection?: ClientSelection;
 }
 
 interface MechanismOfAction {
-  theoreticalUnderPinnings?: String;
-  supportingEmpiricalEvidence?: String;
+  theoreticalUnderPinnings?: string;
+  supportingEmpiricalEvidence?: string;
 }
 
 export interface TherapyInfoProps {
-  therapyName?: String;
-  summaryStatement?: String;
-  relatedTherapies?: String;
+  therapyName?: string;
+  summaryStatement?: string;
+  relatedTherapies?: string;
   levelOfEvidence?: LevelOfEvidence;
-  alternativeNames?: String;
-  published_at?: String;
+  alternativeNames?: string;
+  published_at?: string;
   mechainismOfAction?: MechanismOfAction;
   therapyIngredients?: TherapyIngredients;
   therapyTargets?: TherapyTargets;

@@ -7,10 +7,8 @@ import { Container, SimpleGrid, Box } from "@chakra-ui/react";
 import React, { useState } from "react";
 import LoginComponent from "../components/forms/login/Login";
 import InformationPane from "../components/infopane/InformationPane";
-import { getTherapyDetailsById } from "../util/graphql-queries";
-import client from "../util/apollo-client";
 
-const Home: NextPage = ({ token: string }) => {
+const Home: NextPage = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
@@ -58,14 +56,5 @@ const Home: NextPage = ({ token: string }) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  //const { data } = await client.query({ query: getTherapyDetailsById(1) });
-  return {
-    props: {
-      token: ""
-    }
-  };
-}
 
 export default Home;
