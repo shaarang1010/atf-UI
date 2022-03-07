@@ -21,6 +21,7 @@ const TherapyProfile: NextPage = ({ data }: any) => {
             summaryStatement={data.summaryStatement}
             levelOfEvidence={data.levelOfEvidence}
             therapyTargets={data.therapyTargets}
+            therapyIngredients={data.therapyIngredients}
           />
         </Box>
       </Flex>

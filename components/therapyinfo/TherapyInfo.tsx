@@ -16,6 +16,10 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
   levelOfEvidence,
   relatedTherapies
 }) => {
+  /**
+   * TODO: Split the bottom across different component to avoid mutiple nesting.
+   *
+   */
   const accordianItems = [
     {
       accordianTitle: "Summary Statement",
@@ -57,8 +61,73 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                 />
               </Box>
             </Box>
+            <Box mt='5'>
+              <Heading as='h3' size='md' mb='4'>
+                {" "}
+                Client Selection{" "}
+              </Heading>
+              <Box mt='5'>
+                <b>Aphasia Text:</b>
+                <RenderMarkdownToHTML
+                  markdownText={
+                    therapyTargets?.clientSelection?.aphasiaText ? therapyTargets?.clientSelection.aphasiaText : ""
+                  }
+                />
+              </Box>
+              <Box mt='5'>
+                <b>Aphasia Severity:</b>
+                <RenderMarkdownToHTML
+                  markdownText={
+                    therapyTargets?.clientSelection?.aphasiaSeverity
+                      ? therapyTargets?.clientSelection.aphasiaSeverity
+                      : ""
+                  }
+                />
+              </Box>
+              <Box mt='5'>
+                <b>Aphasia Aetiology:</b>
+                <RenderMarkdownToHTML
+                  markdownText={
+                    therapyTargets?.clientSelection?.aphasiaAetiology
+                      ? therapyTargets?.clientSelection.aphasiaAetiology
+                      : ""
+                  }
+                />
+              </Box>
+              <Box mt='5'>
+                <b>Time since onset of Aphasia:</b>
+                <RenderMarkdownToHTML
+                  markdownText={
+                    therapyTargets?.clientSelection?.timeSinceOnsetOfAphasia
+                      ? therapyTargets?.clientSelection.timeSinceOnsetOfAphasia
+                      : ""
+                  }
+                />
+              </Box>
+            </Box>
           </Box>
         </Box>
+      )
+    },
+    {
+      accordianTitle: "Therapy Ingredients",
+      accordianChildNode: (
+        <>
+          <Box>
+            <Heading as='h3' size='md'>
+              Therapy Protocol:
+            </Heading>{" "}
+            <Link href='/index'>{therapyIngredients?.therapyProtocol}</Link>
+          </Box>
+          <Box mt='5'>
+            <Heading as='h3' size='md'>
+              Therapy Method
+            </Heading>
+            <RenderMarkdownToHTML
+              markdownText={therapyIngredients?.therapyMethod ? therapyIngredients.therapyMethod : ""}
+            />
+          </Box>
+        </>
       )
     }
   ];
