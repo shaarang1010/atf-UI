@@ -17,6 +17,7 @@ import {
 import { Search2Icon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
+import Link from "next/link";
 
 type NavOptions = {
   optionName: string;
@@ -46,10 +47,12 @@ const NavBar: React.FC<NavbarProps> = ({
   return (
     <Box width='100%' p={6} bg={navColor} h='20' overflow='hidden' className={styles.navbarShadow}>
       <Flex>
-        <Box p='2'>
-          <Heading as='h3' size='md'>
-            Aphasia Therapy Finder
-          </Heading>
+        <Box>
+          <Link href='/'>
+            <Heading as='h3' size='md' p='2'>
+              Aphasia Therapy Finder
+            </Heading>
+          </Link>
         </Box>
         <Spacer />
         {!isAuthenticated &&

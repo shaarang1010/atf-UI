@@ -14,7 +14,8 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
   published_at,
   summaryStatement,
   levelOfEvidence,
-  relatedTherapies
+  relatedTherapies,
+  therapyResources
 }) => {
   /**
    * TODO: Split the bottom across different component to avoid mutiple nesting.
@@ -129,6 +130,19 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
           </Box>
         </>
       )
+    },
+    {
+      accordianTitle: "Therapy Resources",
+      accordianChildNode: (
+        <>
+          <Box>
+            <Heading as='h3' size='md'>
+              Literature:
+            </Heading>{" "}
+            <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources.literature : ""} />
+          </Box>
+        </>
+      )
     }
   ];
   return (
@@ -145,7 +159,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
         </Heading>
         {alternativeNames?.split("\n").map((name, index) => {
           return (
-            <Badge key={index} variant='solid' colorScheme={"gray"} mr='4'>
+            <Badge key={index} variant='subtle' fontSize={"1.0em"} colorScheme={"pink"} mr='4'>
               {name}
             </Badge>
           );

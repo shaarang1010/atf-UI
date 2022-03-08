@@ -52,4 +52,5 @@ export interface TherapyInfoProps {
   mechainismOfAction?: MechanismOfAction;
   therapyIngredients?: TherapyIngredients;
   therapyTargets?: TherapyTargets;
+  therapyResources?: TherapyResources;
 }
