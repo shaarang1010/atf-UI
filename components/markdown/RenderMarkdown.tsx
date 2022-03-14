@@ -1,6 +1,6 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
-import gfm from "remark-gfm";
+import remarkGfm from "remark-gfm";
 import { formatMarkdownText } from "../../util/format-markdown-text";
 
 interface MarkdownProps {
@@ -9,7 +9,7 @@ interface MarkdownProps {
 
 const RenderMarkdownToHTML: React.FC<MarkdownProps> = ({ markdownText }) => {
   const formattedMarkdownText = formatMarkdownText(markdownText, { from: "NEWLINE", to: "\n \n " });
-  return <ReactMarkdown remarkPlugins={[gfm]}>{formattedMarkdownText}</ReactMarkdown>;
+  return <ReactMarkdown remarkPlugins={[remarkGfm]} children={formattedMarkdownText}></ReactMarkdown>;
 };
 
 export default RenderMarkdownToHTML;
