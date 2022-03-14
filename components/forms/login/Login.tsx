@@ -12,6 +12,7 @@ interface LoginProps {
   setUserPassword(e: React.ChangeEvent<HTMLInputElement>): void;
   forgotPassword: boolean;
   setForgotPassword(): void;
+  createAccount(): void;
 }
 
 const LoginComponent: React.FC<LoginProps> = ({
@@ -20,7 +21,8 @@ const LoginComponent: React.FC<LoginProps> = ({
   forgotPassword,
   setForgotPassword,
   setUserEmail,
-  setUserPassword
+  setUserPassword,
+  createAccount
 }) => {
   const [sendResetLink, setSendResetLink] = useState(false);
   const router = useRouter();
@@ -86,7 +88,7 @@ const LoginComponent: React.FC<LoginProps> = ({
             </Button>
           </GridItem>
           <GridItem colStart={3} colEnd={6} mt='4'>
-            <Link href='/therapyprofile'>Create Account</Link>
+            <Link onClick={createAccount}>Create Account</Link>
           </GridItem>
         </Grid>
       )}
