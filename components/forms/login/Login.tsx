@@ -87,7 +87,7 @@ const LoginComponent: React.FC<LoginProps> = ({
               Login
             </Button>
           </GridItem>
-          <GridItem colStart={3} colEnd={6} mt='4'>
+          <GridItem colStart={2} colEnd={6} mt='4' ml='10'>
             <Link onClick={createAccount}>Create Account</Link>
           </GridItem>
         </Grid>

@@ -35,7 +35,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
 
   return (
     <Grid templateColumns={"repeat(5,1fr)"} gap={6}>
-      <GridItem colSpan={6}>
+      <GridItem colSpan={8}>
         <FormControl isRequired>
           <FormLabel htmlFor='firstname'>Firstname</FormLabel>
           <Input
@@ -45,7 +45,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
           />
         </FormControl>
       </GridItem>
-      <GridItem colSpan={6}>
+      <GridItem colSpan={4}>
         <FormControl isRequired>
           <FormLabel htmlFor='lastname'>Lastname</FormLabel>
           <Input
@@ -79,13 +79,13 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
         <FormControl isRequired>
           <FormLabel htmlFor='password'>Re-type Password</FormLabel>
           <Input
-            id='password'
+            id='re-type-password'
             type='password'
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setRetypePassword(e.target.value)}
           />
         </FormControl>
       </GridItem>
-      <GridItem colStart={3} colEnd={10}>
+      <GridItem colStart={4} colEnd={11}>
         <Button colorScheme='blue' size='lg' isFullWidth={true} onClick={(e) => onClickNavigate(e, "/therapyprofile")}>
           Sign up
         </Button>
@@ -103,7 +103,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
           Signup with Facebook
         </Button>
       </GridItem>
-      <GridItem colStart={4} colEnd={10} mt='5'>
+      <GridItem colStart={5} colEnd={11} mt='5'>
         <Link onClick={loginAccount}>Already have an account?</Link>
       </GridItem>
     </Grid>
