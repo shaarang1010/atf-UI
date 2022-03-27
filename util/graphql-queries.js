@@ -69,4 +69,13 @@ const getTherapyDetailsById = (id) => {
   return therapyQuery;
 };
 
+//TODO: Add search query
+const getTherapySearch = (text, { ...params }) => {
+  const therapySearch = gql`
+    query {
+      therapy
+    }
+  `;
+};
+
 export { authenticateUser, getTherapyDetailsById };

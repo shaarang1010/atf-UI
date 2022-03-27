@@ -78,12 +78,7 @@ const LoginComponent: React.FC<LoginProps> = ({
             <Link href='/'>Forgot Password?</Link>
           </GridItem>
           <GridItem colStart={2} colEnd={5}>
-            <Button
-              colorScheme='blue'
-              size='lg'
-              isFullWidth={true}
-              onClick={(e) => onClickNavigate(e, "/therapyprofile")}
-            >
+            <Button colorScheme='blue' size='lg' isFullWidth={true} onClick={(e) => onClickNavigate(e, "/search")}>
               Login
             </Button>
           </GridItem>

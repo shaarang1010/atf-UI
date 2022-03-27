@@ -1,5 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, GridItem, Box, CheckboxGroup, Checkbox, Stack, SimpleGrid, Image } from "@chakra-ui/react";
+import {
+  Container,
+  Skeleton,
+  Text,
+  Box,
+  CheckboxGroup,
+  Checkbox,
+  Stack,
+  SimpleGrid,
+  Image,
+  HStack
+} from "@chakra-ui/react";
 import SearchProfile from "../components/forms/searchProfile/SearchProfile";
 import Speaking from "../assets/speaking.svg";
 import Writing from "../assets/writing.svg";
@@ -22,8 +33,22 @@ const filterValues = [
 
 const TherapySearch = () => {
   const [searchText, setSearchText] = useState("");
+  const [hasSearchResults, setHasSearchResults] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    setSearchText(e.target.value);
+  };
+
+  const showSkeleton = () => {
+    setIsLoading(false);
+    setTimeout(() => {
+      setHasSearchResults(true);
+    }, 3000);
+  };
+
+  const onTherapySearch = () => {
+    showSkeleton();
   };
 
   const filters = (
@@ -40,35 +65,45 @@ const TherapySearch = () => {
     </CheckboxGroup>
   );
 
-  useEffect(() => {
-    console.log(Speaking);
-  }, []);
-
   return (
-    <Container maxW={"container.lg"}>
+    <Container maxW={"container.xl"}>
       <SimpleGrid columns={{ sm: 2, md: 2 }} gap={5}>
         <Box maxW={"lg"} mt='20'>
           <SearchProfile
             searchText={searchText}
             onTextChangeHandler={onChangeHandler}
             filters={filters}
-            onSearch={() => console.log("Text")}
+            onSearch={onTherapySearch}
           />
         </Box>
         <Box maxW={"lg"} mt='20'>
-          <TherapyCard
-            cardTitle='Test Therapy'
-            summaryStatement='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae nibh mauris. Proin at ante tortor. Donec lacus diam, convallis et laoreet ac, varius sed ante. Donec condimentum tempor aliquam. Vestibulum vitae efficitur velit, nec convallis nibh. Etiam nec ipsum nibh. Vestibulum ac blandit ligula, auctor molestie ipsum. Sed porttitor ullamcorper lacus nec imperdiet. Donec nisl urna, efficitur in felis non, mollis mollis erat. Nam ligula odio, aliquet varius lectus eget, faucibus lacinia erat. Nulla enim justo, placerat non mauris quis, pretium eleifend magna. Vivamus at velit mi. Curabitur tincidunt sed justo sit amet varius.
-          # Nunc ullamcorper, leo a consectetur vestibulum,'
-            therapyTargets={
-              <>
-                <Image src={Speaking.src} alt='Speaking' />
-              </>
-            }
-            levelOfEvidence='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae nibh mauris. Proin at ante tortor. Donec lacus diam, convallis et laoreet ac, varius sed ante. Donec condimentum tempor aliquam. Vestibulum vitae efficitur velit, nec convallis nibh. Etiam nec ipsum nibh. Vestibulum ac blandit ligula, auctor molestie ipsum. Sed porttitor ullamcorper lacus nec imperdiet. Donec nisl urna, efficitur in felis non, mollis mollis erat. Nam ligula odio, aliquet varius lectus eget, faucibus lacinia erat. Nulla enim justo, placerat non mauris quis, pretium eleifend magna. Vivamus at velit mi. Curabitur tincidunt sed justo sit amet varius.
-          # Nunc ullamcorper, leo a consectetur vestibulum,'
-            videoSource='abcd'
-          />
+          {hasSearchResults ? (
+            <TherapyCard
+              cardTitle='test_CIAT'
+              summaryStatement='Constraint-Induced Aphasia Therapy (CIAT, also known as Intensive Language Action Therapy) provides structured and repeated practice using everyday speech acts (e.g., making and responding to requests for information) while playing language games with cards depicting objects or actions.'
+              therapyTargets={
+                <HStack>
+                  <Image src={Speaking.src} alt='Speaking' />
+                  <Image src={Writing.src} alt='Writing' />
+                </HStack>
+              }
+              levelOfEvidence='Effectiveness: The following refers only to evidence from randomized-controlled trial (RCT) studies 
+              A number of RCTs have investigated the effectiveness of CIAT/ILAT in post-stroke aphasia. Different outcome measures have been used to assess treatment effectiveness ranging from standardised impairment-focussed aphasia batteries ('
+              videoSource='abcd'
+            />
+          ) : !isLoading ? (
+            <Stack>
+              {Array(5)
+                .fill(0)
+                .map((val, index) => (
+                  <Skeleton height='20px' key={index} />
+                ))}
+            </Stack>
+          ) : (
+            <Text size='lg' color='gray' mt='10'>
+              No Search Results ....{" "}
+            </Text>
+          )}
         </Box>
       </SimpleGrid>
     </Container>

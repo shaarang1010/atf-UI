@@ -28,20 +28,13 @@ const SearchProfile: React.FC<SearchProfileProps> = ({ searchText, filters, onTe
       <GridItem colSpan={6}>
         <FormControl>
           <FormLabel htmlFor='search'>Search Query</FormLabel>
-          <Input
-            id='search'
-            type='text'
-            placeholder='Search Text ...'
-            size='md'
-            value={searchText}
-            onChange={onTextChangeHandler}
-          />
+          <Input id='search' type='text' placeholder='Search Text ...' size='md' onChange={onTextChangeHandler} />
         </FormControl>
       </GridItem>
       <GridItem colSpan={6}>
         <Heading as='h3' size='md'>
           Filter
-          <Icon as={BsFilter} />
+          <Icon as={BsFilter} ml='1' pt='1' />
         </Heading>
       </GridItem>
       <GridItem colSpan={6}></GridItem>
