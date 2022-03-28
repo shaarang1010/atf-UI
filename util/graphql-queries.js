@@ -73,7 +73,23 @@ const getTherapyDetailsById = (id) => {
 const getTherapySearch = (text, { ...params }) => {
   const therapySearch = gql`
     query {
-      therapy
+      therapyProfiles(filters: {therapy: {contains: ${text}}}){
+        id
+        summaryStatement
+        levelOfEvidence
+        therapyname
+        therapyResources{
+            videoFile{
+            name
+            alternativeText
+            previewUrl
+            url
+            caption
+            }
+            literature
+            other
+        }
+      }
     }
   `;
 };
