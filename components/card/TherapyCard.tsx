@@ -36,12 +36,6 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
         {/*</Box>*/}
       </Box>
       <Box mt='5'>
-        <Badge px='2' colorScheme='gray' textTransform='uppercase' fontSize='0.9em'>
-          Targets
-        </Badge>
-        <Box mt='3'>{therapyTargets}</Box>
-      </Box>
-      <Box mt='5'>
         <Text>
           {strippedSummaryText.join(".")}
           <a href='/' style={{ marginLeft: "3px", color: "blue" }}>

@@ -73,7 +73,7 @@ const getTherapyDetailsById = (id) => {
 const getTherapySearch = (text, { ...params }) => {
   const therapySearch = gql`
     query {
-      therapyProfiles(filters: {therapy: {contains: ${text}}}){
+      therapyProfiles(where: {therapyname_contains: ${text}}){
         id
         summaryStatement
         levelOfEvidence
@@ -94,4 +94,4 @@ const getTherapySearch = (text, { ...params }) => {
   `;
 };
 
-export { authenticateUser, getTherapyDetailsById };
+export { authenticateUser, getTherapyDetailsById, getTherapySearch };
