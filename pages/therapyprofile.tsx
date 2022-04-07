@@ -6,6 +6,7 @@ import RenderMarkdownToHTML from "../components/markdown/RenderMarkdown";
 import { getTherapyDetailsById } from "../util/graphql-queries";
 import client from "../util/apollo-client";
 import { Container, Box, Flex } from "@chakra-ui/react";
+import { useQuery } from "@apollo/client";
 
 const TherapyProfile: NextPage = ({ data }: any) => {
   const markdownText =
@@ -31,7 +32,7 @@ const TherapyProfile: NextPage = ({ data }: any) => {
 };
 
 export async function getServerSideProps() {
-  const { data } = await client.query({ query: getTherapyDetailsById(1) });
+  const { data } = await useQuery(getTherapyDetailsById(1));
   return {
     props: {
       data: data.therapyProfile
