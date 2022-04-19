@@ -32,7 +32,7 @@ const TherapyProfile: NextPage = ({ data }: any) => {
 };
 
 export async function getServerSideProps() {
-  const { data } = await useQuery(getTherapyDetailsById(1));
+  const { data } = await client.query({ query: getTherapyDetailsById(1) });
   return {
     props: {
       data: data.therapyProfile
