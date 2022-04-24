@@ -1,4 +1,5 @@
 {
+  "tabs": ["Level of Evidence", "ICF Domains", "Aphasia Type", "Aphasia Severity"],
   "levels": [
     {
       "label": "Level I",

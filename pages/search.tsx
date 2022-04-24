@@ -17,7 +17,7 @@ import Writing from "../assets/writing.svg";
 import TherapyCard from "../components/card/TherapyCard";
 
 import dropdownlist from "../assets/lists.json";
-import CheckboxComponent from "../components/checkbox/CheckboxGroup";
+import { FilterOptionProps } from "../models/ComponentModel";
 import FilterGroup from "../components/select/SelectFilter";
 
 const filterValues = [
@@ -39,9 +39,6 @@ const TherapySearch = () => {
   const [searchText, setSearchText] = useState("");
   const [hasSearchResults, setHasSearchResults] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [levelCheckedItems, setLevelCheckedItems] = React.useState([false, false]);
-  const allChecked = levelCheckedItems.every(Boolean);
-  const isIndeterminate = levelCheckedItems.some(Boolean) && !allChecked;
   const selectedFilters: string[] = [];
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,16 +56,23 @@ const TherapySearch = () => {
     showSkeleton();
   };
 
-  const levelFilters = (
+  const filterHandler = (arr: FilterOptionProps[]) => {
+    const filters = arr.map((item) => {
+      return item.value;
+    });
+    console.log(filters);
+  };
+
+  const filters = [
     <FilterGroup
       id='levelSelect'
       name='Level of Evidence'
       isSearchable={true}
       filterOptions={dropdownlist.levels}
       isClearable={true}
-      handleChangeListener={(e) => console.log(e.target.value)}
+      handleChangeListener={(e) => filterHandler(e)}
     />
-  );
+  ];
 
   return (
     <Container maxW={"container.xl"}>
@@ -76,8 +80,9 @@ const TherapySearch = () => {
         <Box maxW={"lg"} mt='20'>
           <SearchProfile
             searchText={searchText}
+            tabNames={dropdownlist.tabs}
             onTextChangeHandler={onChangeHandler}
-            filters={levelFilters}
+            filters={filters}
             onSearch={onTherapySearch}
           />
         </Box>
