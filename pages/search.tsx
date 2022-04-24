@@ -18,6 +18,7 @@ import TherapyCard from "../components/card/TherapyCard";
 
 import dropdownlist from "../assets/lists.json";
 import CheckboxComponent from "../components/checkbox/CheckboxGroup";
+import FilterGroup from "../components/select/SelectFilter";
 
 const filterValues = [
   {
@@ -59,25 +60,13 @@ const TherapySearch = () => {
   };
 
   const levelFilters = (
-    // <CheckboxGroup colorScheme='blue' defaultValue={[]}>
-    //   <Stack spacing={[1, 5]} direction={["row", "column"]}>
-    //     {filterValues.map((option, index) => {
-    //       return (
-    //         <Checkbox value={option.value} key={index}>
-    //           {option.name}
-    //         </Checkbox>
-    //       );
-    //     })}
-    //   </Stack>
-    // </CheckboxGroup>
-    <CheckboxComponent
-      checkedItems={levelCheckedItems}
-      allChecked={allChecked}
-      isIndeterminate={isIndeterminate}
-      setCheckedItems={setLevelCheckedItems}
-      parentName={"Level of Evidence"}
-      childOptions={dropdownlist.levels}
-      selectedFilters={selectedFilters}
+    <FilterGroup
+      id='levelSelect'
+      name='Level of Evidence'
+      isSearchable={true}
+      filterOptions={dropdownlist.levels}
+      isClearable={true}
+      handleChangeListener={(e) => console.log(e.target.value)}
     />
   );
 

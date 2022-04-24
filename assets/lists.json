@@ -2,49 +2,49 @@
   "levels": [
     {
       "label": "Level I",
-      "name": "level_I"
+      "value": "level_I"
     },
     {
       "label": "Level II",
-      "name": "level_II"
+      "value": "level_II"
     },
     {
       "label": "Level III-1",
-      "name": "level_III_1"
+      "value": "level_III_1"
     },
     {
       "label": "Level III-2",
-      "name": "level_III_2"
+      "value": "level_III_2"
     },
     {
       "label": "Level III-3",
-      "name": "level_III_3"
+      "value": "level_III_3"
     },
     {
       "label": "Level IV",
-      "name": "level_IV"
+      "value": "level_IV"
     }
   ],
   "icfDomains": [
     {
       "label": "Language Impairment",
-      "name": "impairment"
+      "value": "impairment"
     },
     {
       "label": "Activity",
-      "name": "activity"
+      "value": "activity"
     },
     {
       "label": "Participation",
-      "name": "participation"
+      "value": "participation"
     },
     {
       "label": "Environmental factors",
-      "name": "environmental"
+      "value": "environmental"
     },
     {
       "label": "Personal factors",
-      "name": "personal"
+      "value": "personal"
     }
   ]
 }
