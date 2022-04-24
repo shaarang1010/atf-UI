@@ -15,54 +15,59 @@ const getTherapyDetailsById = (id) => {
   const therapyQuery = gql`
   query {
     therapyProfile(id: ${id}){
-        created_at
+      created_at
         updated_at
         therapyname
         summaryStatement
         relatedTherapies
         levelOfEvidence{
-            evidenceStatement
-            additionalText
+           evidenceDropdown
+          evidenceStatement
+          additionalText
+          evidenceLink
         }
-        therapyTargets{
-            icfDomains
-            therapeuticTargets
-            clientSelection{
-                aphasiaText
-                aphasiaSeverity
-                aphasiaAetiology
-                timeSinceOnsetOfAphasia
-            }
+    		therapyTargets{
+          icfDomains
+          therapeuticTargets
+          clientSelection{
+          	aphasiaText
+            aphasiaSeverity
+            aphasiaAetiology
+            aphasiaTypeList
+            aphasiaSeverityList
+            aphasiaAetiologyList
+            clientSelection
+            timeSinceOnset
+          }
         }
-        therapyIngredients{
-            therapyProtocol
-            keyTherapeuticPrincipals
-            therapyMode{
-                setting
-                groupSize
-                doseAndSchedule
-                teleHealth
-            }
-            therapyMethod
-            resources
-        }
-        mechainismOfAction{
-            theoreticalUnderPinnings
-            supportingEmpiricalEvidence
-        }
-        therapyResources{
-            videoFile{
-            name
-            alternativeText
-            previewUrl
-            url
-            caption
-            }
-            literature
-            other
-        }
-        alternativeNames
-        published_at
+    	therapyIngredients{
+        therapyProtocol
+        keyTherapeuticPrincipals
+      	therapyMode{
+        	setting
+          doseAndSchedule
+          delivery
+          deliveryText
+      	}
+        therapyMethod
+        resources
+        frequentClinicalQuestions
+      }
+    	mechainismOfAction{
+        theoreticalUnderPinnings
+        supportingEmpiricalEvidence
+      }
+    therapyResources{
+      videoFile{
+        name
+        url
+      }
+      literature
+      other
+    }
+    alternativeNames
+    keywords
+    published_at
     }
   }
 `;

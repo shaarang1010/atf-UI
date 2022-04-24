@@ -16,10 +16,13 @@ import Speaking from "../assets/speaking.svg";
 import Writing from "../assets/writing.svg";
 import TherapyCard from "../components/card/TherapyCard";
 
+import dropdownlist from "../assets/lists.json";
+import CheckboxComponent from "../components/checkbox/CheckboxGroup";
+
 const filterValues = [
   {
-    name: "Therapy Resources",
-    value: "therapyResources"
+    parentName: "Level of Evidence",
+    childOptions: ["Level I", "Level II", "Level III-1", "Level III-2", "Level III-3", "Level IV"]
   },
   {
     name: "Therapy Targets",
@@ -35,6 +38,10 @@ const TherapySearch = () => {
   const [searchText, setSearchText] = useState("");
   const [hasSearchResults, setHasSearchResults] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [levelCheckedItems, setLevelCheckedItems] = React.useState([false, false]);
+  const allChecked = levelCheckedItems.every(Boolean);
+  const isIndeterminate = levelCheckedItems.some(Boolean) && !allChecked;
+  const selectedFilters: string[] = [];
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -51,18 +58,27 @@ const TherapySearch = () => {
     showSkeleton();
   };
 
-  const filters = (
-    <CheckboxGroup colorScheme='blue' defaultValue={[]}>
-      <Stack spacing={[1, 5]} direction={["row", "column"]}>
-        {filterValues.map((option, index) => {
-          return (
-            <Checkbox value={option.value} key={index}>
-              {option.name}
-            </Checkbox>
-          );
-        })}
-      </Stack>
-    </CheckboxGroup>
+  const levelFilters = (
+    // <CheckboxGroup colorScheme='blue' defaultValue={[]}>
+    //   <Stack spacing={[1, 5]} direction={["row", "column"]}>
+    //     {filterValues.map((option, index) => {
+    //       return (
+    //         <Checkbox value={option.value} key={index}>
+    //           {option.name}
+    //         </Checkbox>
+    //       );
+    //     })}
+    //   </Stack>
+    // </CheckboxGroup>
+    <CheckboxComponent
+      checkedItems={levelCheckedItems}
+      allChecked={allChecked}
+      isIndeterminate={isIndeterminate}
+      setCheckedItems={setLevelCheckedItems}
+      parentName={"Level of Evidence"}
+      childOptions={dropdownlist.levels}
+      selectedFilters={selectedFilters}
+    />
   );
 
   return (
@@ -72,7 +88,7 @@ const TherapySearch = () => {
           <SearchProfile
             searchText={searchText}
             onTextChangeHandler={onChangeHandler}
-            filters={filters}
+            filters={levelFilters}
             onSearch={onTherapySearch}
           />
         </Box>
