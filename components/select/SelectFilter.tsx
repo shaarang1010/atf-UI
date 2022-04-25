@@ -30,6 +30,7 @@ const FilterGroup: React.FC<FilterGroupProps> = ({
         isSearchable={true}
         id={id}
         options={filterOptions}
+        placeholder={`Select ${name}...`}
       />
     </>
   );

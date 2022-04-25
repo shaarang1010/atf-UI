@@ -1,5 +1,6 @@
 {
   "tabs": ["Level of Evidence", "ICF Domains", "Aphasia Type", "Aphasia Severity"],
+  "additionalTabs": ["Aphasia Aetiology", "Time since onset", "Setting", "Delivery"],
   "levels": [
     {
       "label": "Level I",
@@ -46,6 +47,124 @@
     {
       "label": "Personal factors",
       "value": "personal"
+    }
+  ],
+  "aphasiaType": [
+    {
+      "label": "Fluent",
+      "value": "fluent"
+    },
+    {
+      "label": "Non-Fluent",
+      "value": "non_fluent"
+    },
+    {
+      "label": "Anomic",
+      "value": "anomic"
+    },
+    {
+      "label": "Broca's",
+      "value": "Conduction"
+    },
+    {
+      "label": "Global",
+      "value": "global"
+    },
+    {
+      "label": "Mixed transcortical",
+      "value": "mixed_transcortical"
+    },
+    {
+      "label": "Transcortical motor",
+      "value": "transcortical_motor"
+    },
+    {
+      "label": "Transcortical sensory",
+      "value": "transcortical_sensory"
+    },
+    {
+      "label": "Wernicke's",
+      "value": "wernickes"
+    }
+  ],
+  "aphasiaSeverity": [
+    {
+      "label": "Mild",
+      "value": "mild"
+    },
+    {
+      "label": "Moderate",
+      "value": "moderate"
+    },
+    {
+      "label": "Severe",
+      "value": "severe"
+    }
+  ],
+  "aphasiaAetiology": [
+    {
+      "label": "Post-stroke",
+      "value": "poststroke"
+    },
+    {
+      "label": "Primary progressive aphasia",
+      "value": "primary_progressive_aphasia"
+    },
+    {
+      "label": "Traumatic brain injury",
+      "value": "traumatic_brain_injury"
+    },
+    {
+      "label": "Tumour",
+      "value": "tumor"
+    }
+  ],
+  "setting": [
+    {
+      "label": "Inpatient",
+      "value": "inpatient"
+    },
+    {
+      "label": "Outpatient",
+      "value": "outpatient"
+    },
+    {
+      "label": "Community",
+      "value": "community"
+    }
+  ],
+  "delivery": [
+    {
+      "label": "One-to-One",
+      "value": "one_to_one"
+    },
+    {
+      "label": "Face-to-Face",
+      "value": "face_to_face"
+    },
+    {
+      "label": "In pairs",
+      "value": "in_pairs"
+    },
+    {
+      "label": "In a group",
+      "value": "in_a_group"
+    },
+    {
+      "label": "Computer delivered",
+      "value": "computer_delivered"
+    },
+    {
+      "label": "Volunteer delivered",
+      "value": "volunteer_delivered"
+    },
+    {
+      "label": "via telehealth",
+      "value": "telehealth"
+    },
+    {
+      "label": "In pairs",
+      "value": "independent_practice"
     }
   ]
 }

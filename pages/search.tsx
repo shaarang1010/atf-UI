@@ -20,21 +20,6 @@ import dropdownlist from "../assets/lists.json";
 import { FilterOptionProps } from "../models/ComponentModel";
 import FilterGroup from "../components/select/SelectFilter";
 
-const filterValues = [
-  {
-    parentName: "Level of Evidence",
-    childOptions: ["Level I", "Level II", "Level III-1", "Level III-2", "Level III-3", "Level IV"]
-  },
-  {
-    name: "Therapy Targets",
-    value: "therapyTargets"
-  },
-  {
-    name: "Mechanism of Action",
-    value: "mechanismOfAction"
-  }
-];
-
 const TherapySearch = () => {
   const [searchText, setSearchText] = useState("");
   const [hasSearchResults, setHasSearchResults] = useState(false);
@@ -71,6 +56,65 @@ const TherapySearch = () => {
       filterOptions={dropdownlist.levels}
       isClearable={true}
       handleChangeListener={(e) => filterHandler(e)}
+    />,
+    <FilterGroup
+      id='icfDomains'
+      name='ICF Domains'
+      isSearchable={true}
+      filterOptions={dropdownlist.icfDomains}
+      isClearable={true}
+      handleChangeListener={(e) => filterHandler(e)}
+    />,
+    <FilterGroup
+      id='aphasiaType'
+      name='Aphasia type'
+      isSearchable={true}
+      filterOptions={dropdownlist.aphasiaType}
+      isClearable={true}
+      handleChangeListener={(e) => filterHandler(e)}
+    />,
+    <FilterGroup
+      id='aphasiaSeverity'
+      name='Aphasia Severity'
+      isSearchable={true}
+      filterOptions={dropdownlist.aphasiaSeverity}
+      isClearable={true}
+      handleChangeListener={(e) => filterHandler(e)}
+    />
+  ];
+
+  const additionalFilter = [
+    <FilterGroup
+      id='aphasiaAetiology'
+      name='Aphasia Aetiology'
+      isSearchable={true}
+      filterOptions={dropdownlist.aphasiaAetiology}
+      isClearable={true}
+      handleChangeListener={(e) => filterHandler(e)}
+    />,
+    <FilterGroup
+      id='aphasiaSeverity'
+      name='Aphasia Severity'
+      isSearchable={true}
+      filterOptions={dropdownlist.aphasiaSeverity}
+      isClearable={true}
+      handleChangeListener={(e) => filterHandler(e)}
+    />,
+    <FilterGroup
+      id='setting'
+      name='Settings'
+      isSearchable={true}
+      filterOptions={dropdownlist.setting}
+      isClearable={true}
+      handleChangeListener={(e) => filterHandler(e)}
+    />,
+    <FilterGroup
+      id='delivery'
+      name='Delivery'
+      isSearchable={true}
+      filterOptions={dropdownlist.delivery}
+      isClearable={true}
+      handleChangeListener={(e) => filterHandler(e)}
     />
   ];
 
@@ -83,6 +127,8 @@ const TherapySearch = () => {
             tabNames={dropdownlist.tabs}
             onTextChangeHandler={onChangeHandler}
             filters={filters}
+            hiddenTabs={dropdownlist.additionalTabs}
+            hiddenFilters={additionalFilter}
             onSearch={onTherapySearch}
           />
         </Box>
