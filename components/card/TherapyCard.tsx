@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Box, Heading, FormLabel, Input, Text, Icon, Badge, SimpleGrid } from "@chakra-ui/react";
 import theme from "../../styles/theme";
 import { BsFillCameraVideoFill } from "react-icons/bs";
+import PopOverComponent from "../popovers/Popovers";
+import TableComponent from "./Table";
+import { TableData } from "../../models/ComponentModel";
 
 interface TherapyCardProps {
   cardTitle: string;
@@ -21,6 +24,7 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
 }) => {
   const strippedSummaryText = summaryStatement.split(".").slice(0, 3);
   const strippedLevelOfEvidence = levelOfEvidence.split(".").slice(0, 3);
+  const data = [{ dataItems: ["121314", "12143131"] }, { dataItems: ["13131313", "121412143131313131"] }];
   return (
     <Box maxW='lg' borderWidth='1px' borderRadius='lg' overflow='hidden' p='3'>
       <Box display={"flex"} alignItems='baseline'>
@@ -35,24 +39,35 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
         </Badge>
         {/*</Box>*/}
       </Box>
-      <Box mt='5'>
+      {/* <Box mt='5'>
         <Text>
           {strippedSummaryText.join(".")}
           <a href='/' style={{ marginLeft: "3px", color: "blue" }}>
             ...more
           </a>
         </Text>
-      </Box>
+      </Box> */}
       <Box mt='5'>
         <Badge px='2' colorScheme='gray' textTransform='uppercase' fontSize='0.9em'>
           Level of Evidence
         </Badge>
-        <Box mt='3'>
+        <PopOverComponent
+          header={"Therapy info"}
+          content={
+            <TableComponent
+              headers={["Level of Evidence", "Info"]}
+              data={data}
+              variant='simple'
+              tableCaption='Label Caption'
+            />
+          }
+        />
+        {/* <Box mt='3'>
           {strippedLevelOfEvidence.join(".")}
           <a href='/' style={{ marginLeft: "3px", color: "blue" }}>
             ...more
           </a>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   );

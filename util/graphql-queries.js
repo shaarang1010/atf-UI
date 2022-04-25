@@ -94,9 +94,70 @@ const getTherapySearch = (text, { ...params }) => {
             literature
             other
         }
+        levelOfEvidence{
+          evidenceDropdown
+        }
+        therapyTargets{
+          icfDomains
+        clientSelection{
+            aphasiaTypeList
+            aphasiaSeverityList
+            aphasiaAetiologyList
+            timeSinceOnset
+          }
+        }
+        therapyIngredients{
+      	therapyMode{
+        	setting
+          doseAndSchedule
+          delivery
+          deliveryText
+      	}
       }
     }
   `;
+  return therapySearch;
 };
 
-export { authenticateUser, getTherapyDetailsById, getTherapySearch };
+const getTherapyByFilters = (filter) => {
+  const therapySearch = gql`
+  query{
+    therapyProfiles(where: {_and: [${filter}]}){
+      id
+        summaryStatement
+        levelOfEvidence
+        therapyname
+        therapyResources{
+            videoFile{
+            name
+            alternativeText
+            previewUrl
+            url
+            caption
+            }
+            literature
+            other
+        }
+        levelOfEvidence{
+          evidenceDropdown
+        }
+        therapyTargets{
+          icfDomains
+        clientSelection{
+          	aphasiaText
+            aphasiaSeverity
+            aphasiaAetiology
+            aphasiaTypeList
+            aphasiaSeverityList
+            aphasiaAetiologyList
+            clientSelection
+            timeSinceOnset
+          }
+        }
+      }
+    }
+  }`;
+  return therapySearch;
+};
+
+export { authenticateUser, getTherapyDetailsById, getTherapySearch, getTherapyByFilters };
