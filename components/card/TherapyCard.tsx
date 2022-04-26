@@ -24,7 +24,12 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
 }) => {
   const strippedSummaryText = summaryStatement.split(".").slice(0, 3);
   const strippedLevelOfEvidence = levelOfEvidence.split(".").slice(0, 3);
-  const data = [{ dataItems: ["121314", "12143131"] }, { dataItems: ["13131313", "121412143131313131"] }];
+  const data = [
+    {
+      dataItems: ["Level I", "Lorem ipsum dolor sit amet, consectetur adipiscing ."]
+    },
+    { dataItems: ["Level II", "lorem ipsum diotr"] }
+  ];
   return (
     <Box maxW='lg' borderWidth='1px' borderRadius='lg' overflow='hidden' p='3'>
       <Box display={"flex"} alignItems='baseline'>
@@ -48,26 +53,21 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
         </Text>
       </Box> */}
       <Box mt='5'>
-        <Badge px='2' colorScheme='gray' textTransform='uppercase' fontSize='0.9em'>
+        <Badge p='2' mr='2' colorScheme='gray' textTransform='uppercase' fontSize='0.9em'>
           Level of Evidence
         </Badge>
         <PopOverComponent
-          header={"Therapy info"}
+          header={"NHMRC Level of Evidence Hierarchy "}
           content={
-            <TableComponent
-              headers={["Level of Evidence", "Info"]}
-              data={data}
-              variant='simple'
-              tableCaption='Label Caption'
-            />
+            <TableComponent headers={["Level of Evidence", "Info"]} data={data} variant='simple' tableCaption='' />
           }
         />
-        {/* <Box mt='3'>
+        <Box mt='3'>
           {strippedLevelOfEvidence.join(".")}
           <a href='/' style={{ marginLeft: "3px", color: "blue" }}>
             ...more
           </a>
-        </Box> */}
+        </Box>
       </Box>
     </Box>
   );

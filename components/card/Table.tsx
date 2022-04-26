@@ -26,9 +26,13 @@ const TableComponent: React.FC<TableProps> = ({ variant = "simple", tableCaption
         <Tbody>
           {data.map((items, index) => {
             console.log(items);
-            return items.dataItems.map((item, itemIndex) => {
-              return <Td key={itemIndex}>{item}</Td>;
-            });
+            return (
+              <Tr key={index} bgColor={index === 1 ? "#FED7D7" : ""}>
+                {items.dataItems.map((item, itemIndex) => {
+                  return <Td key={itemIndex}>{item}</Td>;
+                })}
+              </Tr>
+            );
           })}
         </Tbody>
       </Table>

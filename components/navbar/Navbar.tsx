@@ -12,12 +12,14 @@ import {
   MenuList,
   Avatar,
   MenuItem,
-  MenuDivider
+  MenuDivider,
+  Image
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
+import logo from "../../assets/Aphasia-logo.png";
 
 type NavOptions = {
   optionName: string;
@@ -50,7 +52,8 @@ const NavBar: React.FC<NavbarProps> = ({
         <Box>
           <Link href='/'>
             <Heading as='h3' size='md' p='2'>
-              Aphasia Therapy Finder
+              {/* Aphasia Therapy Finder */}
+              <Image src='https://imgur.com/a/bNVj6z1' alt='Aphasia Therapy Finder' />
             </Heading>
           </Link>
         </Box>
