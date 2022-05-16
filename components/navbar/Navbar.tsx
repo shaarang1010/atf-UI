@@ -12,14 +12,16 @@ import {
   MenuList,
   Avatar,
   MenuItem,
-  MenuDivider,
-  Image
+  MenuDivider
 } from "@chakra-ui/react";
 import { Search2Icon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
+import Image from "next/image";
 import logo from "../../assets/Aphasia-logo.png";
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
 
 type NavOptions = {
   optionName: string;
@@ -31,17 +33,11 @@ type NavbarProps = {
   protectedNavOptions?: NavOptions[];
   accountOptions?: NavOptions[];
   navColor: string;
-  isAuthenticated: boolean;
 };
 
-const NavBar: React.FC<NavbarProps> = ({
-  navOptions,
-  navColor,
-  isAuthenticated,
-  protectedNavOptions,
-  accountOptions
-}) => {
+const NavBar: React.FC<NavbarProps> = ({ navOptions, navColor, protectedNavOptions, accountOptions }) => {
   const router = useRouter();
+  const { isAuthenticated } = useContext(UserContext);
   const onClickNavigate = (e: any, link: string) => {
     e.preventDefault();
     router.push(link);
@@ -51,9 +47,9 @@ const NavBar: React.FC<NavbarProps> = ({
       <Flex>
         <Box>
           <Link href='/'>
-            <Heading as='h3' size='md' p='2'>
-              {/* Aphasia Therapy Finder */}
-              <Image src='https://imgur.com/a/bNVj6z1' alt='Aphasia Therapy Finder' />
+            <Heading as='h3' size='md' pl='2'>
+              Aphasia Therapy Finder
+              {/* <Image src={logo} alt='Aphasia Therapy Finder' /> */}
             </Heading>
           </Link>
         </Box>
@@ -96,14 +92,14 @@ const NavBar: React.FC<NavbarProps> = ({
                       className={styles.navbarButton}
                       onClick={(e) => onClickNavigate(e, option.optionLink)}
                     >
-                      {option.optionName}
+                      {isAuthenticated && option.optionName === "Login" ? "Logout" : option.optionName}
                     </Button>
                   </Box>
                 );
               })}
             <Spacer />
             <Box>
-              <Menu>
+              {/* <Menu>
                 <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>
                   <Avatar
                     size={"sm"}
@@ -123,7 +119,7 @@ const NavBar: React.FC<NavbarProps> = ({
                       </div>
                     ))}
                 </MenuList>
-              </Menu>
+              </Menu> */}
             </Box>
           </Flex>
         ) : null}

@@ -7,6 +7,7 @@ import theme from "../styles/theme";
 import client from "../util/apollo-client";
 import { Fonts } from "../styles/Fonts";
 import UserContext from "../context/UserContext";
+import { useState } from "react";
 
 const ProviderValues = {
   username: "",
@@ -15,10 +16,12 @@ const ProviderValues = {
 };
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [username, setUserName] = useState("");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
     <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
-        <UserContext.Provider value={ProviderValues}>
+        <UserContext.Provider value={{ username, setUserName, isAuthenticated, setIsAuthenticated, email: "" }}>
           <Fonts />
           <Layout>
             <Component {...pageProps} />

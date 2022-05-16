@@ -1,6 +1,7 @@
 import React from "react";
 import NavBar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
+import { Container } from "@chakra-ui/react";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navOptions = [
     {
       optionName: "Login",
-      optionLink: "/login",
+      optionLink: "/",
       optionColor: "blue"
     },
     {
@@ -39,15 +40,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       footerLinks: [
         {
           footerLinkName: "Page 123",
-          footerLinkUrl: "google.com"
+          footerLinkUrl: "/home"
         },
         {
           footerLinkName: "Page 123",
-          footerLinkUrl: "google.com"
+          footerLinkUrl: "/home"
         },
         {
           footerLinkName: "Page 123",
-          footerLinkUrl: "google.com"
+          footerLinkUrl: "/home"
         }
       ]
     },
@@ -56,15 +57,15 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       footerLinks: [
         {
           footerLinkName: "Page 123",
-          footerLinkUrl: "google.com"
+          footerLinkUrl: "/home"
         },
         {
           footerLinkName: "Page 123",
-          footerLinkUrl: "google.com"
+          footerLinkUrl: "/home"
         },
         {
           footerLinkName: "Page 123",
-          footerLinkUrl: "google.com"
+          footerLinkUrl: "/home"
         }
       ]
     }
@@ -81,7 +82,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <NavBar
         navColor='white'
         navOptions={navOptions}
-        isAuthenticated={false}
         protectedNavOptions={navOptions}
         accountOptions={accountOptions}
       />

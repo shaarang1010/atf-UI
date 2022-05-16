@@ -1,9 +1,10 @@
 import { Box, Grid, GridItem, Button, FormControl, Flex, FormLabel, Input, Heading, Link } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import styles from "./Login.module.css";
 import { useRouter } from "next/router";
+import UserContext from "../../../context/UserContext";
 
 interface LoginProps {
   userEmail: string;

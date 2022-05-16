@@ -4,25 +4,30 @@ import Image from "next/image";
 import theme from "../styles/theme";
 import styles from "../styles/Home.module.css";
 import { Container, SimpleGrid, Box } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LoginComponent from "../components/forms/login/Login";
 import InformationPane from "../components/infopane/InformationPane";
 import { Signup } from "../components/forms/signup/Signup";
 import { auth } from "../util/firebase/firebase";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import UserContext from "../context/UserContext";
+import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
   const [login, setLogin] = useState<Boolean>(false);
-
+  const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
+  const router = useRouter();
   const userLogin = async (username: string, password: string) => {
     try {
       const data = await signInWithEmailAndPassword(auth, username, password);
       console.log(data);
       if (data) {
         setLogin(true);
+        setIsAuthenticated(true);
+        router.push("/therapyprofile");
       }
     } catch (err) {
       console.error(err);
