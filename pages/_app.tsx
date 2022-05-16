@@ -6,15 +6,24 @@ import { ApolloProvider } from "@apollo/client";
 import theme from "../styles/theme";
 import client from "../util/apollo-client";
 import { Fonts } from "../styles/Fonts";
+import UserContext from "../context/UserContext";
+
+const ProviderValues = {
+  username: "",
+  email: "",
+  isAuthenticated: false
+};
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ApolloProvider client={client}>
       <ChakraProvider theme={theme}>
-        <Fonts />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <UserContext.Provider value={ProviderValues}>
+          <Fonts />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </UserContext.Provider>
       </ChakraProvider>
     </ApolloProvider>
   );

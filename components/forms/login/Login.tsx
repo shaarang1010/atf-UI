@@ -6,13 +6,14 @@ import styles from "./Login.module.css";
 import { useRouter } from "next/router";
 
 interface LoginProps {
-  userEmail: String;
+  userEmail: string;
   setUserEmail(e: React.ChangeEvent<HTMLInputElement>): void;
-  userPassword: String;
+  userPassword: string;
   setUserPassword(e: React.ChangeEvent<HTMLInputElement>): void;
   forgotPassword: boolean;
   setForgotPassword(): void;
   createAccount(): void;
+  loginUser(): void;
 }
 
 const LoginComponent: React.FC<LoginProps> = ({
@@ -21,6 +22,7 @@ const LoginComponent: React.FC<LoginProps> = ({
   forgotPassword,
   setForgotPassword,
   setUserEmail,
+  loginUser,
   setUserPassword,
   createAccount
 }) => {
@@ -65,20 +67,20 @@ const LoginComponent: React.FC<LoginProps> = ({
           <GridItem colSpan={6}>
             <FormControl>
               <FormLabel htmlFor='email'>Email address</FormLabel>
-              <Input id='email' type='email' onChange={setUserEmail} />
+              <Input id='email' type='email' value={userEmail} onChange={setUserEmail} />
             </FormControl>
           </GridItem>
           <GridItem colSpan={6}>
             <FormControl>
               <FormLabel htmlFor='password'>Password</FormLabel>
-              <Input id='password' type='password' onChange={setUserPassword} />
+              <Input id='password' type='password' value={userPassword} onChange={setUserPassword} />
             </FormControl>
           </GridItem>
           <GridItem colSpan={6} mt='4'>
             <Link href='/'>Forgot Password?</Link>
           </GridItem>
           <GridItem colStart={2} colEnd={5}>
-            <Button colorScheme='blue' size='lg' isFullWidth={true} onClick={(e) => onClickNavigate(e, "/search")}>
+            <Button colorScheme='blue' size='lg' isFullWidth={true} onClick={loginUser}>
               Login
             </Button>
           </GridItem>
