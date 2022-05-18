@@ -12,14 +12,28 @@ import { auth } from "../util/firebase/firebase";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import UserContext from "../context/UserContext";
 import { useRouter } from "next/router";
+import { firebaseErrors } from "../models/FirebaseErrorConstants";
+import get from "lodash/get";
+
+const mapErrors = (error: string) => {
+  const errorObject = { ...firebaseErrors };
+  console.log(get(errorObject, error));
+  return get(errorObject, error);
+};
+
+type ErrMessage = {
+  message: string;
+  type: "email" | "password" | null;
+};
 
 const Home: NextPage = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
   const [login, setLogin] = useState<Boolean>(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<ErrMessage>({ message: "", type: null });
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
+
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
     try {
@@ -31,7 +45,9 @@ const Home: NextPage = () => {
         router.push("/therapyprofile");
       }
     } catch (err: any) {
-      console.log(err.message);
+      const errorMessage = err.message.substring(err.message.indexOf("(") + 1, err.message.indexOf(")"));
+      console.log(errorMessage);
+      setError(mapErrors(errorMessage));
       console.error(err);
     }
   };
@@ -79,6 +95,7 @@ const Home: NextPage = () => {
                   setForgotPassword={() => setForgotPassword(!forgotPassword)}
                   createAccount={toggleLogin}
                   loginUser={() => userLogin(userEmail, userPassword)}
+                  errorMessage={error}
                 />
               ) : (
                 <Signup loginAccount={toggleLogin} />

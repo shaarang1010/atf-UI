@@ -27,8 +27,7 @@ interface LoginProps {
   setForgotPassword(): void;
   createAccount(): void;
   loginUser(): void;
-  emailErrorMessage?: string;
-  passwordErrorMessage?: string;
+  errorMessage?: { message: string; type: "email" | "password" | null };
 }
 
 const LoginComponent: React.FC<LoginProps> = ({
@@ -40,8 +39,7 @@ const LoginComponent: React.FC<LoginProps> = ({
   loginUser,
   setUserPassword,
   createAccount,
-  emailErrorMessage,
-  passwordErrorMessage
+  errorMessage
 }) => {
   const [sendResetLink, setSendResetLink] = useState(false);
   const router = useRouter();
@@ -49,6 +47,7 @@ const LoginComponent: React.FC<LoginProps> = ({
     e.preventDefault();
     router.push(link);
   };
+  console.log(errorMessage?.type);
   return (
     <>
       {forgotPassword ? (
@@ -82,17 +81,17 @@ const LoginComponent: React.FC<LoginProps> = ({
             </Button>
           </GridItem>
           <GridItem colSpan={6}>
-            <FormControl>
+            <FormControl isInvalid={errorMessage?.type === "email"}>
               <FormLabel htmlFor='email'>Email address</FormLabel>
               <Input id='email' type='email' value={userEmail} onChange={setUserEmail} />
-              {emailErrorMessage && <FormErrorMessage>{emailErrorMessage}</FormErrorMessage>}
+              <FormErrorMessage>{errorMessage?.message}</FormErrorMessage>
             </FormControl>
           </GridItem>
           <GridItem colSpan={6}>
-            <FormControl>
+            <FormControl isInvalid={errorMessage?.type === "password"}>
               <FormLabel htmlFor='password'>Password</FormLabel>
               <Input id='password' type='password' value={userPassword} onChange={setUserPassword} />
-              {passwordErrorMessage && <FormErrorMessage>{passwordErrorMessage}</FormErrorMessage>}
+              <FormErrorMessage>{errorMessage?.message}</FormErrorMessage>
             </FormControl>
           </GridItem>
           <GridItem colSpan={6} mt='4'>
