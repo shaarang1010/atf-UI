@@ -1,4 +1,16 @@
-import { Box, Grid, GridItem, Button, FormControl, Flex, FormLabel, Input, Heading, Link } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  GridItem,
+  Button,
+  FormControl,
+  Flex,
+  FormLabel,
+  Input,
+  Heading,
+  Link,
+  FormErrorMessage
+} from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
@@ -15,6 +27,8 @@ interface LoginProps {
   setForgotPassword(): void;
   createAccount(): void;
   loginUser(): void;
+  emailErrorMessage?: string;
+  passwordErrorMessage?: string;
 }
 
 const LoginComponent: React.FC<LoginProps> = ({
@@ -25,7 +39,9 @@ const LoginComponent: React.FC<LoginProps> = ({
   setUserEmail,
   loginUser,
   setUserPassword,
-  createAccount
+  createAccount,
+  emailErrorMessage,
+  passwordErrorMessage
 }) => {
   const [sendResetLink, setSendResetLink] = useState(false);
   const router = useRouter();
@@ -69,12 +85,14 @@ const LoginComponent: React.FC<LoginProps> = ({
             <FormControl>
               <FormLabel htmlFor='email'>Email address</FormLabel>
               <Input id='email' type='email' value={userEmail} onChange={setUserEmail} />
+              {emailErrorMessage && <FormErrorMessage>{emailErrorMessage}</FormErrorMessage>}
             </FormControl>
           </GridItem>
           <GridItem colSpan={6}>
             <FormControl>
               <FormLabel htmlFor='password'>Password</FormLabel>
               <Input id='password' type='password' value={userPassword} onChange={setUserPassword} />
+              {passwordErrorMessage && <FormErrorMessage>{passwordErrorMessage}</FormErrorMessage>}
             </FormControl>
           </GridItem>
           <GridItem colSpan={6} mt='4'>

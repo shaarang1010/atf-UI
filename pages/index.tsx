@@ -18,6 +18,7 @@ const Home: NextPage = () => {
   const [userPassword, setUserPassword] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
   const [login, setLogin] = useState<Boolean>(false);
+  const [error, setError] = useState("");
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
@@ -29,7 +30,8 @@ const Home: NextPage = () => {
         setIsAuthenticated(true);
         router.push("/therapyprofile");
       }
-    } catch (err) {
+    } catch (err: any) {
+      console.log(err.message);
       console.error(err);
     }
   };
