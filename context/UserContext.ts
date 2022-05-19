@@ -2,10 +2,10 @@ import React, { createContext } from "react";
 
 type ContextProps = {
   username: string;
-  setUserName(): void;
+  setUserName: (username: string) => any;
   email: string;
   isAuthenticated: boolean;
-  setIsAuthenticated(): void;
+  setIsAuthenticated: (user: boolean) => any;
 };
 
 const setUserName = () => {};
