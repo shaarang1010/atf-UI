@@ -11,7 +11,7 @@ import {
   SimpleGrid,
   Text
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
 import { useRouter } from "next/router";
@@ -19,6 +19,7 @@ import styles from "./Signup.module.css";
 import { auth, db } from "../../../util/firebase/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
+import UserContext from "../../../context/UserContext";
 
 interface SignupProps {
   loginAccount(): void;
@@ -31,6 +32,8 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(false);
+
+  const { username, isAuthenticated, setIsAuthenticated } = useContext(UserContext);
 
   const router = useRouter();
   const onClickNavigate = (e: any, link: string) => {
@@ -62,6 +65,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
       }).catch((err) => {
         console.log("Database Error", err);
       });
+      setIsAuthenticated(true);
       router.push("/therapyprofile");
     }
   };
