@@ -11,7 +11,7 @@ import {
   Image,
   HStack
 } from "@chakra-ui/react";
-// import SearchProfile from "../components/forms/searchProfile/SearchProfile";
+import SearchProfile from "../components/forms/searchProfile/SearchProfile";
 import Speaking from "../assets/speaking.svg";
 import Writing from "../assets/writing.svg";
 import TherapyCard from "../components/card/TherapyCard";
@@ -122,7 +122,7 @@ const TherapySearch = () => {
     <Container maxW={"container.xl"}>
       <SimpleGrid columns={{ sm: 2, md: 2 }} gap={5}>
         <Box maxW={"lg"} mt='20'>
-          {/* <SearchProfile
+          <SearchProfile
             searchText={searchText}
             tabNames={dropdownlist.tabs}
             onTextChangeHandler={onChangeHandler}
@@ -130,7 +130,7 @@ const TherapySearch = () => {
             hiddenTabs={dropdownlist.additionalTabs}
             hiddenFilters={additionalFilter}
             onSearch={onTherapySearch}
-          /> */}
+          />
         </Box>
         <Box maxW={"lg"} mt='20'>
           {hasSearchResults ? (

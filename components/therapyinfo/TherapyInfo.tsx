@@ -30,10 +30,13 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianTitle: "Level of Evidence",
       accordianChildNode: (
         <Box>
-          <Heading as='h3' size='md' mb='4'>
+          {/* <Heading as='h3' size='md' mb='4'>
             {" "}
             Evidence Statement: {levelOfEvidence?.evidenceStatement}
-          </Heading>
+          </Heading> */}
+          <RenderMarkdownToHTML
+            markdownText={levelOfEvidence?.evidenceStatement ? levelOfEvidence?.evidenceStatement : ""}
+          />
           <RenderMarkdownToHTML markdownText={levelOfEvidence?.additionalText ? levelOfEvidence.additionalText : ""} />
         </Box>
       )
@@ -44,10 +47,10 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
         <Box>
           {therapyTargets?.icfDomains ? (
             <Box mb='4'>
-              <Heading as='h3' size='md'>
+              {/* <Heading as='h3' size='md'>
                 ICF Domains:{" "}
               </Heading>
-              {therapyTargets?.icfDomains}
+              {therapyTargets?.icfDomains} */}
             </Box>
           ) : null}
           <Box m={therapyTargets?.icfDomains ? "4" : "0"}>

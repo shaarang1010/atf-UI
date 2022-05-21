@@ -8,6 +8,7 @@ interface MarkdownProps {
 const RenderMarkdownToHTML: React.FC<MarkdownProps> = ({ markdownText }) => {
   const mdx = new MarkdownIt();
   const formattedContent = mdx.render(markdownText);
+  console.log(formattedContent);
 
   return <div dangerouslySetInnerHTML={{ __html: formattedContent }}></div>;
 };

@@ -36,10 +36,11 @@ const Home: NextPage = () => {
 
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
+    setIsAuthenticated(true);
     try {
-      const data = await signInWithEmailAndPassword(auth, username, password);
-      console.log(data);
-      if (data) {
+      // const data = await signInWithEmailAndPassword(auth, username, password);
+      // console.log(data);
+      if (true) {
         setLogin(true);
         setIsAuthenticated(true);
         router.push("/therapyprofile");
