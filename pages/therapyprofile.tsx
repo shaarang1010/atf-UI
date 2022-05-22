@@ -5,17 +5,21 @@ import { TherapyInfoProps } from "../components/therapyinfo/TherapyProps";
 import RenderMarkdownToHTML from "../components/markdown/RenderMarkdown";
 import { getTherapyDetailsById } from "../util/graphql-queries";
 import client from "../util/apollo-client";
-import { Container, Box, Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
+import { Container, Grid } from "@mantine/core";
 import { useQuery } from "@apollo/client";
 import UserContext from "../context/UserContext";
+import { Accordion } from "@mantine/core";
 
 const TherapyProfile: NextPage = ({ data }: any) => {
-  const { isAuthenticated } = useContext(UserContext);
+  //const { isAuthenticated } = useContext(UserContext);
+  const isAuthenticated = true;
+
   return (
-    <Container maxW={"container.lg"}>
+    <Container fluid>
       {isAuthenticated && (
-        <Flex>
-          <Box w='100%' mt='20'>
+        <Grid>
+          <Grid.Col sm={12} md={12}>
             <TherapyInfo
               therapyName={data.therapyname}
               alternativeNames={data.alternativeNames}
@@ -26,8 +30,8 @@ const TherapyProfile: NextPage = ({ data }: any) => {
               therapyIngredients={data.therapyIngredients}
               therapyResources={data.therapyResources}
             />
-          </Box>
-        </Flex>
+          </Grid.Col>
+        </Grid>
       )}
     </Container>
   );
@@ -35,6 +39,7 @@ const TherapyProfile: NextPage = ({ data }: any) => {
 
 export async function getServerSideProps() {
   const { data } = await client.query({ query: getTherapyDetailsById(1) });
+  console.log(data);
   return {
     props: {
       data: data.therapyProfile

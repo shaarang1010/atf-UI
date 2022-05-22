@@ -1,13 +1,14 @@
 import React from "react";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,
-  Heading
-} from "@chakra-ui/react";
+// import {
+//   Accordion,
+//   AccordionItem,
+//   AccordionButton,
+//   AccordionPanel,
+//   AccordionIcon,
+//   Box,
+//   Heading
+// } from "@chakra-ui/react";
+import { Accordion } from "@mantine/core";
 
 interface AccordianPanelProps {
   accordianTitle?: string;
@@ -21,22 +22,12 @@ interface AccordianItemProps {
 
 const AccordianComponent: React.FC<AccordianItemProps> = ({ currentKey, accordianItems }) => {
   return (
-    <Accordion defaultIndex={[currentKey]} allowToggle allowMultiple>
+    <Accordion initialItem={currentKey} iconPosition='right'>
       {accordianItems.map((item, index) => {
         return (
-          <AccordionItem key={index}>
-            <h2>
-              <AccordionButton _expanded={{ bg: "darkBlue", color: "white" }}>
-                <Box flex='1' textAlign='left'>
-                  <Heading as='h5' size='md'>
-                    {item.accordianTitle}
-                  </Heading>
-                </Box>
-                <AccordionIcon />
-              </AccordionButton>
-            </h2>
-            <AccordionPanel pb={4}>{item.accordianChildNode}</AccordionPanel>
-          </AccordionItem>
+          <Accordion.Item key={index} label={item.accordianTitle} styles={{ itemOpened: { color: "darkBlue" } }}>
+            {item.accordianChildNode}
+          </Accordion.Item>
         );
       })}
     </Accordion>

@@ -3,7 +3,8 @@ import Head from "next/head";
 import Image from "next/image";
 import theme from "../styles/theme";
 import styles from "../styles/Home.module.css";
-import { Container, SimpleGrid, Box } from "@chakra-ui/react";
+import { SimpleGrid, Box } from "@chakra-ui/react";
+import { Container, Grid } from "@mantine/core";
 import React, { useContext, useEffect, useState } from "react";
 import LoginComponent from "../components/forms/login/Login";
 import InformationPane from "../components/infopane/InformationPane";
@@ -83,9 +84,9 @@ const Home: NextPage = () => {
         <h1 className={styles.title}>Welcome to Aphasia Therapy Finder</h1>
 
         <p className={styles.description}>Get started by logining in or sign-up</p>
-        <Container maxW='container.lg'>
-          <SimpleGrid columns={{ sm: 2, md: 2 }} spacing={10}>
-            <Box maxWidth={"lg"} mt='20'>
+        <Container fluid>
+          <Grid>
+            <Grid.Col md={4} sm={6}>
               {login ? (
                 <LoginComponent
                   userEmail={userEmail}
@@ -101,11 +102,11 @@ const Home: NextPage = () => {
               ) : (
                 <Signup loginAccount={toggleLogin} />
               )}
-            </Box>
-            <Box maxWidth={"lg"} boxShadow={"sm"}>
+            </Grid.Col>
+            <Grid.Col md={6} sm={6}>
               <InformationPane backgroundColor={theme.colors.gray.default} informationText={informationText} />
-            </Box>
-          </SimpleGrid>
+            </Grid.Col>
+          </Grid>
         </Container>
       </main>
     </>
