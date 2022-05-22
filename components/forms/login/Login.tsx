@@ -71,16 +71,6 @@ const LoginComponent: React.FC<LoginProps> = ({
       ) : (
         <Grid templateColumns={"repeat(5,1fr)"} gap={5}>
           <GridItem colSpan={6}>
-            <Button className={styles.socialLogin} leftIcon={<FcGoogle />} isFullWidth={true}>
-              Login with Google
-            </Button>
-          </GridItem>
-          <GridItem colSpan={6}>
-            <Button className={styles.socialLogin} leftIcon={<BsFacebook />} isFullWidth={true}>
-              Login with Facebook
-            </Button>
-          </GridItem>
-          <GridItem colSpan={6}>
             <FormControl isInvalid={errorMessage?.type === "email"}>
               <FormLabel htmlFor='email'>Email address</FormLabel>
               <Input id='email' type='email' value={userEmail} onChange={setUserEmail} />
@@ -100,6 +90,16 @@ const LoginComponent: React.FC<LoginProps> = ({
           <GridItem colStart={2} colEnd={5}>
             <Button colorScheme='blue' size='lg' isFullWidth={true} onClick={loginUser}>
               Login
+            </Button>
+          </GridItem>
+          <GridItem colSpan={6} mt='10'>
+            <Button className={styles.socialLogin} leftIcon={<FcGoogle />} isFullWidth={true}>
+              Login with Google
+            </Button>
+          </GridItem>
+          <GridItem colSpan={6}>
+            <Button className={styles.socialLogin} leftIcon={<BsFacebook />} isFullWidth={true}>
+              Login with Facebook
             </Button>
           </GridItem>
           <GridItem colStart={2} colEnd={6} mt='4' ml='20'>

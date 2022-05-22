@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 import { Container } from "@chakra-ui/react";
+import WithSubnavigation from "../navbar/NavigationHeader";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -79,12 +80,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
   return (
     <>
-      <NavBar
+      {/* <NavBar
         navColor='white'
         navOptions={navOptions}
         protectedNavOptions={navOptions}
         accountOptions={accountOptions}
-      />
+      /> */}
+      <WithSubnavigation></WithSubnavigation>
       {children}
       <Footer
         footerLogo={footerOptions.footerLogo}

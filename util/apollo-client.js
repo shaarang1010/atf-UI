@@ -4,12 +4,12 @@ const httpLink = new HttpLink({ uri: process.env.ATF_GRAPHQL_URL });
 
 const authLink = new ApolloLink((operation, forward) => {
   //const token = typeof window !== "undefined" ? localStorage.getItem("id_token") : "";
-  const token = process.env.TOKEN_BEARER;
-  operation.setContext({
-    headers: {
-      authorization: token ? `Bearer ${token}` : ""
-    }
-  });
+  // const token = process.env.TOKEN_BEARER;
+  // operation.setContext({
+  //   headers: {
+  //     authorization: token ? `Bearer ${token}` : ""
+  //   }
+  // });
 
   return forward(operation);
 });

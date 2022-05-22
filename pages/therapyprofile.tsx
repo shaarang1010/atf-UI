@@ -10,7 +10,9 @@ import { useQuery } from "@apollo/client";
 import UserContext from "../context/UserContext";
 
 const TherapyProfile: NextPage = ({ data }: any) => {
-  const { isAuthenticated } = useContext(UserContext);
+  //const { isAuthenticated } = useContext(UserContext);
+  const isAuthenticated = true;
+
   return (
     <Container maxW={"container.lg"}>
       {isAuthenticated && (

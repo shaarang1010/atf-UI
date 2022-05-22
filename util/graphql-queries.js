@@ -50,7 +50,7 @@ const getTherapyDetailsById = (id) => {
           deliveryText
       	}
         therapyMethod
-        resources
+        materials
         frequentClinicalQuestions
       }
     	mechainismOfAction{

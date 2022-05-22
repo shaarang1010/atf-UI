@@ -29,12 +29,15 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 
 const Footer: React.FC<FooterProps> = ({ footerLogo, footerLinkInfo, footerBGColor, footerLinkColor }) => {
   return (
-    <Box bg={footerBGColor} color={footerLinkColor} mt='10'>
+    <Box bg={footerBGColor} color={footerLinkColor} mt='40'>
       <Container as={Stack} maxW={"6xl"} py={10}>
         <SimpleGrid templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 1fr 1fr 1fr" }} spacing={8}>
           <Stack spacing={6}>
             <Box>
-              <Image src={footerLogo} alt='ATF Therapy' />
+              <Image
+                src='https://atf-upload-bucket.s3.ap-southeast-2.amazonaws.com/ATF_logo3_6203938b60_3140c80044.svg?18380336.9'
+                alt='ATF Therapy'
+              />
             </Box>
             <Text fontSize={"sm"}>{`© ${new Date().getFullYear()} Aphasia Therapy Finder. All rights reserved`}</Text>
           </Stack>

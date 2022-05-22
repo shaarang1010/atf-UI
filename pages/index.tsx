@@ -80,12 +80,12 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>Welcome to Aphasia Therapy Finder</h1>
+        <h2 className={styles.title}>Aphasia Therapy Finder</h2>
 
-        <p className={styles.description}>Get started by logining in or sign-up</p>
+        <p className={styles.description}>Get started by login in or sign-up</p>
         <Container maxW='container.lg'>
           <SimpleGrid columns={{ sm: 2, md: 2 }} spacing={10}>
-            <Box maxWidth={"lg"} mt='20'>
+            <Box maxWidth={"lg"} mt='5'>
               {login ? (
                 <LoginComponent
                   userEmail={userEmail}
