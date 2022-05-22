@@ -18,7 +18,7 @@ import {
   PopoverContent,
   useColorModeValue,
   useBreakpointValue,
-  Link,
+  Link as ChakraLink,
   useDisclosure,
   Image
 } from "@chakra-ui/react";
@@ -27,6 +27,7 @@ import { FaFingerprint, FaSignOutAlt } from "react-icons/fa";
 import { useContext } from "react";
 import UserContext from "../../context/UserContext";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
@@ -57,8 +58,8 @@ export default function WithSubnavigation() {
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
           <Link href='/'>
             <Image
-              width='200px'
-              height='80px'
+              width='180px'
+              height='60px'
               src='https://atf-upload-bucket.s3.ap-southeast-2.amazonaws.com/ATF_logo2_c274a2400b.svg?15801053.000000002'
               alt='Aphasia Therapy Finder'
             />
@@ -128,7 +129,7 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <Link
+              <ChakraLink
                 p={2}
                 href={navItem.href ?? "#"}
                 fontSize={"md"}
@@ -140,7 +141,7 @@ const DesktopNav = () => {
                 }}
               >
                 {navItem.label}
-              </Link>
+              </ChakraLink>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -161,7 +162,7 @@ const DesktopNav = () => {
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
-    <Link
+    <ChakraLink
       href={href ?? "/"}
       role={"group"}
       display={"block"}
@@ -188,7 +189,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
           <Icon color={"darkBlue"} w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
-    </Link>
+    </ChakraLink>
   );
 };
 
@@ -209,7 +210,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     <Stack spacing={4} onClick={children && onToggle}>
       <Flex
         py={2}
-        as={Link}
+        as={ChakraLink}
         href={href ?? "#"}
         justify={"space-between"}
         align={"center"}
@@ -242,9 +243,9 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <Link key={child.label} py={2} href={child.href}>
+              <ChakraLink key={child.label} py={2} href={child.href}>
                 {child.label}
-              </Link>
+              </ChakraLink>
             ))}
         </Stack>
       </Collapse>
@@ -265,16 +266,16 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "about"
   },
   {
-    label: "Glossary",
+    label: "Resources",
     children: [
       {
-        label: "Job Board",
-        subLabel: "Find your dream design job",
+        label: "Documentation",
+        subLabel: "Tutorial on usage",
         href: "#"
       },
       {
-        label: "Freelance Projects",
-        subLabel: "An exclusive list for contract work",
+        label: "Tools page",
+        subLabel: "Other Aphasia Tools",
         href: "#"
       }
     ]
