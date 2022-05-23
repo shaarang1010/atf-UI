@@ -11,7 +11,7 @@ import {
   Image,
   HStack
 } from "@chakra-ui/react";
-//import SearchProfile from "../components/forms/searchProfile/SearchProfile";
+// import { SearchProfile } from "../components/forms/searchProfile/SearchProfile";
 import Speaking from "../assets/speaking.svg";
 import Writing from "../assets/writing.svg";
 import TherapyCard from "../components/card/TherapyCard";

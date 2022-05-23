@@ -27,7 +27,7 @@ interface SearchProfileProps {
   onSearch(): void;
 }
 
-const SearchProfile: React.FC<SearchProfileProps> = ({
+export const SearchProfile: React.FC<SearchProfileProps> = ({
   searchText,
   tabNames,
   hiddenTabs,
@@ -80,5 +80,3 @@ const SearchProfile: React.FC<SearchProfileProps> = ({
     </Grid>
   );
 };
-
-export default SearchProfile;

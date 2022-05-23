@@ -30,10 +30,10 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianTitle: "Level of Evidence",
       accordianChildNode: (
         <Box>
-          {/* <Heading as='h3' size='md' mb='4'>
+          <Heading as='h4' size='md' mb='4'>
             {" "}
-            Evidence Statement: {levelOfEvidence?.evidenceStatement}
-          </Heading> */}
+            Evidence Statement:
+          </Heading>
           <RenderMarkdownToHTML
             markdownText={levelOfEvidence?.evidenceStatement ? levelOfEvidence?.evidenceStatement : ""}
           />
@@ -46,16 +46,18 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianChildNode: (
         <Box>
           {therapyTargets?.icfDomains ? (
-            <Box mb='4'>
-              {/* <Heading as='h3' size='md'>
+            <Flex mb='4'>
+              <Heading as='h4' size='md'>
                 ICF Domains:{" "}
               </Heading>
-              {therapyTargets?.icfDomains} */}
-            </Box>
+              <Box ml='4'>
+                <RenderMarkdownToHTML markdownText={therapyTargets?.icfDomains} />
+              </Box>
+            </Flex>
           ) : null}
-          <Box m={therapyTargets?.icfDomains ? "4" : "0"}>
+          <Box>
             <Box>
-              <Heading as='h3' size='md' mb='4'>
+              <Heading as='h4' size='md' mb='4'>
                 {" "}
                 Therapeutic Targets{" "}
               </Heading>
@@ -66,7 +68,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
               </Box>
             </Box>
             <Box mt='5'>
-              <Heading as='h3' size='md' mb='4'>
+              <Heading as='h4' size='md' mb='4'>
                 {" "}
                 Client Selection{" "}
               </Heading>
@@ -118,13 +120,13 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianChildNode: (
         <>
           <Box>
-            <Heading as='h3' size='md'>
+            <Heading as='h4' size='md'>
               Therapy Protocol:
             </Heading>{" "}
             <Link href='/index'>{therapyIngredients?.therapyProtocol}</Link>
           </Box>
           <Box mt='5'>
-            <Heading as='h3' size='md'>
+            <Heading as='h4' size='md'>
               Therapy Method
             </Heading>
             <RenderMarkdownToHTML
@@ -139,7 +141,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianChildNode: (
         <>
           <Box>
-            <Heading as='h3' size='md'>
+            <Heading as='h4' size='md'>
               Literature:
             </Heading>{" "}
             <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources.literature : ""} />
@@ -156,7 +158,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
         </Heading>
       </GridItem>
       <GridItem colSpan={12}>
-        <Heading as='h3' size='md'>
+        <Heading as='h4' size='md'>
           {" "}
           Alternative names:{" "}
         </Heading>
@@ -169,7 +171,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
         })}
       </GridItem>
       <GridItem colSpan={12}>
-        <Heading as='h3' size='md'>
+        <Heading as='h4' size='md'>
           Similar or related therapies:{" "}
         </Heading>
         {relatedTherapies?.split("\n").map((name, index) => {
