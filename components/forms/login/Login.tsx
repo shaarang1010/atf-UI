@@ -85,12 +85,19 @@ const LoginComponent: React.FC<LoginProps> = ({
             </FormControl>
           </GridItem>
           <GridItem colSpan={6} mt='4'>
-            <Link href='/'>Forgot Password?</Link>
+            <Link href='/' color='blue.500'>
+              Forgot Password?
+            </Link>
           </GridItem>
           <GridItem colStart={2} colEnd={5}>
             <Button colorScheme='blue' size='lg' isFullWidth={true} onClick={loginUser}>
               Login
             </Button>
+          </GridItem>
+          <GridItem colStart={2} colEnd={6} mt='4' ml='20'>
+            <Link onClick={createAccount} color='blue.500'>
+              Create Account
+            </Link>
           </GridItem>
           <GridItem colSpan={6} mt='10'>
             <Button className={styles.socialLogin} leftIcon={<FcGoogle />} isFullWidth={true}>
@@ -101,9 +108,6 @@ const LoginComponent: React.FC<LoginProps> = ({
             <Button className={styles.socialLogin} leftIcon={<BsFacebook />} isFullWidth={true}>
               Login with Facebook
             </Button>
-          </GridItem>
-          <GridItem colStart={2} colEnd={6} mt='4' ml='20'>
-            <Link onClick={createAccount}>Create Account</Link>
           </GridItem>
         </Grid>
       )}
