@@ -15,5 +15,5 @@ jobs:
           node-version: "17.x"
       - name: Install NPM dependencies
         run: npm install
-      - name: Run tests
-        run: npm run test
+      - name: Run unit tests
+        run: npm test

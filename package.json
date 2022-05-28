@@ -6,7 +6,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch --coverage=true"
+    "test": "jest --coverage=true"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
