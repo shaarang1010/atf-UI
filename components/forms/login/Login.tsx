@@ -9,7 +9,8 @@ import {
   Input,
   Heading,
   Link,
-  FormErrorMessage
+  FormErrorMessage,
+  useDisclosure
 } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
@@ -42,6 +43,7 @@ const LoginComponent: React.FC<LoginProps> = ({
   errorMessage
 }) => {
   const [sendResetLink, setSendResetLink] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
   const onClickNavigate = (e: any, link: string) => {
     e.preventDefault();

@@ -27,7 +27,6 @@ export const ModalComponent: React.FC<ModalProps> = ({ isOpen, onClose, children
           <ModalHeader>{headerText}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>{children}</ModalBody>
-
           <ModalFooter>
             <Button colorScheme='darkBlue' mr={3} onClick={onClose}>
               {footerText}

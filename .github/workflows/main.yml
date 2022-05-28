@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+    branches: [main, test-setup]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "17.x"
+      - name: Install NPM dependencies
+        run: npm install
+      - name: Run tests
+        run: npm run test
