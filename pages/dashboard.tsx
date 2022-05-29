@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Container, Skeleton, Text, Box, Stack, SimpleGrid } from "@chakra-ui/react";
-import SearchProfile from "../components/forms/searchProfile/SearchProfile";
+import SearchProfile from "../components/forms/SearchProfile";
 import TherapyCard from "../components/card/TherapyCard";
 import uniqBy from "lodash/uniqBy";
 import dropdownlist from "../assets/lists.json";

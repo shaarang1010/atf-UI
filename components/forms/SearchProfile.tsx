@@ -16,7 +16,7 @@ import { AddIcon, MinusIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { BsFilter, BsSearch } from "react-icons/bs";
-import TabGroupList from "../../tabs/TabListGroup";
+import TabGroupList from "../tabs/TabListGroup";
 
 interface SearchProfileProps {
   searchText: string;
