@@ -160,4 +160,24 @@ const getTherapyByFilters = (filter) => {
   return therapySearch;
 };
 
-export { authenticateUser, getTherapyDetailsById, getTherapySearch, getTherapyByFilters };
+const getTherapiesForDashboard = () => {
+  const therapySearch = gql`
+    query {
+      therapyProfiles {
+        id
+        therapyname
+        summaryStatement
+        relatedTherapies
+        levelOfEvidence {
+          evidenceDropdown
+        }
+        therapyTargets {
+          icfDomains
+        }
+      }
+    }
+  `;
+  return therapySearch;
+};
+
+export { authenticateUser, getTherapyDetailsById, getTherapySearch, getTherapyByFilters, getTherapiesForDashboard };

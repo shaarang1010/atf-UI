@@ -35,19 +35,19 @@ export const PasswordResetForm: React.FC<PasswordResetFormProps> = ({
         {!isMessageSent ? (
           <>
             <FormLabel htmlFor='email'>Your Email</FormLabel>
-            <Input id='email' type='email' value={userEmail} onChange={setUserEmail} />
+            <Input id='email' type='email' value={userEmail} onChange={setUserEmail} isRequired={true} />
             {!isError ? (
               <FormHelperText mt='5'>Enter the email you signed up with.</FormHelperText>
             ) : (
-              <FormErrorMessage>Email is required.</FormErrorMessage>
+              <FormErrorMessage>Email is required and should be valid</FormErrorMessage>
             )}
 
-            <Button colorScheme='blue' size='lg' mt='5' isFullWidth={true} onClick={resetPassword}>
+            <Button colorScheme='blue' size='lg' mt='5' isFullWidth={true} onClick={resetPassword} disabled={isError}>
               Send Reset Link
             </Button>
           </>
         ) : (
-          <Text fontSize='xl'>A reset link has been sent to {userEmail}</Text>
+          <Text fontSize='xl'>A reset link has been sent to {userEmail}. Check your inbox or spam.</Text>
         )}
       </FormControl>
     </>

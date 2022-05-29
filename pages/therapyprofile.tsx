@@ -35,12 +35,13 @@ const TherapyProfile: NextPage = ({ data }: any) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const { data } = await client.query({ query: getTherapyDetailsById(1) });
   return {
     props: {
       data: data.therapyProfile
-    }
+    },
+    revalidate: 10
   };
 }
 

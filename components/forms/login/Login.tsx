@@ -18,7 +18,11 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import styles from "./Login.module.css";
 import { useRouter } from "next/router";
 import UserContext from "../../../context/UserContext";
+import validator from "validator";
 import { PasswordResetForm } from "./PasswordReset";
+
+import { auth } from "../../../util/firebase/firebase";
+import { sendPasswordResetEmail } from "firebase/auth";
 
 interface LoginProps {
   userEmail: string;
@@ -55,11 +59,13 @@ const LoginComponent: React.FC<LoginProps> = ({
     setForgotPassword();
   };
 
-  const sendResetPassordLink = () => {
-    console.log(userEmail);
-    console.log("sent");
-
-    setIsMessageSent(true);
+  const sendResetPassordLink = async () => {
+    try {
+      const data = await sendPasswordResetEmail(auth, userEmail);
+      setIsMessageSent(true);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -73,7 +79,7 @@ const LoginComponent: React.FC<LoginProps> = ({
                   isMessageSent={isMessageSent}
                   userEmail={userEmail}
                   setUserEmail={setUserEmail}
-                  isError={false}
+                  isError={!validator.isEmail(userEmail)}
                   resetPassword={sendResetPassordLink}
                 />
               </GridItem>

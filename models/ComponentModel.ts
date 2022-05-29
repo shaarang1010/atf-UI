@@ -6,3 +6,20 @@ export type FilterOptionProps = {
 export type TableData = {
   dataItems: string[];
 };
+
+export type SelectedFilters = {
+  filterName: string;
+  filterValues: string[];
+};
+
+export type FilterType = {
+  filterType:
+    | "levelOfEvidence"
+    | "icfDomains"
+    | "aphasiaType"
+    | "aphasiaSeverity"
+    | "settings"
+    | "aphasiaAetiology"
+    | "timeSinceOnset"
+    | "delivery";
+};

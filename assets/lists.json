@@ -119,6 +119,20 @@
       "value": "tumor"
     }
   ],
+  "timeSinceOnset": [
+    {
+      "label": "Acute (0-14 days)",
+      "value": "acute"
+    },
+    {
+      "label": "Subacute (14 days – 6 months)",
+      "value": "subacute"
+    },
+    {
+      "label": "Chronic (over 6 months)",
+      "value": "chronic"
+    }
+  ],
   "setting": [
     {
       "label": "Inpatient",

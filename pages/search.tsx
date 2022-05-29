@@ -11,20 +11,23 @@ import {
   Image,
   HStack
 } from "@chakra-ui/react";
-// import { SearchProfile } from "../components/forms/searchProfile/SearchProfile";
+import { SearchProfile } from "../components/forms/searchProfile/SearchProfile";
 import Speaking from "../assets/speaking.svg";
 import Writing from "../assets/writing.svg";
 import TherapyCard from "../components/card/TherapyCard";
-
+import uniqBy from "lodash/uniqBy";
 import dropdownlist from "../assets/lists.json";
-import { FilterOptionProps } from "../models/ComponentModel";
+import { FilterOptionProps, SelectedFilters } from "../models/ComponentModel";
 import FilterGroup from "../components/select/SelectFilter";
+import client from "../util/apollo-client";
+import { getTherapiesForDashboard } from "../util/graphql-queries";
 
-const TherapySearch = () => {
+const TherapySearch = ({ data }: any) => {
+  console.log(data);
   const [searchText, setSearchText] = useState("");
   const [hasSearchResults, setHasSearchResults] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const selectedFilters: string[] = [];
+  const [selectedFilter, setSelectedFilters] = useState<SelectedFilters[]>([]);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -41,11 +44,9 @@ const TherapySearch = () => {
     showSkeleton();
   };
 
-  const filterHandler = (arr: FilterOptionProps[]) => {
-    const filters = arr.map((item) => {
-      return item.value;
-    });
-    console.log(filters);
+  const filterHandler = (item: string, arr: FilterOptionProps[]) => {
+    setSelectedFilters([...selectedFilter, { filterName: item, filterValues: arr.map((i) => i.value) }]);
+    console.log(uniqBy(selectedFilter.reverse(), "filterName"));
   };
 
   const filters = [
@@ -55,7 +56,7 @@ const TherapySearch = () => {
       isSearchable={true}
       filterOptions={dropdownlist.levels}
       isClearable={true}
-      handleChangeListener={(e) => filterHandler(e)}
+      handleChangeListener={(e) => filterHandler("levelOfEvidence", e)}
     />,
     <FilterGroup
       id='icfDomains'
@@ -63,7 +64,7 @@ const TherapySearch = () => {
       isSearchable={true}
       filterOptions={dropdownlist.icfDomains}
       isClearable={true}
-      handleChangeListener={(e) => filterHandler(e)}
+      handleChangeListener={(e) => filterHandler("icfDomains", e)}
     />,
     <FilterGroup
       id='aphasiaType'
@@ -71,7 +72,7 @@ const TherapySearch = () => {
       isSearchable={true}
       filterOptions={dropdownlist.aphasiaType}
       isClearable={true}
-      handleChangeListener={(e) => filterHandler(e)}
+      handleChangeListener={(e) => filterHandler("aphasiaType", e)}
     />,
     <FilterGroup
       id='aphasiaSeverity'
@@ -79,7 +80,7 @@ const TherapySearch = () => {
       isSearchable={true}
       filterOptions={dropdownlist.aphasiaSeverity}
       isClearable={true}
-      handleChangeListener={(e) => filterHandler(e)}
+      handleChangeListener={(e) => filterHandler("aphasiaSeverity", e)}
     />
   ];
 
@@ -90,15 +91,15 @@ const TherapySearch = () => {
       isSearchable={true}
       filterOptions={dropdownlist.aphasiaAetiology}
       isClearable={true}
-      handleChangeListener={(e) => filterHandler(e)}
+      handleChangeListener={(e) => filterHandler("aphasiaAetiology", e)}
     />,
     <FilterGroup
-      id='aphasiaSeverity'
-      name='Aphasia Severity'
+      id='timeSinceOnset'
+      name='Time Since Onset'
       isSearchable={true}
-      filterOptions={dropdownlist.aphasiaSeverity}
+      filterOptions={dropdownlist.timeSinceOnset}
       isClearable={true}
-      handleChangeListener={(e) => filterHandler(e)}
+      handleChangeListener={(e) => filterHandler("timeSinceOnset", e)}
     />,
     <FilterGroup
       id='setting'
@@ -106,7 +107,7 @@ const TherapySearch = () => {
       isSearchable={true}
       filterOptions={dropdownlist.setting}
       isClearable={true}
-      handleChangeListener={(e) => filterHandler(e)}
+      handleChangeListener={(e) => filterHandler("settings", e)}
     />,
     <FilterGroup
       id='delivery'
@@ -114,7 +115,7 @@ const TherapySearch = () => {
       isSearchable={true}
       filterOptions={dropdownlist.delivery}
       isClearable={true}
-      handleChangeListener={(e) => filterHandler(e)}
+      handleChangeListener={(e) => filterHandler("delivery", e)}
     />
   ];
 
@@ -122,7 +123,7 @@ const TherapySearch = () => {
     <Container maxW={"container.xl"}>
       <SimpleGrid columns={{ sm: 2, md: 2 }} gap={5}>
         <Box maxW={"lg"} mt='20'>
-          {/* <SearchProfile
+          <SearchProfile
             searchText={searchText}
             tabNames={dropdownlist.tabs}
             onTextChangeHandler={onChangeHandler}
@@ -130,7 +131,7 @@ const TherapySearch = () => {
             hiddenTabs={dropdownlist.additionalTabs}
             hiddenFilters={additionalFilter}
             onSearch={onTherapySearch}
-          /> */}
+          />
         </Box>
         <Box maxW={"lg"} mt='20'>
           {hasSearchResults ? (
@@ -165,5 +166,16 @@ const TherapySearch = () => {
     </Container>
   );
 };
+
+export async function getStaticProps() {
+  const { data } = await client.query({ query: getTherapiesForDashboard() });
+  console.log(data);
+  return {
+    props: {
+      data: data.therapyProfiles
+    },
+    revalidate: 10
+  };
+}
 
 export default TherapySearch;
