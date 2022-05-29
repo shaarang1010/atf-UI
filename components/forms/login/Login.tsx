@@ -7,16 +7,18 @@ import {
   Flex,
   FormLabel,
   Input,
-  Heading,
+  Icon,
   Link,
   FormErrorMessage
 } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
+import { IoArrowBackSharp } from "react-icons/io5";
 import styles from "./Login.module.css";
 import { useRouter } from "next/router";
 import UserContext from "../../../context/UserContext";
+import { PasswordResetForm } from "./PasswordReset";
 
 interface LoginProps {
   userEmail: string;
@@ -42,32 +44,49 @@ const LoginComponent: React.FC<LoginProps> = ({
   errorMessage
 }) => {
   const [sendResetLink, setSendResetLink] = useState(false);
+  const [isMessageSent, setIsMessageSent] = useState(false);
   const router = useRouter();
   const onClickNavigate = (e: any, link: string) => {
     e.preventDefault();
     router.push(link);
   };
-  console.log(errorMessage?.type);
+  const setResetLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setForgotPassword();
+  };
+
+  const sendResetPassordLink = () => {
+    console.log(userEmail);
+    console.log("sent");
+
+    setIsMessageSent(true);
+  };
+
   return (
     <>
       {forgotPassword ? (
-        <Flex>
-          <Box>
-            {!sendResetLink ? (
-              <>
-                <FormControl>
-                  <FormLabel htmlFor='email'>Email address</FormLabel>
-                  <Input id='email' type='email' onChange={setUserEmail} />
-                </FormControl>
-                <Button size='md' width='200px' colorScheme='primaryBlue'>
-                  Send recovery link
-                </Button>
-              </>
-            ) : (
-              <Heading as='h2'>A recovery link has been sent to your email address.</Heading>
-            )}
-          </Box>
-        </Flex>
+        <Box>
+          {!sendResetLink && (
+            <Grid templateColumns={"repeat(5,1fr)"} gap={5}>
+              <GridItem colSpan={6}>
+                <PasswordResetForm
+                  isMessageSent={isMessageSent}
+                  userEmail={userEmail}
+                  setUserEmail={setUserEmail}
+                  isError={false}
+                  resetPassword={sendResetPassordLink}
+                />
+              </GridItem>
+              <Flex>
+                <Icon as={IoArrowBackSharp} pt='1' color='blue.500' />
+                <Link color='blue.500' onClick={(e) => setForgotPassword()}>
+                  {" "}
+                  Back
+                </Link>
+              </Flex>
+            </Grid>
+          )}
+        </Box>
       ) : (
         <Grid templateColumns={"repeat(5,1fr)"} gap={5}>
           <GridItem colSpan={6}>
@@ -85,7 +104,7 @@ const LoginComponent: React.FC<LoginProps> = ({
             </FormControl>
           </GridItem>
           <GridItem colSpan={6} mt='4'>
-            <Link href='/' color='blue.500'>
+            <Link href='/' color='blue.500' onClick={(e) => setResetLink(e)}>
               Forgot Password?
             </Link>
           </GridItem>
