@@ -1,6 +1,7 @@
 interface LevelOfEvidence {
   evidenceStatement?: string;
   additionalText?: string;
+  evidenceDropdown?: string;
 }
 
 interface TherapyResources {
@@ -43,7 +44,7 @@ interface MechanismOfAction {
 }
 
 export interface TherapyInfoProps {
-  therapyName?: string;
+  therapyname?: string;
   summaryStatement?: string;
   relatedTherapies?: string;
   levelOfEvidence?: LevelOfEvidence;

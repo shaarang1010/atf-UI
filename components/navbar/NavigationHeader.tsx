@@ -87,9 +87,6 @@ export default function WithSubnavigation() {
           )}
           {isAuthenticated && (
             <>
-              <Button as={"a"} fontSize={"sm"} fontWeight={400} variant={"link"} href={"#"}>
-                Sign In
-              </Button>
               <Menu>
                 <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>
                   <Avatar bg='darkBlue' />

@@ -8,6 +8,7 @@ import {
   FormLabel,
   Input,
   Text,
+  Switch,
   Link,
   Icon
 } from "@chakra-ui/react";
@@ -27,7 +28,7 @@ interface SearchProfileProps {
   onSearch(): void;
 }
 
-export const SearchProfile: React.FC<SearchProfileProps> = ({
+const SearchProfile: React.FC<SearchProfileProps> = ({
   searchText,
   tabNames,
   hiddenTabs,
@@ -61,14 +62,12 @@ export const SearchProfile: React.FC<SearchProfileProps> = ({
         </GridItem>
       ) : null}
       <GridItem colSpan={4}>
-        <Button
-          leftIcon={expandOptions ? <MinusIcon /> : <AddIcon />}
-          colorScheme='blue'
-          variant='outline'
-          onClick={() => setExpandOptions(!expandOptions)}
-        >
-          {`${expandOptions ? "Hide" : "Show"} more filters`}
-        </Button>
+        <FormControl display='flex' alignItems='center'>
+          <FormLabel htmlFor='form-filters' mb='0'>
+            {`${expandOptions ? "Hide" : "Show"} more filters`}
+          </FormLabel>
+          <Switch id='form-filters' onChange={() => setExpandOptions(!expandOptions)} />
+        </FormControl>
       </GridItem>
 
       <GridItem colSpan={6}>
@@ -80,3 +79,5 @@ export const SearchProfile: React.FC<SearchProfileProps> = ({
     </Grid>
   );
 };
+
+export default SearchProfile;

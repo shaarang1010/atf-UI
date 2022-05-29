@@ -8,6 +8,7 @@ import client from "../util/apollo-client";
 import { Fonts } from "../styles/Fonts";
 import UserContext from "../context/UserContext";
 import { useState } from "react";
+import { Container } from "@chakra-ui/react";
 
 const ProviderValues = {
   username: "",

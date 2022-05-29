@@ -80,12 +80,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
   return (
     <>
-      {/* <NavBar
-        navColor='white'
-        navOptions={navOptions}
-        protectedNavOptions={navOptions}
-        accountOptions={accountOptions}
-      /> */}
       <WithSubnavigation></WithSubnavigation>
       {children}
       <Footer

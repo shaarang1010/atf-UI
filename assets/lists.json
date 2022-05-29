@@ -25,12 +25,16 @@
     {
       "label": "Level IV",
       "value": "level_IV"
+    },
+    {
+      "label": "Un-Classfied",
+      "value": "unclassfied"
     }
   ],
   "icfDomains": [
     {
       "label": "Language Impairment",
-      "value": "impairment"
+      "value": "Language impairment"
     },
     {
       "label": "Activity",
@@ -46,7 +50,7 @@
     },
     {
       "label": "Personal factors",
-      "value": "personal"
+      "value": "Personal factors"
     }
   ],
   "aphasiaType": [

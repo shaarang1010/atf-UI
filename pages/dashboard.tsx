@@ -1,19 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {
-  Container,
-  Skeleton,
-  Text,
-  Box,
-  CheckboxGroup,
-  Checkbox,
-  Stack,
-  SimpleGrid,
-  Image,
-  HStack
-} from "@chakra-ui/react";
-import { SearchProfile } from "../components/forms/searchProfile/SearchProfile";
-import Speaking from "../assets/speaking.svg";
-import Writing from "../assets/writing.svg";
+import React, { useContext, useState } from "react";
+import { Container, Skeleton, Text, Box, Stack, SimpleGrid } from "@chakra-ui/react";
+import SearchProfile from "../components/forms/searchProfile/SearchProfile";
 import TherapyCard from "../components/card/TherapyCard";
 import uniqBy from "lodash/uniqBy";
 import dropdownlist from "../assets/lists.json";
@@ -21,13 +8,17 @@ import { FilterOptionProps, SelectedFilters } from "../models/ComponentModel";
 import FilterGroup from "../components/select/SelectFilter";
 import client from "../util/apollo-client";
 import { getTherapiesForDashboard } from "../util/graphql-queries";
+import UserContext from "../context/UserContext";
+import { TherapyInfoProps } from "../components/therapyinfo/TherapyProps";
+import { NotAuthenticated } from "../components/error-message/NotAuthenticated";
 
 const TherapySearch = ({ data }: any) => {
-  console.log(data);
+  const { therapyProfiles } = data;
   const [searchText, setSearchText] = useState("");
-  const [hasSearchResults, setHasSearchResults] = useState(false);
+  const [hasSearchResults, setHasSearchResults] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilters] = useState<SelectedFilters[]>([]);
+  const { isAuthenticated } = useContext(UserContext);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -121,60 +112,68 @@ const TherapySearch = ({ data }: any) => {
 
   return (
     <Container maxW={"container.xl"}>
-      <SimpleGrid columns={{ sm: 2, md: 2 }} gap={5}>
-        <Box maxW={"lg"} mt='20'>
-          <SearchProfile
-            searchText={searchText}
-            tabNames={dropdownlist.tabs}
-            onTextChangeHandler={onChangeHandler}
-            filters={filters}
-            hiddenTabs={dropdownlist.additionalTabs}
-            hiddenFilters={additionalFilter}
-            onSearch={onTherapySearch}
-          />
-        </Box>
-        <Box maxW={"lg"} mt='20'>
-          {hasSearchResults ? (
-            <TherapyCard
-              cardTitle='test_CIAT'
-              summaryStatement='Constraint-Induced Aphasia Therapy (CIAT, also known as Intensive Language Action Therapy) provides structured and repeated practice using everyday speech acts (e.g., making and responding to requests for information) while playing language games with cards depicting objects or actions.'
-              therapyTargets={
-                <HStack>
-                  <Image src={Speaking.src} alt='Speaking' />
-                  <Image src={Writing.src} alt='Writing' />
-                </HStack>
-              }
-              levelOfEvidence='Effectiveness: The following refers only to evidence from randomized-controlled trial (RCT) studies 
-              A number of RCTs have investigated the effectiveness of CIAT/ILAT in post-stroke aphasia. Different outcome measures have been used to assess treatment effectiveness ranging from standardised impairment-focussed aphasia batteries ('
-              videoSource='abcd'
+      {isAuthenticated ? (
+        <SimpleGrid columns={{ sm: 2, md: 2 }} gap={5}>
+          <Box maxW={"lg"} mt='20'>
+            <SearchProfile
+              searchText={searchText}
+              tabNames={dropdownlist.tabs}
+              onTextChangeHandler={onChangeHandler}
+              filters={filters}
+              hiddenTabs={dropdownlist.additionalTabs}
+              hiddenFilters={additionalFilter}
+              onSearch={onTherapySearch}
             />
-          ) : !isLoading ? (
-            <Stack>
-              {Array(5)
-                .fill(0)
-                .map((val, index) => (
-                  <Skeleton height='20px' key={index} />
-                ))}
-            </Stack>
-          ) : (
-            <Text size='lg' color='gray' mt='10'>
-              No Search Results ....{" "}
-            </Text>
-          )}
-        </Box>
-      </SimpleGrid>
+          </Box>
+          <Box maxW={"lg"} mt='20'>
+            {hasSearchResults && therapyProfiles ? (
+              therapyProfiles.map((therapyProfile: TherapyInfoProps) => {
+                return (
+                  <TherapyCard
+                    id={1}
+                    cardTitle={therapyProfile.therapyname ? therapyProfile.therapyname : ""}
+                    summaryStatement={therapyProfile.summaryStatement ? therapyProfile.summaryStatement : ""}
+                    levelOfEvidence={
+                      therapyProfile.levelOfEvidence?.evidenceDropdown
+                        ? therapyProfile.levelOfEvidence.evidenceDropdown
+                        : ""
+                    }
+                    videoSource='abcd'
+                    icfDomains={
+                      therapyProfile.therapyTargets?.icfDomains ? therapyProfile.therapyTargets?.icfDomains : ""
+                    }
+                  />
+                );
+              })
+            ) : !isLoading ? (
+              <Stack>
+                {Array(5)
+                  .fill(0)
+                  .map((val, index) => (
+                    <Skeleton height='20px' key={index} />
+                  ))}
+              </Stack>
+            ) : (
+              <Text size='lg' color='gray' mt='10'>
+                No Search Results ....{" "}
+              </Text>
+            )}
+          </Box>
+        </SimpleGrid>
+      ) : (
+        <NotAuthenticated />
+      )}
     </Container>
   );
 };
 
 export async function getStaticProps() {
   const { data } = await client.query({ query: getTherapiesForDashboard() });
-  console.log(data);
   return {
     props: {
-      data: data.therapyProfiles
+      data: data
     },
-    revalidate: 10
+    revalidate: 5
   };
 }
 

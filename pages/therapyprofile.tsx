@@ -6,20 +6,21 @@ import RenderMarkdownToHTML from "../components/markdown/RenderMarkdown";
 import { getTherapyDetailsById } from "../util/graphql-queries";
 import client from "../util/apollo-client";
 import { Container, Box, Flex } from "@chakra-ui/react";
-import { useQuery } from "@apollo/client";
+import { Context, useQuery } from "@apollo/client";
 import UserContext from "../context/UserContext";
+import { NotAuthenticated } from "../components/error-message/NotAuthenticated";
 
 const TherapyProfile: NextPage = ({ data }: any) => {
-  //const { isAuthenticated } = useContext(UserContext);
-  const isAuthenticated = true;
+  const { isAuthenticated } = useContext(UserContext);
+  // const isAuthenticated = true;
 
   return (
     <Container maxW={"container.lg"}>
-      {isAuthenticated && (
+      {isAuthenticated ? (
         <Flex>
           <Box w='100%' mt='20'>
             <TherapyInfo
-              therapyName={data.therapyname}
+              therapyname={data.therapyname}
               alternativeNames={data.alternativeNames}
               relatedTherapies={data.relatedTherapies}
               summaryStatement={data.summaryStatement}
@@ -30,6 +31,8 @@ const TherapyProfile: NextPage = ({ data }: any) => {
             />
           </Box>
         </Flex>
+      ) : (
+        <NotAuthenticated />
       )}
     </Container>
   );
@@ -40,8 +43,7 @@ export async function getStaticProps() {
   return {
     props: {
       data: data.therapyProfile
-    },
-    revalidate: 10
+    }
   };
 }
 

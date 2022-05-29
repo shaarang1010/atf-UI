@@ -66,7 +66,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
         console.log("Database Error", err);
       });
       setIsAuthenticated(true);
-      router.push("/therapyprofile");
+      router.push("/dashboard");
     }
   };
 
@@ -151,7 +151,9 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
         </Button>
       </GridItem>
       <GridItem colStart={5} colEnd={11} mt='5'>
-        <Link onClick={loginAccount}>Already have an account?</Link>
+        <Link color='blue.500' onClick={loginAccount}>
+          Already have an account?
+        </Link>
       </GridItem>
     </Grid>
   );
