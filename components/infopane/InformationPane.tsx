@@ -16,7 +16,7 @@ const InformationPane: React.FC<InformationPaneProps> = ({
 }) => {
   return (
     <Flex>
-      <Box maxWidth='md' borderWidth='1px' borderRadius='lg' bg={backgroundColor}>
+      <Box data-testid="infoPane" maxWidth='md' borderWidth='1px' borderRadius='lg' bg={backgroundColor} >
         <Heading as={"h2"} size='lg'>
           {informationHeading}
         </Heading>
