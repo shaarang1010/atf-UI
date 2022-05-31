@@ -47,8 +47,7 @@ const Home: NextPage = ({ additionalPageData }: any) => {
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
     try {
-      // const data = await signInWithEmailAndPassword(auth, username, password);
-      const data = true;
+      const data = await signInWithEmailAndPassword(auth, username, password);
       if (data) {
         setLogin(true);
         setIsAuthenticated(true);

@@ -25,16 +25,16 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [additionalPages, setAdditionalPages] = useState<AdditionalPages>(additionalPagesData);
   return (
     <ApolloProvider client={client}>
-      {/* <ChakraProvider theme={theme}> */}
-      <UserContext.Provider value={{ username, setUserName, isAuthenticated, setIsAuthenticated, email: "" }}>
-        <Fonts />
-        <Layout>
-          <AppContext.Provider value={{ additionalPages, setAdditionalPages }}>
-            <Component {...pageProps} />
-          </AppContext.Provider>
-        </Layout>
-      </UserContext.Provider>
-      {/* </ChakraProvider> */}
+      <ChakraProvider theme={theme}>
+        <UserContext.Provider value={{ username, setUserName, isAuthenticated, setIsAuthenticated, email: "" }}>
+          <Fonts />
+          <Layout>
+            <AppContext.Provider value={{ additionalPages, setAdditionalPages }}>
+              <Component {...pageProps} />
+            </AppContext.Provider>
+          </Layout>
+        </UserContext.Provider>
+      </ChakraProvider>
     </ApolloProvider>
   );
 }
