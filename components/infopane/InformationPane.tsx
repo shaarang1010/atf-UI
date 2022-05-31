@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Heading, Text, Spacer, Flex } from "@chakra-ui/react";
+import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
 
 interface InformationPaneProps {
   backgroundColor: string;
@@ -21,15 +22,7 @@ const InformationPane: React.FC<InformationPaneProps> = ({
           {informationHeading}
         </Heading>
         <Spacer />
-        {informationText
-          ? informationText.split("# ").map((text, index) => {
-              return (
-                <Text fontSize={"md"} p='4' key={index}>
-                  {text}
-                </Text>
-              );
-            })
-          : null}
+        {informationText && <RenderMarkdownToHTML markdownText={informationText} />}
         {children ? (
           <>
             <Spacer />

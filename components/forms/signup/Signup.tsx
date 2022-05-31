@@ -126,7 +126,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
         </FormControl>
       </GridItem>
       <GridItem colSpan={12}>
-        {!passwordsMatch && (
+        {!passwordsMatch && retypePassword.length > 0 && (
           <Text fontSize='sm' color='red'>
             Passwords do not match
           </Text>

@@ -36,7 +36,7 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
   return (
     <Box maxW='lg' borderWidth='1px' borderRadius='lg' mt='2' overflow='hidden' p='3'>
       <Box display={"flex"} alignItems='baseline'>
-        <ChakraLink as={Link} href={`/therapyprofile/${id}`}>
+        <ChakraLink as={Link} href={`/therapyprofile`}>
           <Heading as='h4' size='lg' color={theme.colors.primaryBlue}>
             {cardTitle}
           </Heading>

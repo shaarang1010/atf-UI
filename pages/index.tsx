@@ -10,10 +10,15 @@ import InformationPane from "../components/infopane/InformationPane";
 import { Signup } from "../components/forms/signup/Signup";
 import { auth } from "../util/firebase/firebase";
 import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAdditionalPages } from "../util/graphql-queries";
+import client from "../util/apollo-client";
 import UserContext from "../context/UserContext";
 import { useRouter } from "next/router";
 import { firebaseErrors } from "../models/FirebaseErrorConstants";
 import get from "lodash/get";
+import AppContext from "../context/AppContext";
+import { AdditionalPages } from "../models/ComponentModel";
+import RenderMarkdownToHTML from "../components/markdown/RenderMarkdown";
 
 const mapErrors = (error: string) => {
   const errorObject = { ...firebaseErrors };
@@ -26,22 +31,28 @@ type ErrMessage = {
   type: "email" | "password" | null;
 };
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ additionalPageData }: any) => {
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [forgotPassword, setForgotPassword] = useState(false);
   const [login, setLogin] = useState<Boolean>(false);
   const [error, setError] = useState<ErrMessage>({ message: "", type: null });
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
+  const { additionalPages, setAdditionalPages } = useContext(AppContext);
+
+  if (additionalPageData) {
+    setAdditionalPages(additionalPageData[0]);
+  }
 
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
     try {
-      const data = await signInWithEmailAndPassword(auth, username, password);
+      // const data = await signInWithEmailAndPassword(auth, username, password);
+      const data = true;
       if (data) {
         setLogin(true);
         setIsAuthenticated(true);
-        router.push("/therapyprofile");
+        router.push("/dashboard");
       }
     } catch (err: any) {
       const errorMessage = err.message.substring(err.message.indexOf("(") + 1, err.message.indexOf(")"));
@@ -50,12 +61,6 @@ const Home: NextPage = () => {
       console.error(err);
     }
   };
-
-  const informationText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae nibh mauris. Proin at ante tortor. Donec lacus diam, convallis et laoreet ac, varius sed ante. Donec condimentum tempor aliquam. Vestibulum vitae efficitur velit, nec convallis nibh. Etiam nec ipsum nibh. Vestibulum ac blandit ligula, auctor molestie ipsum. Sed porttitor ullamcorper lacus nec imperdiet. Donec nisl urna, efficitur in felis non, mollis mollis erat. Nam ligula odio, aliquet varius lectus eget, faucibus lacinia erat. Nulla enim justo, placerat non mauris quis, pretium eleifend magna. Vivamus at velit mi. Curabitur tincidunt sed justo sit amet varius.
-  # Nunc ullamcorper, leo a consectetur vestibulum, urna sapien molestie est, ac porttitor nulla quam a mi. Integer vitae scelerisque odio. Curabitur aliquet, elit sagittis mollis vehicula, eros nibh viverra neque, non porttitor urna nisl vitae neque. Aenean eget arcu eros. Donec eleifend metus et ultrices pharetra. Sed commodo nulla at tempor pellentesque. Phasellus dapibus eros id nisi dapibus porttitor. Curabitur luctus pharetra justo.
-  # Nulla enim justo, placerat non mauris quis, pretium eleifend magna. Vivamus at velit mi. Curabitur tincidunt sed justo sit amet varius.
-  # Nunc ullamcorper, leo a consectetur vestibulum, urna sapien molestie est, ac porttitor nulla quam a mi. 
-  `;
 
   useEffect(() => {
     setLogin(true);
@@ -101,7 +106,7 @@ const Home: NextPage = () => {
               )}
             </Box>
             <Box maxWidth={"lg"} boxShadow={"sm"}>
-              <InformationPane backgroundColor={theme.colors.gray.default} informationText={informationText} />
+              <InformationPane backgroundColor={theme.colors.gray.default} informationText={additionalPages.homepage} />
             </Box>
           </SimpleGrid>
         </Container>
@@ -109,5 +114,15 @@ const Home: NextPage = () => {
     </>
   );
 };
+
+export async function getStaticProps() {
+  const { data } = await client.query({ query: getAdditionalPages() });
+  return {
+    props: {
+      additionalPageData: data.additionalPages
+    },
+    revalidate: 60
+  };
+}
 
 export default Home;

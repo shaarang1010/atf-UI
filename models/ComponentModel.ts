@@ -23,3 +23,10 @@ export type FilterType = {
     | "timeSinceOnset"
     | "delivery";
 };
+
+export type AdditionalPages = {
+  aboutpage?: string;
+  homepage?: string;
+  glossarypage?: string;
+  toolspage?: string;
+};

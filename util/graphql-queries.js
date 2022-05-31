@@ -180,4 +180,25 @@ const getTherapiesForDashboard = () => {
   return therapySearch;
 };
 
-export { authenticateUser, getTherapyDetailsById, getTherapySearch, getTherapyByFilters, getTherapiesForDashboard };
+const getAdditionalPages = () => {
+  const additionalPages = gql`
+    query {
+      additionalPages {
+        aboutpage
+        homepage
+        toolspage
+        glossarypage
+      }
+    }
+  `;
+  return additionalPages;
+};
+
+export {
+  authenticateUser,
+  getTherapyDetailsById,
+  getTherapySearch,
+  getTherapyByFilters,
+  getTherapiesForDashboard,
+  getAdditionalPages
+};

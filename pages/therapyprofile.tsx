@@ -11,8 +11,8 @@ import UserContext from "../context/UserContext";
 import { NotAuthenticated } from "../components/error-message/NotAuthenticated";
 
 const TherapyProfile: NextPage = ({ data }: any) => {
-  const { isAuthenticated } = useContext(UserContext);
-  // const isAuthenticated = true;
+  // const { isAuthenticated } = useContext(UserContext);
+  const isAuthenticated = true;
 
   return (
     <Container maxW={"container.lg"}>
@@ -38,12 +38,44 @@ const TherapyProfile: NextPage = ({ data }: any) => {
   );
 };
 
-export async function getStaticProps() {
-  const { data } = await client.query({ query: getTherapyDetailsById(1) });
+// export async function getStaticPaths() {
+//   return {
+//     fallback: false,
+//     paths: [
+//       {
+//         params: {
+//           therapyProfile: 1
+//         }
+//       },
+//       {
+//         params: {
+//           therapyProfile: 2
+//         }
+//       },
+//       {
+//         params: {
+//           therapyProfile: 3
+//         }
+//       },
+//       {
+//         params: {
+//           therapyProfile: 4
+//         }
+//       }
+//     ]
+//   };
+// }
+
+export async function getStaticProps(context: any) {
+  // const therapyProfileId = context.params.therapyProfile;
+  // console.log("IN context ////// ");
+  // console.log(context.params);
+  const { data } = await client.query({ query: getTherapyDetailsById(2) });
   return {
     props: {
       data: data.therapyProfile
-    }
+    },
+    revalidate: 1
   };
 }
 
