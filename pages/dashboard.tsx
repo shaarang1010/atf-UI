@@ -138,10 +138,6 @@ const TherapySearch = ({ data }: any) => {
                         ? therapyProfile.levelOfEvidence.evidenceDropdown
                         : ""
                     }
-                    videoSource='abcd'
-                    icfDomains={
-                      therapyProfile.therapyTargets?.icfDomains ? therapyProfile.therapyTargets?.icfDomains : ""
-                    }
                   />
                 );
               })

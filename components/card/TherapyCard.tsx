@@ -36,7 +36,7 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
   return (
     <Box maxW='lg' borderWidth='1px' borderRadius='lg' mt='2' overflow='hidden' p='3'>
       <Box display={"flex"} alignItems='baseline'>
-        <ChakraLink as={Link} href={`/therapyprofile`}>
+        <ChakraLink as={Link} href={`/therapyprofile`} style={{ cursor: "pointer" }}>
           <Heading as='h4' size='lg' color={theme.colors.primaryBlue}>
             {cardTitle}
           </Heading>
@@ -75,24 +75,6 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
         </Badge>
         <RenderMarkdownToHTML markdownText={summaryStatement} />
       </Box>
-      <Flex mt='3'>
-        <Badge p='2' mr='2' colorScheme='gray' textTransform='uppercase' fontSize='0.9em'>
-          Therapy Targets
-        </Badge>
-        {icfDomains &&
-          replaceNewLineChar(icfDomains)
-            .split(",")
-            .map((option: string, index: number) => {
-              const badge = option.trim().replace("<p>", "");
-              if (option.length > 0) {
-                return (
-                  <Text size='md' key={index}>
-                    {searchByKey("icfDomains", badge) ? searchByKey("icfDomains", badge).label : ""}
-                  </Text>
-                );
-              }
-            })}
-      </Flex>
     </Box>
   );
 };
