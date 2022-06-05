@@ -194,11 +194,12 @@ const getAdditionalPages = () => {
   return additionalPages;
 };
 
-const getTherapiesProfileID = () => {
+const getAllTherapiesProfileIds = () => {
   const therapySearch = gql`
     query {
       therapyProfiles {
         id
+        therapyname
       }
     }
   `;
@@ -212,5 +213,5 @@ export {
   getTherapyByFilters,
   getTherapiesForDashboard,
   getAdditionalPages,
-  getTherapiesProfileID
+  getAllTherapiesProfileIds
 };

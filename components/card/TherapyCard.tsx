@@ -11,19 +11,13 @@ import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
 interface TherapyCardProps {
   cardTitle: string;
   id: string | number;
-  videoSource: string;
-  therapyTargets?: React.ReactNode;
   summaryStatement: string;
   levelOfEvidence: string;
-  icfDomains: string;
 }
 
 const TherapyCard: React.FC<TherapyCardProps> = ({
   id,
   cardTitle,
-  videoSource,
-  therapyTargets,
-  icfDomains,
   summaryStatement,
   levelOfEvidence
 }) => {

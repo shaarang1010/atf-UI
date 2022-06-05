@@ -30,3 +30,8 @@ export type AdditionalPages = {
   glossarypage?: string;
   toolspage?: string;
 };
+
+export type TherapyProfileSearch = {
+  id: string;
+  therapyname: string;
+};
