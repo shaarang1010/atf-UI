@@ -3,9 +3,7 @@ import Link from "next/link";
 import { Box, Heading, Flex, Input, Text, Icon, Image, Badge, SimpleGrid, Link as ChakraLink } from "@chakra-ui/react";
 import theme from "../../styles/theme";
 import PopOverComponent from "../popovers/Popovers";
-import TableComponent from "./Table";
 import { replaceNewLineChar, searchByKey } from "../../util/listFilter";
-import { TableData } from "../../models/ComponentModel";
 import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
 
 interface TherapyCardProps {
@@ -13,9 +11,10 @@ interface TherapyCardProps {
   id: string | number;
   summaryStatement: string;
   levelOfEvidence: string;
+  onCardClick(): void;
 }
 
-const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStatement, levelOfEvidence }) => {
+const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStatement, levelOfEvidence, onCardClick }) => {
   const data = [
     {
       dataItems: ["Level I", "Lorem ipsum dolor sit amet, consectetur adipiscing ."]
@@ -24,9 +23,9 @@ const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStateme
   ];
   return (
     <Box maxW='lg' borderWidth='1px' borderRadius='lg' mt='2' overflow='hidden' p='3'>
-      <Box display={"flex"} alignItems='baseline'>
+      <Box display={"flex"} alignItems='baseline' cursor={"pointer"}>
         <ChakraLink as={Link} href={`/therapyprofile/${id}`} style={{ cursor: "pointer" }}>
-          <Heading as='h4' size='lg' color={theme.colors.primaryBlue}>
+          <Heading as='h4' size='lg' color={theme.colors.primaryBlue} onClick={onCardClick}>
             {cardTitle}
           </Heading>
         </ChakraLink>

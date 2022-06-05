@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Container, Skeleton, Text, Box, Stack, SimpleGrid } from "@chakra-ui/react";
+import { Container, Skeleton, Text, Box, Stack, SimpleGrid, Spinner } from "@chakra-ui/react";
 import SearchProfile from "../components/forms/SearchProfile";
 import TherapyCard from "../components/card/TherapyCard";
 import uniqBy from "lodash/uniqBy";
@@ -18,6 +18,7 @@ const TherapySearch = ({ data }: any) => {
   const [hasSearchResults, setHasSearchResults] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilters] = useState<SelectedFilters[]>([]);
+  const [isProfileSelected, setIsProfileSelected] = useState(false);
   const { isAuthenticated } = useContext(UserContext);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -125,36 +126,58 @@ const TherapySearch = ({ data }: any) => {
               onSearch={onTherapySearch}
             />
           </Box>
-          <Box maxW={"lg"} mt='20'>
-            {hasSearchResults && therapyProfiles ? (
-              therapyProfiles.map((therapyProfile: TherapyInfoProps) => {
-                return (
-                  <TherapyCard
-                    id={therapyProfile.id}
-                    cardTitle={therapyProfile.therapyname ? therapyProfile.therapyname : ""}
-                    summaryStatement={therapyProfile.summaryStatement ? therapyProfile.summaryStatement : ""}
-                    levelOfEvidence={
-                      therapyProfile.levelOfEvidence?.evidenceDropdown
-                        ? therapyProfile.levelOfEvidence.evidenceDropdown
-                        : ""
-                    }
-                  />
-                );
-              })
-            ) : !isLoading ? (
-              <Stack>
-                {Array(5)
-                  .fill(0)
-                  .map((val, index) => (
-                    <Skeleton height='20px' key={index} />
-                  ))}
-              </Stack>
-            ) : (
-              <Text size='lg' color='gray' mt='10'>
-                No Search Results ....{" "}
+          {isProfileSelected ? (
+            <Box mt='20'>
+              {" "}
+              <Spinner
+                thickness='4px'
+                speed='0.65s'
+                mt='10'
+                ml='20'
+                emptyColor='gray.200'
+                color='blue.500'
+                size='xl'
+                height='200px'
+                width='200px'
+                label='Loading....'
+              />
+              <Text fontSize='lg' mt='5'>
+                Loading Profile....
               </Text>
-            )}
-          </Box>
+            </Box>
+          ) : (
+            <Box maxW={"lg"} mt='20'>
+              {hasSearchResults && therapyProfiles ? (
+                therapyProfiles.map((therapyProfile: TherapyInfoProps) => {
+                  return (
+                    <TherapyCard
+                      id={therapyProfile.id}
+                      cardTitle={therapyProfile.therapyname ? therapyProfile.therapyname : ""}
+                      summaryStatement={therapyProfile.summaryStatement ? therapyProfile.summaryStatement : ""}
+                      levelOfEvidence={
+                        therapyProfile.levelOfEvidence?.evidenceDropdown
+                          ? therapyProfile.levelOfEvidence.evidenceDropdown
+                          : ""
+                      }
+                      onCardClick={() => setIsProfileSelected(true)}
+                    />
+                  );
+                })
+              ) : !isLoading ? (
+                <Stack>
+                  {Array(5)
+                    .fill(0)
+                    .map((val, index) => (
+                      <Skeleton height='20px' key={index} />
+                    ))}
+                </Stack>
+              ) : (
+                <Text size='lg' color='gray' mt='10'>
+                  No Search Results ....{" "}
+                </Text>
+              )}
+            </Box>
+          )}
         </SimpleGrid>
       ) : (
         <NotAuthenticated />

@@ -12,8 +12,8 @@ import { NotAuthenticated } from "../../components/error-message/NotAuthenticate
 import { TherapyProfileSearch } from "../../models/ComponentModel";
 
 const TherapyProfile: NextPage = ({ data }: any) => {
-  // const { isAuthenticated } = useContext(UserContext);
-  const isAuthenticated = true;
+  const { isAuthenticated } = useContext(UserContext);
+  // const isAuthenticated = true;
 
   return (
     <Container maxW={"container.lg"}>

@@ -9,7 +9,9 @@ import {
   Divider,
   Link,
   SimpleGrid,
-  Text
+  Checkbox,
+  Text,
+  useToast
 } from "@chakra-ui/react";
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
@@ -32,6 +34,8 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
   const [passwordsMatch, setPasswordsMatch] = useState<boolean>(false);
+  const [agreeTandC, setAgreeTandC] = useState(false);
+  const toast = useToast();
 
   const { username, isAuthenticated, setIsAuthenticated } = useContext(UserContext);
 
@@ -45,6 +49,16 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
     if (password === retypedPassword) {
       setPasswordsMatch(true);
     }
+  };
+
+  const resetForm = () => {
+    setFirstname("");
+    setLastname("");
+    setEmailAddress("");
+    setPassword("");
+    setRetypePassword("");
+    setPasswordsMatch(false);
+    router.push("/");
   };
 
   const signUpUser = async (e: React.MouseEvent) => {
@@ -65,8 +79,14 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
       }).catch((err) => {
         console.log("Database Error", err);
       });
-      setIsAuthenticated(true);
-      router.push("/dashboard");
+      toast({
+        title: "Account created.",
+        description: "We've created your account for you.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+        onCloseComplete: resetForm
+      });
     }
   };
 
@@ -132,8 +152,24 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
           </Text>
         )}
       </GridItem>
+
+      <GridItem colSpan={12}>
+        <Checkbox onChange={() => setAgreeTandC(() => !agreeTandC)}>
+          I Agree all{" "}
+          <Link href='#' isExternal={true} color='blue.500'>
+            Terms and Conditions
+          </Link>
+        </Checkbox>
+      </GridItem>
+
       <GridItem colStart={4} colEnd={11}>
-        <Button colorScheme='blue' size='lg' isFullWidth={true} isDisabled={!passwordsMatch} onClick={signUpUser}>
+        <Button
+          colorScheme='blue'
+          size='lg'
+          isFullWidth={true}
+          isDisabled={!passwordsMatch && !agreeTandC}
+          onClick={signUpUser}
+        >
           Sign up
         </Button>
       </GridItem>
