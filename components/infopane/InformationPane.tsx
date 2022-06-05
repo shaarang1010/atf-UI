@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, Text, Spacer, Flex } from "@chakra-ui/react";
+import { Box, Heading, Text, Spacer, Flex, Center } from "@chakra-ui/react";
 import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
 
 interface InformationPaneProps {
@@ -17,7 +17,7 @@ const InformationPane: React.FC<InformationPaneProps> = ({
 }) => {
   return (
     <Flex>
-      <Box maxWidth='md' borderWidth='1px' borderRadius='lg' bg={backgroundColor}>
+      <Box maxWidth='md' borderWidth='1px' borderRadius='lg' bg={backgroundColor} p='10'>
         <Heading as={"h2"} size='lg'>
           {informationHeading}
         </Heading>

@@ -21,6 +21,7 @@ const TherapyProfile: NextPage = ({ data }: any) => {
         <Flex>
           <Box w='100%' mt='20'>
             <TherapyInfo
+              id={data.id}
               therapyname={data.therapyname}
               alternativeNames={data.alternativeNames}
               relatedTherapies={data.relatedTherapies}
@@ -40,7 +41,7 @@ const TherapyProfile: NextPage = ({ data }: any) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { data } = await client.query({ query: getTherapyDetailsById(params && params.therapyprofileId) });
+  const { data } = await client.query({ query: getTherapyDetailsById(params && params.therapyprofiledId) });
   return {
     props: {
       data: data.therapyProfile
@@ -55,7 +56,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     paths: data.therapyProfiles.map((therapy: TherapyProfileSearch) => {
       return {
         params: {
-          therapyprofiledId: therapy.id
+          therapyprofiledId: therapy.id.toString()
         }
       };
     }),

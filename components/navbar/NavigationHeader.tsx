@@ -119,10 +119,12 @@ const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
+  const { isAuthenticated } = useContext(UserContext);
+  const navItems = isAuthenticated ? NAV_ITEMS : [...NAV_ITEMS].slice(1);
 
   return (
     <Stack direction={"row"} spacing={4}>
-      {NAV_ITEMS.map((navItem) => (
+      {navItems.map((navItem) => (
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
@@ -258,6 +260,10 @@ interface NavItem {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
+  {
+    label: "Dashboard",
+    href: "dashboard"
+  },
   {
     label: "About",
     href: "about"

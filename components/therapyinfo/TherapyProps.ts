@@ -44,6 +44,7 @@ interface MechanismOfAction {
 }
 
 export interface TherapyInfoProps {
+  id: string | number;
   therapyname?: string;
   summaryStatement?: string;
   relatedTherapies?: string;

@@ -15,12 +15,7 @@ interface TherapyCardProps {
   levelOfEvidence: string;
 }
 
-const TherapyCard: React.FC<TherapyCardProps> = ({
-  id,
-  cardTitle,
-  summaryStatement,
-  levelOfEvidence
-}) => {
+const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStatement, levelOfEvidence }) => {
   const data = [
     {
       dataItems: ["Level I", "Lorem ipsum dolor sit amet, consectetur adipiscing ."]
@@ -30,7 +25,7 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
   return (
     <Box maxW='lg' borderWidth='1px' borderRadius='lg' mt='2' overflow='hidden' p='3'>
       <Box display={"flex"} alignItems='baseline'>
-        <ChakraLink as={Link} href={`/therapyprofile`} style={{ cursor: "pointer" }}>
+        <ChakraLink as={Link} href={`/therapyprofile/${id}`} style={{ cursor: "pointer" }}>
           <Heading as='h4' size='lg' color={theme.colors.primaryBlue}>
             {cardTitle}
           </Heading>
@@ -39,7 +34,6 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
           <PopOverComponent
             header={"NHMRC Level of Evidence Hierarchy "}
             content={
-              // <TableComponent headers={["Level of Evidence", "Info"]} data={data} variant='simple' tableCaption='' />
               <Image
                 src={
                   "https://www.researchgate.net/profile/Trentham-Furness/publication/276921671/figure/tbl1/AS:614204427997212@1523449155846/NHMRC-and-NICE-levels-of-evidence.png"

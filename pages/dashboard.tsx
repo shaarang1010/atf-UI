@@ -130,7 +130,7 @@ const TherapySearch = ({ data }: any) => {
               therapyProfiles.map((therapyProfile: TherapyInfoProps) => {
                 return (
                   <TherapyCard
-                    id={1}
+                    id={therapyProfile.id}
                     cardTitle={therapyProfile.therapyname ? therapyProfile.therapyname : ""}
                     summaryStatement={therapyProfile.summaryStatement ? therapyProfile.summaryStatement : ""}
                     levelOfEvidence={
