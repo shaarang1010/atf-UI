@@ -31,8 +31,13 @@ import Link from "next/link";
 
 export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   const router = useRouter();
+
+  const onLogout = () => {
+    setIsAuthenticated(false);
+    router.push("/");
+  };
 
   return (
     <Box boxShadow='lg' rounded='lg' bg='white'>
@@ -97,7 +102,7 @@ export default function WithSubnavigation() {
                     Account Settings
                   </MenuItem>
                   <MenuDivider />
-                  <MenuItem>
+                  <MenuItem onClick={onLogout}>
                     <Icon as={FaSignOutAlt} mr='2' />
                     Logout
                   </MenuItem>
@@ -128,19 +133,20 @@ const DesktopNav = () => {
         <Box key={navItem.label}>
           <Popover trigger={"hover"} placement={"bottom-start"}>
             <PopoverTrigger>
-              <ChakraLink
-                p={2}
-                href={navItem.href ?? "#"}
-                fontSize={"md"}
-                fontWeight={800}
-                color={linkColor}
-                _hover={{
-                  textDecoration: "none",
-                  color: linkHoverColor
-                }}
-              >
-                {navItem.label}
-              </ChakraLink>
+              <Link href={navItem.href ?? "#"} passHref>
+                <ChakraLink
+                  p={2}
+                  fontSize={"md"}
+                  fontWeight={800}
+                  color={linkColor}
+                  _hover={{
+                    textDecoration: "none",
+                    color: linkHoverColor
+                  }}
+                >
+                  {navItem.label}
+                </ChakraLink>
+              </Link>
             </PopoverTrigger>
 
             {navItem.children && (
@@ -162,6 +168,7 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <ChakraLink
+      as={Link}
       href={href ?? "/"}
       role={"group"}
       display={"block"}
@@ -242,7 +249,7 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <ChakraLink key={child.label} py={2} href={child.href}>
+              <ChakraLink as={Link} key={child.label} py={2} href={child.href}>
                 {child.label}
               </ChakraLink>
             ))}

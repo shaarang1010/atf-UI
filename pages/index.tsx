@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import theme from "../styles/theme";
 import styles from "../styles/Home.module.css";
-import { Container, SimpleGrid, Box } from "@chakra-ui/react";
+import { Container, SimpleGrid, Box, useToast } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import LoginComponent from "../components/forms/login/Login";
 import InformationPane from "../components/infopane/InformationPane";
@@ -39,24 +39,43 @@ const Home: NextPage = ({ additionalPageData }: any) => {
   const [error, setError] = useState<ErrMessage>({ message: "", type: null });
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   const { additionalPages, setAdditionalPages } = useContext(AppContext);
+  const toast = useToast();
 
   if (additionalPageData) {
     setAdditionalPages(additionalPageData[0]);
   }
 
+  const navigateOnLogin = () => {
+    router.push("/dashboard");
+  };
+
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
     try {
-      const data = await signInWithEmailAndPassword(auth, username, password);
-      // const data = true;
+      //const data = await signInWithEmailAndPassword(auth, username, password);
+      const data = true;
       if (data) {
         setLogin(true);
         setIsAuthenticated(true);
-        router.push("/dashboard");
+        toast({
+          title: `Successfully Logged in!`,
+          position: "top",
+          duration: 4000,
+          status: "success",
+          isClosable: true,
+          onCloseComplete: navigateOnLogin
+        });
       }
     } catch (err: any) {
       const errorMessage = err.message.substring(err.message.indexOf("(") + 1, err.message.indexOf(")"));
       console.log(errorMessage);
+      toast({
+        title: mapErrors(errorMessage),
+        position: "top",
+        duration: 4000,
+        status: "error",
+        isClosable: true
+      });
       setError(mapErrors(errorMessage));
       console.error(err);
     }
