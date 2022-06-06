@@ -173,6 +173,16 @@ const getTherapiesForDashboard = () => {
         }
         therapyTargets {
           icfDomains
+          clientSelection {
+            aphasiaText
+            aphasiaSeverity
+            aphasiaAetiology
+            aphasiaTypeList
+            aphasiaSeverityList
+            aphasiaAetiologyList
+            clientSelection
+            timeSinceOnset
+          }
         }
       }
     }

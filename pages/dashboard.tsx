@@ -141,7 +141,7 @@ const TherapySearch = ({ data }: any) => {
                 width='200px'
                 label='Loading....'
               />
-              <Text fontSize='lg' mt='5' ml='22'>
+              <Text fontSize='lg' mt='5' ml='20'>
                 Loading Profile....
               </Text>
             </Box>

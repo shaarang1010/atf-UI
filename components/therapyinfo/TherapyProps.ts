@@ -13,6 +13,7 @@ interface TherapyResources {
 interface TherapyMode {
   setting?: string;
   groupSize?: string;
+  delivery?: string;
   doseAndSchedule?: string;
   teleHealth?: string;
 }
@@ -21,7 +22,8 @@ interface ClientSelection {
   aphasiaText?: string;
   aphasiaSeverity?: string;
   aphasiaAetiology?: string;
-  timeSinceOnsetOfAphasia?: string;
+  timeSinceOnset?: string;
+  timeSinceOnsetOfAphasiaText?: string;
 }
 
 interface TherapyIngredients {

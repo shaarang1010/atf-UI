@@ -96,7 +96,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                   markdownText={
                     therapyTargets?.clientSelection?.aphasiaAetiology
                       ? therapyTargets?.clientSelection?.aphasiaAetiology
-                      : ""
+                      : "-"
                   }
                 />
               </Box>
@@ -104,9 +104,9 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                 <b>Time since onset of Aphasia:</b>
                 <RenderMarkdownToHTML
                   markdownText={
-                    therapyTargets?.clientSelection?.timeSinceOnsetOfAphasia
-                      ? therapyTargets?.clientSelection?.timeSinceOnsetOfAphasia
-                      : ""
+                    therapyTargets?.clientSelection?.timeSinceOnsetOfAphasiaText
+                      ? therapyTargets?.clientSelection?.timeSinceOnsetOfAphasiaText
+                      : "-"
                   }
                 />
               </Box>
@@ -134,6 +134,43 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
             <RenderMarkdownToHTML
               markdownText={therapyIngredients?.therapyMethod ? therapyIngredients?.therapyMethod : ""}
             />
+          </Box>
+          <Box mt='5'>
+            <Heading as='h4' size='md'>
+              Key Therapeautic Principles
+            </Heading>
+            <RenderMarkdownToHTML
+              markdownText={
+                therapyIngredients?.keyTherapeuticPrincipals ? therapyIngredients?.keyTherapeuticPrincipals : ""
+              }
+            />
+          </Box>
+          <Box mt='5'>
+            <Heading as='h4' size='md'>
+              Therapy Mode
+            </Heading>
+            <Box mt='5'>
+              <b>Setting:</b>
+              <RenderMarkdownToHTML
+                markdownText={therapyIngredients?.therapyMode?.setting ? therapyIngredients?.therapyMode.setting : ""}
+              />
+            </Box>
+            <Box mt='5'>
+              <b>Dose And Schedule:</b>
+              <RenderMarkdownToHTML
+                markdownText={
+                  therapyIngredients?.therapyMode?.doseAndSchedule
+                    ? therapyIngredients?.therapyMode.doseAndSchedule
+                    : ""
+                }
+              />
+            </Box>
+            <Box mt='5'>
+              <b>Delivery:</b>
+              <RenderMarkdownToHTML
+                markdownText={therapyIngredients?.therapyMode?.delivery ? therapyIngredients?.therapyMode.delivery : ""}
+              />
+            </Box>
           </Box>
         </>
       )

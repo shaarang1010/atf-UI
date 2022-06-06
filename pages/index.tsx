@@ -49,14 +49,18 @@ const Home: NextPage = ({ additionalPageData }: any) => {
     router.push("/dashboard");
   };
 
+  const onLoginSuccess = (username: string) => {
+    setLogin(true);
+    setIsAuthenticated(true);
+  };
+
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
     try {
-      //const data = await signInWithEmailAndPassword(auth, username, password);
-      const data = true;
+      const data = await signInWithEmailAndPassword(auth, username, password);
+      // const data = true;
       if (data) {
-        setLogin(true);
-        setIsAuthenticated(true);
+        onLoginSuccess(username);
         toast({
           title: `Successfully Logged in!`,
           position: "top",
