@@ -25,11 +25,11 @@ const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStateme
     <Box maxW='lg' borderWidth='1px' borderRadius='lg' mt='2' overflow='hidden' p='3'>
       <Box display={"flex"} alignItems='baseline' cursor={"pointer"}>
         <ChakraLink as={Link} href={`/therapyprofile/${id}`} style={{ cursor: "pointer" }}>
-          <Heading as='h4' size='lg' color={theme.colors.primaryBlue} onClick={onCardClick}>
+          <Heading as='h4' size='lg' color={"darkBlue"} onClick={onCardClick}>
             {cardTitle}
           </Heading>
         </ChakraLink>
-        <Box ml='2'>
+        <Box ml='1'>
           <PopOverComponent
             header={"NHMRC Level of Evidence Hierarchy "}
             content={
@@ -51,7 +51,7 @@ const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStateme
           replaceNewLineChar(levelOfEvidence)
             .split(",")
             .map((option: string, index: number) => (
-              <Badge p='2' mr='2' variant='subtle' colorScheme='pink' key={index}>
+              <Badge p='2' mr='2' variant='subtle' colorScheme='messenger' key={index}>
                 {levelOfEvidence ? searchByKey("levels", option).label : ""}
               </Badge>
             ))}

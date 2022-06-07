@@ -6,7 +6,6 @@ import RenderMarkdownToHTML from "../../components/markdown/RenderMarkdown";
 import { getAllTherapiesProfileIds, getTherapyDetailsById } from "../../util/graphql-queries";
 import client from "../../util/apollo-client";
 import { Container, Box, Flex } from "@chakra-ui/react";
-import { Context, useQuery } from "@apollo/client";
 import UserContext from "../../context/UserContext";
 import { NotAuthenticated } from "../../components/error-message/NotAuthenticated";
 import { TherapyProfileSearch } from "../../models/ComponentModel";

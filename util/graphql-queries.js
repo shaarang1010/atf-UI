@@ -198,6 +198,7 @@ const getAdditionalPages = () => {
         homepage
         toolspage
         glossarypage
+        legalpage
       }
     }
   `;

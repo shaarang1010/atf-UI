@@ -46,20 +46,19 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianChildNode: (
         <Box>
           {therapyTargets?.icfDomains ? (
-            <Flex mb='4'>
+            <Box mb='4'>
               <Heading as='h4' size='md'>
-                ICF Domains:{" "}
+                ICF domains
               </Heading>
               <Box ml='4'>
                 <RenderMarkdownToHTML markdownText={therapyTargets?.icfDomains} />
               </Box>
-            </Flex>
+            </Box>
           ) : null}
           <Box>
             <Box>
               <Heading as='h4' size='md' mb='4'>
-                {" "}
-                Therapeutic Targets{" "}
+                Targets
               </Heading>
               <Box>
                 <RenderMarkdownToHTML
@@ -69,19 +68,20 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
             </Box>
             <Box mt='5'>
               <Heading as='h4' size='md' mb='4'>
-                {" "}
-                Client Selection{" "}
+                Client selection
               </Heading>
+              {therapyTargets?.clientSelection?.aphasiaText && (
+                <Box mt='5'>
+                  <b>Aphasia Text:</b>
+                  <RenderMarkdownToHTML
+                    markdownText={
+                      therapyTargets?.clientSelection?.aphasiaText ? therapyTargets?.clientSelection?.aphasiaText : ""
+                    }
+                  />
+                </Box>
+              )}
               <Box mt='5'>
-                <b>Aphasia Text:</b>
-                <RenderMarkdownToHTML
-                  markdownText={
-                    therapyTargets?.clientSelection?.aphasiaText ? therapyTargets?.clientSelection?.aphasiaText : ""
-                  }
-                />
-              </Box>
-              <Box mt='5'>
-                <b>Aphasia Severity:</b>
+                <b>Aphasia severity</b>
                 <RenderMarkdownToHTML
                   markdownText={
                     therapyTargets?.clientSelection?.aphasiaSeverity
@@ -104,8 +104,8 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                 <b>Time since onset of Aphasia:</b>
                 <RenderMarkdownToHTML
                   markdownText={
-                    therapyTargets?.clientSelection?.timeSinceOnsetOfAphasiaText
-                      ? therapyTargets?.clientSelection?.timeSinceOnsetOfAphasiaText
+                    therapyTargets?.clientSelection?.timeSinceOnsetList
+                      ? therapyTargets?.clientSelection?.timeSinceOnsetList
                       : "-"
                   }
                 />
@@ -120,15 +120,15 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianChildNode: (
         <>
           <Box>
-            <Heading as='h4' size='md'>
-              Therapy Protocol:
+            <Heading as='h4' size='lg'>
+              Therapy Protocol
             </Heading>{" "}
             <RenderMarkdownToHTML
               markdownText={therapyIngredients?.therapyProtocol ? therapyIngredients?.therapyProtocol : ""}
             />
           </Box>
           <Box mt='5'>
-            <Heading as='h4' size='md'>
+            <Heading as='h3' size='lg' mb='10'>
               Therapy Method
             </Heading>
             <RenderMarkdownToHTML
@@ -136,7 +136,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
             />
           </Box>
           <Box mt='5'>
-            <Heading as='h4' size='md'>
+            <Heading as='h4' size='lg'>
               Key Therapeautic Principles
             </Heading>
             <RenderMarkdownToHTML
@@ -146,7 +146,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
             />
           </Box>
           <Box mt='5'>
-            <Heading as='h4' size='md'>
+            <Heading as='h4' size='lg'>
               Therapy Mode
             </Heading>
             <Box mt='5'>
@@ -180,7 +180,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianChildNode: (
         <>
           <Box>
-            <Heading as='h4' size='md'>
+            <Heading as='h4' size='lg'>
               Literature:
             </Heading>{" "}
             <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources?.literature : ""} />
@@ -203,7 +203,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
         </Heading>
         {alternativeNames?.split("\n").map((name, index) => {
           return (
-            <Badge key={index} variant='subtle' fontSize={"1.0em"} colorScheme={"pink"} mr='4'>
+            <Badge key={index} variant='subtle' fontSize={"1.0em"} colorScheme={"messenger"} mr='4'>
               {name}
             </Badge>
           );

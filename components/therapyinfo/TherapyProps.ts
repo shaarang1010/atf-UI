@@ -23,6 +23,7 @@ interface ClientSelection {
   aphasiaSeverity?: string;
   aphasiaAetiology?: string;
   timeSinceOnset?: string;
+  timeSinceOnsetList?: string;
   timeSinceOnsetOfAphasiaText?: string;
 }
 
