@@ -15,14 +15,8 @@ interface TherapyCardProps {
 }
 
 const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStatement, levelOfEvidence, onCardClick }) => {
-  const data = [
-    {
-      dataItems: ["Level I", "Lorem ipsum dolor sit amet, consectetur adipiscing ."]
-    },
-    { dataItems: ["Level II", "lorem ipsum diotr"] }
-  ];
   return (
-    <Box maxW='lg' borderWidth='1px' borderRadius='lg' mt='2' overflow='hidden' p='3'>
+    <Box maxW='lg' borderWidth='1px' borderRadius='lg' mt='2' overflow='hidden' p='3' boxShadow='lg'>
       <Box display={"flex"} alignItems='baseline' cursor={"pointer"}>
         <ChakraLink as={Link} href={`/therapyprofile/${id}`} style={{ cursor: "pointer" }}>
           <Heading as='h4' size='lg' color={"darkBlue"} onClick={onCardClick}>
@@ -30,7 +24,25 @@ const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStateme
           </Heading>
         </ChakraLink>
         <Box ml='1'>
+          {/* <PopOverComponent
+            header={"NHMRC Level of Evidence Hierarchy "}
+            content={
+              <Image
+                src={
+                  "https://www.researchgate.net/profile/Trentham-Furness/publication/276921671/figure/tbl1/AS:614204427997212@1523449155846/NHMRC-and-NICE-levels-of-evidence.png"
+                }
+                alt='NHMRC Level of Evidence Hierarchy'
+              />
+            }
+          /> */}
+        </Box>
+      </Box>
+      <Box mt='5'>
+        <Badge p='2' mr='2' colorScheme='gray' textTransform='uppercase' fontSize='0.8em'>
+          Level of Evidence
+          {"   "}
           <PopOverComponent
+            size='xs'
             header={"NHMRC Level of Evidence Hierarchy "}
             content={
               <Image
@@ -41,11 +53,6 @@ const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStateme
               />
             }
           />
-        </Box>
-      </Box>
-      <Box mt='5'>
-        <Badge p='2' mr='2' colorScheme='gray' textTransform='uppercase' fontSize='0.9em'>
-          Level of Evidence
         </Badge>
         {levelOfEvidence &&
           replaceNewLineChar(levelOfEvidence)
@@ -57,7 +64,7 @@ const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStateme
             ))}
       </Box>
       <Box mt='5'>
-        <Badge p='2' mr='2' colorScheme='gray' textTransform='uppercase' fontSize='0.9em'>
+        <Badge p='2' mr='2' mb='2' colorScheme='gray' textTransform='uppercase' fontSize='0.9em'>
           Summary Statement
         </Badge>
         <RenderMarkdownToHTML markdownText={summaryStatement} />

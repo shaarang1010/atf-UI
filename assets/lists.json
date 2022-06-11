@@ -56,18 +56,22 @@
   "aphasiaType": [
     {
       "label": "Fluent",
-      "value": "fluent"
+      "value": "Fluent"
     },
     {
       "label": "Non-Fluent",
-      "value": "non_fluent"
+      "value": "Non-Fluent"
     },
     {
       "label": "Anomic",
-      "value": "anomic"
+      "value": "Anomic"
     },
     {
       "label": "Broca's",
+      "value": "Broca's"
+    },
+    {
+      "label": "Conduction",
       "value": "Conduction"
     },
     {
@@ -80,7 +84,7 @@
     },
     {
       "label": "Transcortical motor",
-      "value": "transcortical_motor"
+      "value": "Transcortical motor"
     },
     {
       "label": "Transcortical sensory",
@@ -111,6 +115,10 @@
       "value": "poststroke"
     },
     {
+      "label": "Stroke",
+      "value": "stroke"
+    },
+    {
       "label": "Primary progressive aphasia",
       "value": "primary_progressive_aphasia"
     },
@@ -133,7 +141,7 @@
       "value": "subacute"
     },
     {
-      "label": "Chronic (over 6 months)",
+      "label": "Chronic (6months or more)",
       "value": "chronic"
     }
   ],
@@ -165,7 +173,7 @@
       "value": "in_pairs"
     },
     {
-      "label": "In a group",
+      "label": "Group",
       "value": "in_a_group"
     },
     {
@@ -177,12 +185,16 @@
       "value": "volunteer_delivered"
     },
     {
-      "label": "via telehealth",
+      "label": "Potentially via telehealth",
       "value": "telehealth"
     },
     {
       "label": "In pairs",
       "value": "independent_practice"
+    },
+    {
+      "label": "Computer-assisted or computer-delivered",
+      "value": "Computer-assisted or computer-delivered"
     }
   ]
 }

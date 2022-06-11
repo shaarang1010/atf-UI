@@ -5,7 +5,7 @@ import {
   PopoverContent,
   PopoverHeader,
   PopoverBody,
-  PopoverFooter,
+  Box,
   PopoverArrow,
   PopoverCloseButton,
   PopoverAnchor,
@@ -16,12 +16,13 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 type PopoverProps = {
   header: string;
   content: React.ReactNode;
+  size: "xs" | "sm" | "md";
 };
-const PopOverComponent: React.FC<PopoverProps> = ({ header, content }) => {
+const PopOverComponent: React.FC<PopoverProps> = ({ header, content, size }) => {
   return (
     <Popover placement='top-start'>
       <PopoverTrigger>
-        <IconButton aria-label='info' icon={<InfoOutlineIcon />}></IconButton>
+        <IconButton aria-label='info' size={size} icon={<InfoOutlineIcon />}></IconButton>
       </PopoverTrigger>
       <PopoverContent>
         <PopoverArrow />

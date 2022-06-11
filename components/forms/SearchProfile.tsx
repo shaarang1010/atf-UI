@@ -19,33 +19,17 @@ import { BsFilter, BsSearch } from "react-icons/bs";
 import TabGroupList from "../tabs/TabListGroup";
 
 interface SearchProfileProps {
-  searchText: string;
   filters: React.ReactNode[];
   tabNames: string[];
   hiddenTabs: string[];
   hiddenFilters: React.ReactNode[];
-  onTextChangeHandler(e: React.ChangeEvent<HTMLInputElement>): void;
   onSearch(): void;
 }
 
-const SearchProfile: React.FC<SearchProfileProps> = ({
-  searchText,
-  tabNames,
-  hiddenTabs,
-  hiddenFilters,
-  filters,
-  onTextChangeHandler,
-  onSearch
-}) => {
+const SearchProfile: React.FC<SearchProfileProps> = ({ tabNames, hiddenTabs, hiddenFilters, filters, onSearch }) => {
   const [expandOptions, setExpandOptions] = useState(false);
   return (
     <Grid templateColumns={"repeat(5,1fr)"} gap={5}>
-      <GridItem colSpan={6}>
-        <FormControl>
-          <FormLabel htmlFor='search'>Search Query</FormLabel>
-          <Input id='search' type='text' placeholder='Search Text ...' size='md' onChange={onTextChangeHandler} />
-        </FormControl>
-      </GridItem>
       <GridItem colSpan={6}>
         <Heading as='h3' size='md'>
           Filter

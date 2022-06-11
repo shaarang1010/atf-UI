@@ -184,6 +184,14 @@ const getTherapiesForDashboard = () => {
             timeSinceOnset
           }
         }
+        therapyIngredients {
+          therapyMode {
+            setting
+            doseAndSchedule
+            delivery
+            deliveryText
+          }
+        }
       }
     }
   `;

@@ -14,26 +14,108 @@ import { NotAuthenticated } from "../components/error-message/NotAuthenticated";
 
 const TherapySearch = ({ data }: any) => {
   const { therapyProfiles } = data;
-  const [searchText, setSearchText] = useState("");
+  const [therpySearchProfiles, setTherapySearchProfiles] = useState<TherapyInfoProps[]>(therapyProfiles);
   const [hasSearchResults, setHasSearchResults] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilters] = useState<SelectedFilters[]>([]);
   const [isProfileSelected, setIsProfileSelected] = useState(false);
   const { isAuthenticated } = useContext(UserContext);
 
-  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-  };
-
   const showSkeleton = () => {
     setIsLoading(false);
     setTimeout(() => {
+      setIsLoading(true);
       setHasSearchResults(true);
     }, 3000);
   };
 
+  /** REFACTOR THE BELOWING  */
+  // const filterByCriteria = (filters: SelectedFilters[]) => {
+  //   let filteredQuery: any[] = [];
+  //   filters.map((filter) => {
+  //     if (filter.filterName === "levelOfEvidence") {
+  //       [
+  //         ...filteredQuery,
+  //         therpySearchProfiles.filter((profile) =>
+  //           filter.filterValues.includes(
+  //             profile.levelOfEvidence?.evidenceDropdown ? profile.levelOfEvidence?.evidenceDropdown : ""
+  //           )
+  //         )
+  //       ];
+  //     }
+  //     if (filter.filterName === "timeSinceOnset") {
+  //       [
+  //         ...filteredQuery,
+  //         therpySearchProfiles.filter((profile) =>
+  //           filter.filterValues.includes(
+  //             profile.therapyTargets?.clientSelection?.timeSinceOnset
+  //               ? profile.therapyTargets?.clientSelection?.timeSinceOnset
+  //               : ""
+  //           )
+  //         )
+  //       ];
+  //     }
+  //     if (filter.filterName === "settings") {
+  //       [
+  //         ...filteredQuery,
+  //         therpySearchProfiles.filter((profile) =>
+  //           filter.filterValues.includes(
+  //             profile.therapyIngredients?.therapyMode?.setting ? profile.therapyIngredients?.therapyMode?.setting : ""
+  //           )
+  //         )
+  //       ];
+  //     }
+  //     if (filter.filterName === "aphasiaSeverity") {
+  //       [
+  //         ...filteredQuery,
+  //         therpySearchProfiles.filter((profile) =>
+  //           filter.filterValues.includes(
+  //             profile.therapyTargets?.clientSelection?.timeSinceOnset
+  //               ? profile.therapyTargets?.clientSelection?.timeSinceOnset
+  //               : ""
+  //           )
+  //         )
+  //       ];
+  //     }
+  //     if (filter.filterName === "aphasiaType") {
+  //       [
+  //         ...filteredQuery,
+  //         therpySearchProfiles.filter((profile) =>
+  //           filter.filterValues.includes(
+  //             profile.levelOfEvidence?.evidenceDropdown ? profile.levelOfEvidence?.evidenceDropdown : ""
+  //           )
+  //         )
+  //       ];
+  //     }
+  //     if (filter.filterName === "aphasiaAetiology") {
+  //       [
+  //         ...filteredQuery,
+  //         therpySearchProfiles.filter((profile) =>
+  //           filter.filterValues.includes(
+  //             profile.levelOfEvidence?.evidenceDropdown ? profile.levelOfEvidence?.evidenceDropdown : ""
+  //           )
+  //         )
+  //       ];
+  //     }
+  //     if (filter.filterName === "delivery") {
+  //       [
+  //         ...filteredQuery,
+  //         therpySearchProfiles.filter((profile) =>
+  //           filter.filterValues.includes(
+  //             profile.levelOfEvidence?.evidenceDropdown ? profile.levelOfEvidence?.evidenceDropdown : ""
+  //           )
+  //         )
+  //       ];
+  //     }
+  //   });
+  //   setTherapySearchProfiles(filteredQuery);
+  // };
+
   const onTherapySearch = () => {
     showSkeleton();
+    //console.log(selectedFilter);
+    const filters = uniqBy(selectedFilter.reverse(), "filterName");
+    // filterByCriteria(filters);
   };
 
   const filterHandler = (item: string, arr: FilterOptionProps[]) => {
@@ -117,9 +199,7 @@ const TherapySearch = ({ data }: any) => {
         <SimpleGrid columns={{ sm: 2, md: 2 }} gap={5}>
           <Box maxW={"lg"} mt='20'>
             <SearchProfile
-              searchText={searchText}
               tabNames={dropdownlist.tabs}
-              onTextChangeHandler={onChangeHandler}
               filters={filters}
               hiddenTabs={dropdownlist.additionalTabs}
               hiddenFilters={additionalFilter}
@@ -147,11 +227,20 @@ const TherapySearch = ({ data }: any) => {
             </Box>
           ) : (
             <Box maxW={"lg"} mt='20'>
-              {hasSearchResults && therapyProfiles ? (
-                therapyProfiles.map((therapyProfile: TherapyInfoProps) => {
+              {!isLoading ? (
+                <Stack>
+                  {Array(5)
+                    .fill(0)
+                    .map((val, index) => (
+                      <Skeleton height='20px' key={index} />
+                    ))}
+                </Stack>
+              ) : hasSearchResults && therpySearchProfiles ? (
+                therpySearchProfiles.map((therapyProfile: TherapyInfoProps) => {
                   return (
                     <TherapyCard
                       id={therapyProfile.id}
+                      key={therapyProfile.id}
                       cardTitle={therapyProfile.therapyname ? therapyProfile.therapyname : ""}
                       summaryStatement={therapyProfile.summaryStatement ? therapyProfile.summaryStatement : ""}
                       levelOfEvidence={
@@ -163,14 +252,6 @@ const TherapySearch = ({ data }: any) => {
                     />
                   );
                 })
-              ) : !isLoading ? (
-                <Stack>
-                  {Array(5)
-                    .fill(0)
-                    .map((val, index) => (
-                      <Skeleton height='20px' key={index} />
-                    ))}
-                </Stack>
               ) : (
                 <Text size='lg' color='gray' mt='10'>
                   No Search Results ....{" "}

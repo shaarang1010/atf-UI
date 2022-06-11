@@ -61,14 +61,14 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <Link href='/'>
+          <ChakraLink as={Link} href='/' style={{ cursor: "pointer" }}>
             <Image
               width='180px'
               height='60px'
               src='https://atf-upload-bucket.s3.ap-southeast-2.amazonaws.com/ATF_logo2_c274a2400b.svg?15801053.000000002'
               alt='Aphasia Therapy Finder'
             />
-          </Link>
+          </ChakraLink>
         </Flex>
 
         <Stack flex={{ base: 1, md: 0 }} justify={"flex-end"} direction={"row"} spacing={6}>
