@@ -17,7 +17,7 @@ const InformationPane: React.FC<InformationPaneProps> = ({
 }) => {
   return (
     <Flex>
-      <Box maxWidth='md' borderWidth='1px' borderRadius='lg' bg={backgroundColor} p='10'>
+      <Box maxWidth='md' m='16'>
         <Heading as={"h2"} size='lg'>
           {informationHeading}
         </Heading>
@@ -26,7 +26,7 @@ const InformationPane: React.FC<InformationPaneProps> = ({
         {children ? (
           <>
             <Spacer />
-            <Box maxWidth={"md"}>{children}</Box>
+            <Box maxWidth={"lg"}>{children}</Box>
           </>
         ) : null}
       </Box>

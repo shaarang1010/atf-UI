@@ -186,7 +186,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
           Signup with Facebook
         </Button>
       </GridItem>
-      <GridItem colStart={5} colEnd={11} mt='5'>
+      <GridItem colStart={4} colEnd={12} mt='5'>
         <Link color='blue.500' onClick={loginAccount}>
           Already have an account?
         </Link>

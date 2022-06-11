@@ -57,8 +57,8 @@ const Home: NextPage = ({ additionalPageData }: any) => {
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
     try {
-      const data = await signInWithEmailAndPassword(auth, username, password);
-      // const data = true;
+      // const data = await signInWithEmailAndPassword(auth, username, password);
+      const data = true;
       if (data) {
         onLoginSuccess(username);
         toast({
@@ -111,6 +111,9 @@ const Home: NextPage = ({ additionalPageData }: any) => {
         <p className={styles.description}>Get started by login in or sign-up</p>
         <Container maxW='container.lg'>
           <SimpleGrid columns={{ sm: 2, md: 2 }} spacing={10}>
+            <Box maxWidth={"lg"} boxShadow={"sm"} backgroundColor={theme.colors.gray.default} borderRadius='lg'>
+              <InformationPane backgroundColor={theme.colors.gray.default} informationText={additionalPages.homepage} />
+            </Box>
             <Box maxWidth={"lg"} mt='5'>
               {login ? (
                 <LoginComponent
@@ -127,9 +130,6 @@ const Home: NextPage = ({ additionalPageData }: any) => {
               ) : (
                 <Signup loginAccount={toggleLogin} />
               )}
-            </Box>
-            <Box maxWidth={"lg"} boxShadow={"sm"}>
-              <InformationPane backgroundColor={theme.colors.gray.default} informationText={additionalPages.homepage} />
             </Box>
           </SimpleGrid>
         </Container>
