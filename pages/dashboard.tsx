@@ -120,7 +120,7 @@ const TherapySearch = ({ data }: any) => {
 
   const filterHandler = (item: string, arr: FilterOptionProps[]) => {
     setSelectedFilters([...selectedFilter, { filterName: item, filterValues: arr.map((i) => i.value) }]);
-    console.log(uniqBy(selectedFilter.reverse(), "filterName"));
+    // console.log(uniqBy(selectedFilter.reverse(), "filterName"));
   };
 
   const filters = [

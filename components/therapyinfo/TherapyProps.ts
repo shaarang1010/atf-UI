@@ -4,8 +4,13 @@ interface LevelOfEvidence {
   evidenceDropdown?: string;
 }
 
+interface videoFile {
+  url?: string;
+  alternativeText?: string;
+}
+
 interface TherapyResources {
-  videoFile?: string;
+  videoFile?: videoFile;
   literature?: string;
   other?: string;
 }
@@ -20,11 +25,15 @@ interface TherapyMode {
 
 interface ClientSelection {
   aphasiaText?: string;
+  aphasiaTypeList?: string;
   aphasiaSeverity?: string;
   aphasiaAetiology?: string;
+  aphasiaSeverityList?: string;
+  aphasiaAetiologyList?: string;
   timeSinceOnset?: string;
   timeSinceOnsetList?: string;
-  timeSinceOnsetOfAphasiaText?: string;
+  timeSinceOnsetText?: string;
+  otherClientSelectionText?: string;
 }
 
 interface TherapyIngredients {
@@ -32,7 +41,7 @@ interface TherapyIngredients {
   keyTherapeuticPrincipals?: string;
   therapyMode?: TherapyMode;
   therapyMethod?: string;
-  resources?: string;
+  materials?: string;
 }
 
 interface TherapyTargets {
@@ -58,4 +67,5 @@ export interface TherapyInfoProps {
   therapyIngredients?: TherapyIngredients;
   therapyTargets?: TherapyTargets;
   therapyResources?: TherapyResources;
+  keywords?: string;
 }

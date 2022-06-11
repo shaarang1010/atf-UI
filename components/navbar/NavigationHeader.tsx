@@ -61,7 +61,7 @@ export default function WithSubnavigation() {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <ChakraLink as={Link} href='/' style={{ cursor: "pointer" }}>
+          <ChakraLink as={Link} href={isAuthenticated ? "/dashboard" : "/"} style={{ cursor: "pointer" }}>
             <Image
               width='180px'
               height='60px'
@@ -70,7 +70,6 @@ export default function WithSubnavigation() {
             />
           </ChakraLink>
         </Flex>
-
         <Stack flex={{ base: 1, md: 0 }} justify={"flex-end"} direction={"row"} spacing={6}>
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />

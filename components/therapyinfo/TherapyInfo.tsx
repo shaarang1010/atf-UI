@@ -1,6 +1,7 @@
 import React from "react";
 import { TherapyInfoProps } from "./TherapyProps";
 import AccordianComponent from "../accordian/Accordian";
+import ReactPlayer from "react-player";
 import { Grid, GridItem, Flex, Heading, Badge, SimpleGrid, Box } from "@chakra-ui/react";
 import Link from "next/link";
 import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
@@ -67,92 +68,94 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                 />
               </Box>
             </Box>
-            <Box mt='5'>
-              <Heading as='h4' size='lg' mb='4'>
-                Client selection
-              </Heading>
-              {therapyTargets?.clientSelection?.aphasiaText && (
-                <Box mt='5'>
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.aphasiaTypeList
-                        ? therapyTargets?.clientSelection?.aphasiaTypeList
-                        : ""
-                    }
-                  />
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.aphasiaText ? therapyTargets?.clientSelection?.aphasiaText : ""
-                    }
-                  />
-                </Box>
-              )}
-              {therapyTargets?.clientSelection?.aphasiaSeverity && (
-                <Box mt='5'>
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.aphasiaSeverityList
-                        ? therapyTargets?.clientSelection?.aphasiaSeverityList
-                        : ""
-                    }
-                  />
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.aphasiaSeverity
-                        ? therapyTargets?.clientSelection?.aphasiaSeverity
-                        : ""
-                    }
-                  />
-                </Box>
-              )}
-              {therapyTargets?.clientSelection?.aphasiaAetiology && (
-                <Box mt='5'>
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.aphasiaAetiologyList
-                        ? therapyTargets?.clientSelection?.aphasiaAetiologyList
-                        : "-"
-                    }
-                  />
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.aphasiaAetiology
-                        ? therapyTargets?.clientSelection?.aphasiaAetiology
-                        : "-"
-                    }
-                  />
-                </Box>
-              )}
-              {therapyTargets?.clientSelection?.timeSinceOnsetList && (
-                <Box mt='5'>
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.timeSinceOnsetList
-                        ? therapyTargets?.clientSelection?.timeSinceOnsetList
-                        : "-"
-                    }
-                  />
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.timeSinceOnset
-                        ? therapyTargets?.clientSelection?.timeSinceOnset
-                        : "-"
-                    }
-                  />
-                </Box>
-              )}
-              {therapyTargets?.clientSelection?.otherClientSelectionText && (
-                <Box mt='5'>
-                  <RenderMarkdownToHTML
-                    markdownText={
-                      therapyTargets?.clientSelection?.otherClientSelectionText
-                        ? therapyTargets?.clientSelection?.otherClientSelectionText
-                        : "-"
-                    }
-                  />
-                </Box>
-              )}
-            </Box>
+            {therapyTargets?.clientSelection && (
+              <Box mt='5'>
+                <Heading as='h4' size='lg' mb='4'>
+                  Client selection
+                </Heading>
+                {therapyTargets?.clientSelection?.aphasiaText && (
+                  <Box mt='5'>
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.aphasiaTypeList
+                          ? therapyTargets?.clientSelection?.aphasiaTypeList
+                          : ""
+                      }
+                    />
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.aphasiaText ? therapyTargets?.clientSelection?.aphasiaText : ""
+                      }
+                    />
+                  </Box>
+                )}
+                {therapyTargets?.clientSelection?.aphasiaSeverity && (
+                  <Box mt='5'>
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.aphasiaSeverityList
+                          ? therapyTargets?.clientSelection?.aphasiaSeverityList
+                          : ""
+                      }
+                    />
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.aphasiaSeverity
+                          ? therapyTargets?.clientSelection?.aphasiaSeverity
+                          : ""
+                      }
+                    />
+                  </Box>
+                )}
+                {therapyTargets?.clientSelection?.aphasiaAetiology && (
+                  <Box mt='5'>
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.aphasiaAetiologyList
+                          ? therapyTargets?.clientSelection?.aphasiaAetiologyList
+                          : "-"
+                      }
+                    />
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.aphasiaAetiology
+                          ? therapyTargets?.clientSelection?.aphasiaAetiology
+                          : "-"
+                      }
+                    />
+                  </Box>
+                )}
+                {therapyTargets?.clientSelection?.timeSinceOnsetList && (
+                  <Box mt='5'>
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.timeSinceOnsetList
+                          ? therapyTargets?.clientSelection?.timeSinceOnsetList
+                          : "-"
+                      }
+                    />
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.timeSinceOnset
+                          ? therapyTargets?.clientSelection?.timeSinceOnset
+                          : "-"
+                      }
+                    />
+                  </Box>
+                )}
+                {therapyTargets?.clientSelection?.otherClientSelectionText && (
+                  <Box mt='5'>
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.otherClientSelectionText
+                          ? therapyTargets?.clientSelection?.otherClientSelectionText
+                          : "-"
+                      }
+                    />
+                  </Box>
+                )}
+              </Box>
+            )}
           </Box>
         </Box>
       )
@@ -258,6 +261,14 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
             </Heading>{" "}
             <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources?.literature : ""} />
           </Box>
+          {therapyResources?.videoFile?.url && (
+            <Box>
+              <Heading as='h4' size='lg' mb='4'>
+                Video:
+              </Heading>{" "}
+              <ReactPlayer url={therapyResources?.videoFile?.url} controls={true} />
+            </Box>
+          )}
         </>
       )
     },
