@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Container } from "@chakra-ui/react";
 import { AdditionalPages } from "../models/ComponentModel";
 import AppContext from "../context/AppContext";
+import "../styles/globals.css";
 
 const additionalPagesData = {
   homepage: "",

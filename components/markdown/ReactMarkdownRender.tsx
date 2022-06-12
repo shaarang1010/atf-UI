@@ -15,6 +15,7 @@ export const ReactMarkdownRender: React.FC<MarkdownProp> = ({ text }) => {
       remarkPlugins={[remarkGfm]}
       components={ChakraUIRenderer()}
       children={text}
+      skipHtml={true}
     />
   );
 };

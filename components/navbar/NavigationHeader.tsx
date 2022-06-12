@@ -22,6 +22,7 @@ import {
   useDisclosure,
   Image
 } from "@chakra-ui/react";
+import React from "react";
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { FaFingerprint, FaSignOutAlt } from "react-icons/fa";
 import { useContext } from "react";
@@ -75,19 +76,20 @@ export default function WithSubnavigation() {
             <DesktopNav />
           </Flex>
           {!isAuthenticated && (
-            <Button
-              display={{ base: "none", md: "inline-flex" }}
-              fontSize={"sm"}
-              fontWeight={600}
-              color={"white"}
-              bg={"darkBlue"}
-              onClick={(e) => router.push("")}
-              _hover={{
-                bg: "blue.400"
-              }}
-            >
-              Sign Up
-            </Button>
+            // <Button
+            //   display={{ base: "none", md: "inline-flex" }}
+            //   fontSize={"sm"}
+            //   fontWeight={600}
+            //   color={"white"}
+            //   bg={"darkBlue"}
+            //   onClick={(e) => router.push("")}
+            //   _hover={{
+            //     bg: "blue.400"
+            //   }}
+            // >
+            //   Take a Tour
+            // </Button>
+            <></>
           )}
           {isAuthenticated && (
             <>
@@ -167,7 +169,6 @@ const DesktopNav = () => {
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <ChakraLink
-      as={Link}
       href={href ?? "/"}
       role={"group"}
       display={"block"}
@@ -275,18 +276,15 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/about"
   },
   {
-    label: "Resources",
-    children: [
-      {
-        label: "Documentation",
-        subLabel: "Tutorial on usage",
-        href: "#"
-      },
-      {
-        label: "Tools page",
-        subLabel: "Other Aphasia Tools",
-        href: "#"
-      }
-    ]
+    label: "Glossary",
+    href: "/resources/glossary"
+  },
+  {
+    label: "Tools",
+    href: "/resources/tools"
+  },
+  {
+    label: "Legal",
+    href: "/resources/legal"
   }
 ];

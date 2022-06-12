@@ -29,6 +29,7 @@ export type AdditionalPages = {
   homepage?: string;
   glossarypage?: string;
   toolspage?: string;
+  legalpage?: string;
 };
 
 export type TherapyProfileSearch = {

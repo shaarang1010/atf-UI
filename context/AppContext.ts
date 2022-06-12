@@ -14,7 +14,8 @@ const AppContext = createContext<AppContextProps>({
     glossarypage: "",
     homepage: "",
     aboutpage: "",
-    toolspage: ""
+    toolspage: "",
+    legalpage: ""
   }
 });
 
