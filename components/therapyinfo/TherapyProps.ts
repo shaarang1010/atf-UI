@@ -33,7 +33,7 @@ interface ClientSelection {
   timeSinceOnset?: string;
   timeSinceOnsetList?: string;
   timeSinceOnsetText?: string;
-  otherClientSelectionText?: string;
+  clientSelection?: string;
 }
 
 interface TherapyIngredients {

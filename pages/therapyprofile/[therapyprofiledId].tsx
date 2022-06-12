@@ -13,7 +13,6 @@ import { TherapyProfileSearch } from "../../models/ComponentModel";
 const TherapyProfile: NextPage = ({ data }: any) => {
   const { isAuthenticated } = useContext(UserContext);
   // const isAuthenticated = true;
-  console.log(data);
   return (
     <Container maxW={"container.lg"}>
       {isAuthenticated ? (
