@@ -14,8 +14,8 @@ type ModalProps = {
   isOpen: boolean;
   onClose(): void;
   children: React.ReactNode;
-  headerText: string;
-  footerText: string;
+  headerText?: string;
+  footerText?: string;
 };
 
 export const ModalComponent: React.FC<ModalProps> = ({ isOpen, onClose, children, headerText, footerText }) => {

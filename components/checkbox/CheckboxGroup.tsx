@@ -52,7 +52,6 @@ const CheckboxComponent: React.FC<CheckboxGroupProps> = ({
             <Checkbox
               isChecked={checkedItems[index]}
               onChange={(e) => {
-                console.log(index);
                 //toggleSelectedItems(e.target.checked, selectedFilters, option.label);
                 setCheckedItems([e.target.checked, checkedItems[index]]);
               }}

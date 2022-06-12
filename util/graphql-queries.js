@@ -192,6 +192,12 @@ const getTherapiesForDashboard = () => {
             deliveryText
           }
         }
+        therapyResources {
+          videoFile {
+            name
+            url
+          }
+        }
       }
     }
   `;

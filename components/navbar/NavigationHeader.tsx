@@ -20,6 +20,7 @@ import {
   useBreakpointValue,
   Link as ChakraLink,
   useDisclosure,
+  useToast,
   Image
 } from "@chakra-ui/react";
 import React from "react";
@@ -34,10 +35,18 @@ export default function WithSubnavigation() {
   const { isOpen, onToggle } = useDisclosure();
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   const router = useRouter();
+  const toast = useToast();
 
   const onLogout = () => {
     setIsAuthenticated(false);
-    router.push("/");
+    toast({
+      title: `Loging you out. You will be re-directed to homepage`,
+      position: "top",
+      duration: 3000,
+      status: "success",
+      isClosable: true,
+      onCloseComplete: () => router.push("/")
+    });
   };
 
   return (

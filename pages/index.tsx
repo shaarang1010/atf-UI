@@ -21,7 +21,6 @@ import RenderMarkdownToHTML from "../components/markdown/RenderMarkdown";
 
 const mapErrors = (error: string) => {
   const errorObject = { ...firebaseErrors };
-  console.log(get(errorObject, error));
   return get(errorObject, error);
 };
 
@@ -63,7 +62,7 @@ const Home: NextPage = ({ additionalPageData }: any) => {
         toast({
           title: `Successfully Logged in!`,
           position: "top",
-          duration: 4000,
+          duration: 3000,
           status: "success",
           isClosable: true,
           onCloseComplete: navigateOnLogin
@@ -71,7 +70,6 @@ const Home: NextPage = ({ additionalPageData }: any) => {
       }
     } catch (err: any) {
       const errorMessage = err.message.substring(err.message.indexOf("(") + 1, err.message.indexOf(")"));
-      console.log(errorMessage);
       toast({
         title: mapErrors(errorMessage),
         position: "top",

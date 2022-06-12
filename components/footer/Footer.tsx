@@ -42,7 +42,7 @@ const Footer: React.FC<FooterProps> = ({ footerLogo, footerLinkInfo, footerBGCol
             <Text fontSize={"sm"}>{`© ${new Date().getFullYear()} Aphasia Therapy Finder. All rights reserved`}</Text>
           </Stack>
           <Spacer />
-          {footerLinkInfo.map((footerInfo, index) => {
+          {/* {footerLinkInfo.map((footerInfo, index) => {
             return (
               <Stack align={"flex-start"} key={index}>
                 <ListHeader>{footerInfo.footerHeader}</ListHeader>
@@ -55,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ footerLogo, footerLinkInfo, footerBGCol
                 })}
               </Stack>
             );
-          })}
+          })} */}
         </SimpleGrid>
       </Container>
     </Box>

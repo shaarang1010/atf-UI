@@ -2,9 +2,10 @@ import React from "react";
 import { TherapyInfoProps } from "./TherapyProps";
 import AccordianComponent from "../accordian/Accordian";
 import ReactPlayer from "react-player";
-import { Grid, GridItem, Flex, Heading, Badge, SimpleGrid, Box } from "@chakra-ui/react";
+import { Grid, GridItem, Text, Heading, Badge, SimpleGrid, Box, Spacer } from "@chakra-ui/react";
 import Link from "next/link";
 import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
+import { replaceNewLineChar, searchByKey } from "../../util/listFilter";
 
 const TherapyInfo: React.FC<TherapyInfoProps> = ({
   therapyIngredients,
@@ -32,10 +33,15 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianTitle: "Level of Evidence",
       accordianChildNode: (
         <Box>
-          <Heading as='h4' size='lg' mb='4'>
-            {" "}
-            Evidence Statement:
-          </Heading>
+          {levelOfEvidence &&
+            replaceNewLineChar(levelOfEvidence.evidenceDropdown)
+              .split(",")
+              .map((option: string, index: number) => (
+                <Badge p='2' mr='2' variant='subtle' fontSize={"1.0em"} colorScheme='messenger' key={index}>
+                  {levelOfEvidence.evidenceDropdown ? searchByKey("levels", option).label : ""}
+                </Badge>
+              ))}
+          <Box m='2' />
           <RenderMarkdownToHTML
             markdownText={levelOfEvidence?.evidenceStatement ? levelOfEvidence?.evidenceStatement : ""}
           />
@@ -73,8 +79,9 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                 <Heading as='h4' size='lg' mb='4'>
                   Client selection
                 </Heading>
-                {therapyTargets?.clientSelection?.aphasiaText && (
+                {therapyTargets?.clientSelection?.aphasiaTypeList && (
                   <Box mt='5'>
+                    <Text as='b'>Aphasia type</Text>
                     <RenderMarkdownToHTML
                       markdownText={
                         therapyTargets?.clientSelection?.aphasiaTypeList
@@ -89,8 +96,9 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                     />
                   </Box>
                 )}
-                {therapyTargets?.clientSelection?.aphasiaSeverity && (
+                {therapyTargets?.clientSelection?.aphasiaSeverityList && (
                   <Box mt='5'>
+                    <Text as='b'>Aphasia severity</Text>
                     <RenderMarkdownToHTML
                       markdownText={
                         therapyTargets?.clientSelection?.aphasiaSeverityList
@@ -107,8 +115,9 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                     />
                   </Box>
                 )}
-                {therapyTargets?.clientSelection?.aphasiaAetiology && (
+                {therapyTargets?.clientSelection?.aphasiaAetiologyList && (
                   <Box mt='5'>
+                    <Text as='b'>Aphasia aetiology</Text>
                     <RenderMarkdownToHTML
                       markdownText={
                         therapyTargets?.clientSelection?.aphasiaAetiologyList
@@ -127,6 +136,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                 )}
                 {therapyTargets?.clientSelection?.timeSinceOnsetList && (
                   <Box mt='5'>
+                    <Text as='b'>Time since aphasia onset</Text>
                     <RenderMarkdownToHTML
                       markdownText={
                         therapyTargets?.clientSelection?.timeSinceOnsetList
@@ -143,12 +153,13 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                     />
                   </Box>
                 )}
-                {therapyTargets?.clientSelection?.otherClientSelectionText && (
+                {therapyTargets?.clientSelection?.clientSelection && (
                   <Box mt='5'>
+                    <Text as='b'>Other considerations</Text>
                     <RenderMarkdownToHTML
                       markdownText={
-                        therapyTargets?.clientSelection?.otherClientSelectionText
-                          ? therapyTargets?.clientSelection?.otherClientSelectionText
+                        therapyTargets?.clientSelection?.clientSelection
+                          ? therapyTargets?.clientSelection?.clientSelection
                           : "-"
                       }
                     />
@@ -195,13 +206,13 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
               Therapy Mode
             </Heading>
             <Box mt='5'>
-              <b>Setting:</b>
+              <b>Setting</b>
               <RenderMarkdownToHTML
                 markdownText={therapyIngredients?.therapyMode?.setting ? therapyIngredients?.therapyMode.setting : ""}
               />
             </Box>
             <Box mt='5'>
-              <b>Dose And Schedule:</b>
+              <b>Dose And Schedule</b>
               <RenderMarkdownToHTML
                 markdownText={
                   therapyIngredients?.therapyMode?.doseAndSchedule
@@ -211,7 +222,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
               />
             </Box>
             <Box mt='5'>
-              <b>Delivery:</b>
+              <b>Delivery</b>
               <RenderMarkdownToHTML
                 markdownText={therapyIngredients?.therapyMode?.delivery ? therapyIngredients?.therapyMode.delivery : ""}
               />
@@ -227,7 +238,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
           {mechainismOfAction?.theoreticalUnderPinnings && (
             <Box>
               <Heading as='h4' size='lg' mb='4'>
-                Theoritical Underpinnings:
+                Theoritical Underpinnings
               </Heading>{" "}
               <RenderMarkdownToHTML
                 markdownText={
@@ -239,7 +250,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
           {mechainismOfAction?.supportingEmpiricalEvidence && (
             <Box>
               <Heading as='h4' size='lg' mb='4'>
-                Supporting Empirical Evidence:
+                Supporting Empirical Evidence
               </Heading>{" "}
               <RenderMarkdownToHTML
                 markdownText={
@@ -254,24 +265,22 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
     {
       accordianTitle: "Therapy Resources",
       accordianChildNode: (
-        <SimpleGrid columns={{ sm: 1, md: 1 }} gap={5}>
+        <Box maxW={"80%"}>
+          <Heading as='h4' size='lg' mb='4'>
+            Literature
+          </Heading>{" "}
           <Box>
-            <Heading as='h4' size='lg' mb='4'>
-              Literature:
-            </Heading>{" "}
-            <Box maxW={["88%", "100%"]}>
-              <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources?.literature : ""} />
-            </Box>
+            <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources?.literature : ""} />
           </Box>
           {therapyResources?.videoFile?.url && (
             <Box>
               <Heading as='h4' size='lg' mb='4'>
-                Video:
+                Video
               </Heading>{" "}
               <ReactPlayer url={therapyResources?.videoFile?.url} controls={true} width='360px' />
             </Box>
           )}
-        </SimpleGrid>
+        </Box>
       )
     }
   ];
@@ -296,18 +305,19 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
         })}
       </GridItem>
       <GridItem colSpan={12}>
-        <Heading as='h4' size='md'>
-          Similar or related therapies:{" "}
-        </Heading>
-        {relatedTherapies
-          ? relatedTherapies.split("\n").map((name, index) => {
-              return (
-                <Link href={"/index"} key={index}>
-                  {name}
-                </Link>
-              );
-            })
-          : "N/A"}
+        {relatedTherapies && (
+          <Heading as='h4' size='md'>
+            Similar or related therapies:{" "}
+          </Heading>
+        )}
+        {relatedTherapies &&
+          relatedTherapies.split("\n").map((name, index) => {
+            return (
+              <Link href={"/index"} key={index}>
+                {name}
+              </Link>
+            );
+          })}
       </GridItem>
       <GridItem colSpan={12}>
         <AccordianComponent currentKey={0} accordianItems={accordianItems} />

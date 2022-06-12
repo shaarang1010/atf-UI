@@ -4,6 +4,7 @@ import { Box, Heading, Flex, Input, Text, Icon, Image, Badge, SimpleGrid, Link a
 import theme from "../../styles/theme";
 import PopOverComponent from "../popovers/Popovers";
 import { replaceNewLineChar, searchByKey } from "../../util/listFilter";
+import { BsCameraVideoFill } from "react-icons/bs";
 import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
 
 interface TherapyCardProps {
@@ -11,31 +12,35 @@ interface TherapyCardProps {
   id: string | number;
   summaryStatement: string;
   levelOfEvidence: string;
+  videoSrc: string;
+  openModal(): void;
   onCardClick(): void;
 }
 
-const TherapyCard: React.FC<TherapyCardProps> = ({ id, cardTitle, summaryStatement, levelOfEvidence, onCardClick }) => {
+const TherapyCard: React.FC<TherapyCardProps> = ({
+  id,
+  cardTitle,
+  summaryStatement,
+  levelOfEvidence,
+  videoSrc,
+  openModal,
+  onCardClick
+}) => {
   return (
     <Box maxW='lg' borderWidth='1px' borderRadius='lg' mt='2' overflow='hidden' p='3' boxShadow='lg'>
-      <Box display={"flex"} alignItems='baseline' cursor={"pointer"}>
+      <Box display={"flex"} cursor={"pointer"}>
         <ChakraLink as={Link} href={`/therapyprofile/${id}`} style={{ cursor: "pointer" }}>
           <Heading as='h4' size='lg' color={"darkBlue"} onClick={onCardClick}>
             {cardTitle}
           </Heading>
         </ChakraLink>
-        <Box ml='1'>
-          {/* <PopOverComponent
-            header={"NHMRC Level of Evidence Hierarchy "}
-            content={
-              <Image
-                src={
-                  "https://www.researchgate.net/profile/Trentham-Furness/publication/276921671/figure/tbl1/AS:614204427997212@1523449155846/NHMRC-and-NICE-levels-of-evidence.png"
-                }
-                alt='NHMRC Level of Evidence Hierarchy'
-              />
-            }
-          /> */}
-        </Box>
+        {videoSrc && (
+          <Box mt='1' w='20'>
+            <Badge onClick={openModal}>
+              <Icon as={BsCameraVideoFill} />
+            </Badge>
+          </Box>
+        )}
       </Box>
       <Box mt='5'>
         <Badge p='2' mr='2' colorScheme='gray' textTransform='uppercase' fontSize='0.8em'>

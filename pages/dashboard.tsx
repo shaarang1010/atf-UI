@@ -11,7 +11,13 @@ import { getTherapiesForDashboard } from "../util/graphql-queries";
 import UserContext from "../context/UserContext";
 import { TherapyInfoProps } from "../components/therapyinfo/TherapyProps";
 import { NotAuthenticated } from "../components/error-message/NotAuthenticated";
+import { ModalComponent } from "../components/modal/Modal";
+import ReactPlayer from "react-player";
 
+type SelectedVideo = {
+  src: string;
+  title: string;
+};
 const TherapySearch = ({ data }: any) => {
   const { therapyProfiles } = data;
   const [therpySearchProfiles, setTherapySearchProfiles] = useState<TherapyInfoProps[]>(therapyProfiles);
@@ -19,6 +25,8 @@ const TherapySearch = ({ data }: any) => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilters] = useState<SelectedFilters[]>([]);
   const [isProfileSelected, setIsProfileSelected] = useState(false);
+  const [selectedVideo, setSelectedVideo] = useState<SelectedVideo>({ src: "", title: "" });
+  const [openVideoPlayer, setOpenVideoPlayer] = useState(false);
   const { isAuthenticated } = useContext(UserContext);
 
   const showSkeleton = () => {
@@ -39,6 +47,11 @@ const TherapySearch = ({ data }: any) => {
   const filterHandler = (item: string, arr: FilterOptionProps[]) => {
     setSelectedFilters([...selectedFilter, { filterName: item, filterValues: arr.map((i) => i.value) }]);
     // console.log(uniqBy(selectedFilter.reverse(), "filterName"));
+  };
+
+  const playVideo = (src: string, title: string) => {
+    setSelectedVideo({ src, title });
+    setOpenVideoPlayer(true);
   };
 
   const filters = [
@@ -144,38 +157,60 @@ const TherapySearch = ({ data }: any) => {
               </Text>
             </Box>
           ) : (
-            <Box maxW={"lg"} mt='20'>
-              {!isLoading ? (
-                <Stack>
-                  {Array(5)
-                    .fill(0)
-                    .map((val, index) => (
-                      <Skeleton height='20px' key={index} />
-                    ))}
-                </Stack>
-              ) : hasSearchResults && therpySearchProfiles ? (
-                therpySearchProfiles.map((therapyProfile: TherapyInfoProps) => {
-                  return (
-                    <TherapyCard
-                      id={therapyProfile.id}
-                      key={therapyProfile.id}
-                      cardTitle={therapyProfile.therapyname ? therapyProfile.therapyname : ""}
-                      summaryStatement={therapyProfile.summaryStatement ? therapyProfile.summaryStatement : ""}
-                      levelOfEvidence={
-                        therapyProfile.levelOfEvidence?.evidenceDropdown
-                          ? therapyProfile.levelOfEvidence.evidenceDropdown
-                          : ""
-                      }
-                      onCardClick={() => setIsProfileSelected(true)}
-                    />
-                  );
-                })
-              ) : (
-                <Text size='lg' color='gray' mt='10'>
-                  No Search Results ....{" "}
-                </Text>
-              )}
-            </Box>
+            <>
+              <Box maxW={"lg"} mt='20'>
+                {!isLoading ? (
+                  <Stack>
+                    {Array(5)
+                      .fill(0)
+                      .map((val, index) => (
+                        <Skeleton height='20px' key={index} />
+                      ))}
+                  </Stack>
+                ) : hasSearchResults && therpySearchProfiles ? (
+                  therpySearchProfiles.map((therapyProfile: TherapyInfoProps) => {
+                    return (
+                      <TherapyCard
+                        id={therapyProfile.id}
+                        key={therapyProfile.id}
+                        cardTitle={therapyProfile.therapyname ? therapyProfile.therapyname : ""}
+                        summaryStatement={therapyProfile.summaryStatement ? therapyProfile.summaryStatement : ""}
+                        levelOfEvidence={
+                          therapyProfile.levelOfEvidence?.evidenceDropdown
+                            ? therapyProfile.levelOfEvidence.evidenceDropdown
+                            : ""
+                        }
+                        videoSrc={
+                          therapyProfile.therapyResources?.videoFile?.url
+                            ? therapyProfile.therapyResources?.videoFile?.url
+                            : ""
+                        }
+                        openModal={() =>
+                          playVideo(
+                            therapyProfile.therapyResources?.videoFile?.url
+                              ? therapyProfile.therapyResources?.videoFile?.url
+                              : "",
+                            therapyProfile.therapyname ? therapyProfile.therapyname : ""
+                          )
+                        }
+                        onCardClick={() => setIsProfileSelected(true)}
+                      />
+                    );
+                  })
+                ) : (
+                  <Text size='lg' color='gray' mt='10'>
+                    No Search Results ....{" "}
+                  </Text>
+                )}
+              </Box>
+              <ModalComponent
+                isOpen={openVideoPlayer}
+                onClose={() => setOpenVideoPlayer(false)}
+                headerText={selectedVideo.title}
+              >
+                <ReactPlayer url={selectedVideo.src} controls={true} width='360px' />
+              </ModalComponent>
+            </>
           )}
         </SimpleGrid>
       ) : (
