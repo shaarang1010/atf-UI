@@ -26,11 +26,11 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
    */
   const accordianItems = [
     {
-      accordianTitle: "Summary Statement",
+      accordianTitle: "Summary statement",
       accordianChildNode: <RenderMarkdownToHTML markdownText={summaryStatement ? summaryStatement : ""} />
     },
     {
-      accordianTitle: "Level of Evidence",
+      accordianTitle: "Level of evidence",
       accordianChildNode: (
         <Box>
           {levelOfEvidence &&
@@ -50,7 +50,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       )
     },
     {
-      accordianTitle: "Therapy Targets",
+      accordianTitle: "Therapy targets",
       accordianChildNode: (
         <Box>
           {therapyTargets?.icfDomains ? (
@@ -172,12 +172,12 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       )
     },
     {
-      accordianTitle: "Therapy Ingredients",
+      accordianTitle: "Therapy ingredients",
       accordianChildNode: (
         <>
           <Box>
             <Heading as='h4' size='lg' mb='4'>
-              Therapy Protocol
+              Therapy protocol
             </Heading>{" "}
             <RenderMarkdownToHTML
               markdownText={therapyIngredients?.therapyProtocol ? therapyIngredients?.therapyProtocol : ""}
@@ -185,7 +185,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
           </Box>
           <Box mt='5'>
             <Heading as='h3' size='lg' mb='4'>
-              Therapy Method
+              Therapy method
             </Heading>
             <RenderMarkdownToHTML
               markdownText={therapyIngredients?.therapyMethod ? therapyIngredients?.therapyMethod : ""}
@@ -193,7 +193,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
           </Box>
           <Box mt='5'>
             <Heading as='h4' size='lg' mb='4'>
-              Key Therapeautic Principles
+              Key therapeautic principles
             </Heading>
             <RenderMarkdownToHTML
               markdownText={
@@ -203,7 +203,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
           </Box>
           <Box mt='5'>
             <Heading as='h4' size='lg'>
-              Therapy Mode
+              Therapy mode
             </Heading>
             <Box mt='5'>
               <b>Setting</b>
@@ -212,7 +212,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
               />
             </Box>
             <Box mt='5'>
-              <b>Dose And Schedule</b>
+              <b>Dose and schedule</b>
               <RenderMarkdownToHTML
                 markdownText={
                   therapyIngredients?.therapyMode?.doseAndSchedule
@@ -232,13 +232,13 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       )
     },
     {
-      accordianTitle: "Mechanism of Action",
+      accordianTitle: "Mechanism of action",
       accordianChildNode: (
         <>
           {mechainismOfAction?.theoreticalUnderPinnings && (
             <Box>
               <Heading as='h4' size='lg' mb='4'>
-                Theoritical Underpinnings
+                Theoritical underpinnings
               </Heading>{" "}
               <RenderMarkdownToHTML
                 markdownText={
@@ -250,7 +250,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
           {mechainismOfAction?.supportingEmpiricalEvidence && (
             <Box>
               <Heading as='h4' size='lg' mb='4'>
-                Supporting Empirical Evidence
+                Supporting empirical evidence
               </Heading>{" "}
               <RenderMarkdownToHTML
                 markdownText={
