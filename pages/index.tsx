@@ -1,9 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
 import theme from "../styles/theme";
 import styles from "../styles/Home.module.css";
-import { Container, SimpleGrid, Box, useToast } from "@chakra-ui/react";
+import { Container, SimpleGrid, Box, useToast, Image } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import LoginComponent from "../components/forms/login/Login";
 import InformationPane from "../components/infopane/InformationPane";
@@ -106,9 +105,11 @@ const Home: NextPage = ({ additionalPageData }: any) => {
       </Head>
 
       <main className={styles.main}>
-        <h2 className={styles.title}>Aphasia Therapy Finder</h2>
-
-        <p className={styles.description}>Get started by login in or sign-up</p>
+        <Image
+          src='https://atf-upload-bucket.s3.ap-southeast-2.amazonaws.com/biglogo_ca983ee5e0.svg?3716443'
+          alt='Aphasia Therapy Finder'
+          mb='20'
+        />
         <Container maxW='container.lg'>
           <SimpleGrid columns={{ sm: 2, md: 2 }} spacing={10}>
             <Box maxWidth={"lg"} boxShadow={"sm"} backgroundColor={theme.colors.gray.default} borderRadius='lg'>

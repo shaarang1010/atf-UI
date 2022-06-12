@@ -7,12 +7,13 @@ import {
   FormLabel,
   Input,
   Divider,
-  Link,
+  Link as ChakraLink,
   SimpleGrid,
   Checkbox,
   Text,
   useToast
 } from "@chakra-ui/react";
+import Link from "next/link";
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { BsFacebook } from "react-icons/bs";
@@ -155,9 +156,9 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
 
       <GridItem colSpan={12}>
         <Checkbox onChange={() => setAgreeTandC(() => !agreeTandC)}>
-          I Agree all{" "}
-          <Link href='#' isExternal={true} color='blue.500'>
-            Terms and Conditions
+          I have read and agree to the{" "}
+          <Link href='/legal' passHref>
+            <ChakraLink color='blue.500'>Terms and Conditions</ChakraLink>
           </Link>
         </Checkbox>
       </GridItem>
@@ -187,9 +188,9 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
         </Button>
       </GridItem>
       <GridItem colStart={4} colEnd={12} mt='5'>
-        <Link color='blue.500' onClick={loginAccount}>
+        <ChakraLink color='blue.500' onClick={loginAccount}>
           Already have an account?
-        </Link>
+        </ChakraLink>
       </GridItem>
     </Grid>
   );

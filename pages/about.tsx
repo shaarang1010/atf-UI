@@ -10,8 +10,8 @@ type AboutPageProps = {
 const AboutPage: React.FC<AboutPageProps> = ({ pageData }) => {
   const { additionalPages, setAdditionalPages } = useContext(AppContext);
   return (
-    <Container maxW={"container.xl"}>
-      <Heading as='h1' size='2xl' mr='10' my='10'>
+    <Container maxW={"container.lg"}>
+      <Heading as='h1' size='3xl' mr='10' my='10'>
         About Aphasia Therapy Finder
       </Heading>
       {additionalPages.aboutpage && <ReactMarkdownRender text={additionalPages.aboutpage} />}

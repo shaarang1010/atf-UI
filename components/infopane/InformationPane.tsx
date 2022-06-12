@@ -3,7 +3,7 @@ import { Box, Heading, Text, Spacer, Flex, Center } from "@chakra-ui/react";
 import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
 
 interface InformationPaneProps {
-  backgroundColor: string;
+  backgroundColor?: string;
   informationHeading?: string;
   informationText?: string;
   children?: React.ReactNode;

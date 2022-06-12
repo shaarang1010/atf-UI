@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Container, Heading } from "@chakra-ui/react";
+import { Container, Box } from "@chakra-ui/react";
 import { ReactMarkdownRender } from "../../components/markdown/ReactMarkdownRender";
 import AppContext from "../../context/AppContext";
 
@@ -8,10 +8,10 @@ type ToolsPageProps = {
 };
 
 const ToolsPage: React.FC<ToolsPageProps> = ({ pageData }) => {
-  const { additionalPages, setAdditionalPages } = useContext(AppContext);
+  const { additionalPages } = useContext(AppContext);
   return (
-    <Container maxW={"container.xl"}>
-      {additionalPages.toolspage && <ReactMarkdownRender text={additionalPages.toolspage} />}
+    <Container maxW={"container.lg"}>
+      <Box mt='10'>{additionalPages.toolspage && <ReactMarkdownRender text={additionalPages.toolspage} />}</Box>
     </Container>
   );
 };

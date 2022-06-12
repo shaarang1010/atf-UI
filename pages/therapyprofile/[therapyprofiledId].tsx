@@ -17,23 +17,21 @@ const TherapyProfile: NextPage = ({ data }: any) => {
   return (
     <Container maxW={"container.lg"}>
       {isAuthenticated ? (
-        <Flex>
-          <Box w='100%' mt='20'>
-            <TherapyInfo
-              id={data.id}
-              therapyname={data.therapyname}
-              alternativeNames={data.alternativeNames}
-              relatedTherapies={data.relatedTherapies}
-              summaryStatement={data.summaryStatement}
-              levelOfEvidence={data.levelOfEvidence}
-              therapyTargets={data.therapyTargets}
-              therapyIngredients={data.therapyIngredients}
-              therapyResources={data.therapyResources}
-              mechainismOfAction={data.mechainismOfAction}
-              keywords={data.keywords}
-            />
-          </Box>
-        </Flex>
+        <Box w='98%' mt='20'>
+          <TherapyInfo
+            id={data.id}
+            therapyname={data.therapyname}
+            alternativeNames={data.alternativeNames}
+            relatedTherapies={data.relatedTherapies}
+            summaryStatement={data.summaryStatement}
+            levelOfEvidence={data.levelOfEvidence}
+            therapyTargets={data.therapyTargets}
+            therapyIngredients={data.therapyIngredients}
+            therapyResources={data.therapyResources}
+            mechainismOfAction={data.mechainismOfAction}
+            keywords={data.keywords}
+          />
+        </Box>
       ) : (
         <NotAuthenticated />
       )}

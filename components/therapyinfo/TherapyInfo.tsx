@@ -254,32 +254,24 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
     {
       accordianTitle: "Therapy Resources",
       accordianChildNode: (
-        <>
+        <SimpleGrid columns={{ sm: 1, md: 1 }} gap={5}>
           <Box>
             <Heading as='h4' size='lg' mb='4'>
               Literature:
             </Heading>{" "}
-            <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources?.literature : ""} />
+            <Box maxW={["88%", "100%"]}>
+              <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources?.literature : ""} />
+            </Box>
           </Box>
           {therapyResources?.videoFile?.url && (
             <Box>
               <Heading as='h4' size='lg' mb='4'>
                 Video:
               </Heading>{" "}
-              <ReactPlayer url={therapyResources?.videoFile?.url} controls={true} />
+              <ReactPlayer url={therapyResources?.videoFile?.url} controls={true} width='360px' />
             </Box>
           )}
-        </>
-      )
-    },
-    {
-      accordianTitle: "Keywords",
-      accordianChildNode: (
-        <>
-          <Box>
-            <RenderMarkdownToHTML markdownText={keywords ? keywords : ""} />
-          </Box>
-        </>
+        </SimpleGrid>
       )
     }
   ];
@@ -297,7 +289,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
         </Heading>
         {alternativeNames?.split("\n").map((name, index) => {
           return (
-            <Badge key={index} variant='subtle' fontSize={"1.0em"} colorScheme={"messenger"} mr='4'>
+            <Badge key={index} variant='subtle' fontSize={["0.8em", "1.0em"]} colorScheme={"messenger"} mr='4'>
               {name}
             </Badge>
           );

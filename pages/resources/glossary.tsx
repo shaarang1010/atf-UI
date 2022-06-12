@@ -8,13 +8,15 @@ type DocumentationPageProps = {
 };
 
 const DocumentationPage: React.FC<DocumentationPageProps> = ({ pageData }) => {
-  const { additionalPages, setAdditionalPages } = useContext(AppContext);
+  const { additionalPages } = useContext(AppContext);
   return (
-    <Container>
-      <Heading as='h3' size='xl' mb='4'>
-        Documentation
-      </Heading>
-      {additionalPages.glossarypage && <ReactMarkdownRender text={additionalPages.glossarypage} />}
+    <Container maxW={"container.lg"}>
+      <Box mt='10'>
+        <Heading as='h3' size='xl' mb='4'>
+          Glossary
+        </Heading>
+        {additionalPages.glossarypage && <ReactMarkdownRender text={additionalPages.glossarypage} />}
+      </Box>
     </Container>
   );
 };

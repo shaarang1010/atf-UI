@@ -1,16 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 import "@fontsource/roboto";
 const theme = extendTheme({
-  styles: {
-    global: {
-      a: {
-        color: "#90CDF4",
-        _hover: {
-          textDecoration: "underline"
-        }
-      }
-    }
-  },
   colors: {
     transparent: "transparent",
     black: "#000",

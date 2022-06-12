@@ -66,7 +66,7 @@ export default function WithSubnavigation() {
             <Image
               width='180px'
               height='60px'
-              src='https://atf-upload-bucket.s3.ap-southeast-2.amazonaws.com/ATF_logo2_c274a2400b.svg?15801053.000000002'
+              src='https://atf-upload-bucket.s3.ap-southeast-2.amazonaws.com/logo_39497b00c7.svg?3674244.3000000007'
               alt='Aphasia Therapy Finder'
             />
           </ChakraLink>
@@ -75,22 +75,6 @@ export default function WithSubnavigation() {
           <Flex display={{ base: "none", md: "flex" }} ml={10}>
             <DesktopNav />
           </Flex>
-          {!isAuthenticated && (
-            // <Button
-            //   display={{ base: "none", md: "inline-flex" }}
-            //   fontSize={"sm"}
-            //   fontWeight={600}
-            //   color={"white"}
-            //   bg={"darkBlue"}
-            //   onClick={(e) => router.push("")}
-            //   _hover={{
-            //     bg: "blue.400"
-            //   }}
-            // >
-            //   Take a Tour
-            // </Button>
-            <></>
-          )}
           {isAuthenticated && (
             <>
               <Menu>
@@ -126,7 +110,9 @@ const DesktopNav = () => {
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const { isAuthenticated } = useContext(UserContext);
-  const navItems = isAuthenticated ? NAV_ITEMS : [...NAV_ITEMS].slice(1);
+  const navItems = isAuthenticated
+    ? NAV_ITEMS
+    : NAV_ITEMS.filter((items) => items.label === "About" || items.label === "Legal");
 
   return (
     <Stack direction={"row"} spacing={4}>
@@ -200,9 +186,13 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 };
 
 const MobileNav = () => {
+  const { isAuthenticated } = useContext(UserContext);
+  const navItems = isAuthenticated
+    ? NAV_ITEMS
+    : NAV_ITEMS.filter((items) => items.label === "About" || items.label === "Legal");
   return (
     <Stack bg={useColorModeValue("white", "gray.800")} p={4} display={{ md: "none" }}>
-      {NAV_ITEMS.map((navItem) => (
+      {navItems.map((navItem) => (
         <MobileNavItem key={navItem.label} {...navItem} />
       ))}
     </Stack>
@@ -285,6 +275,6 @@ const NAV_ITEMS: Array<NavItem> = [
   },
   {
     label: "Legal",
-    href: "/resources/legal"
+    href: "/legal"
   }
 ];
