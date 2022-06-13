@@ -263,9 +263,9 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       )
     },
     {
-      accordianTitle: "Therapy Resources",
+      accordianTitle: "Therapy resources",
       accordianChildNode: (
-        <Box maxW={"80%"}>
+        <>
           <Heading as='h4' size='lg' mb='4'>
             Literature
           </Heading>{" "}
@@ -280,7 +280,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
               <ReactPlayer url={therapyResources?.videoFile?.url} controls={true} width='360px' />
             </Box>
           )}
-        </Box>
+        </>
       )
     }
   ];

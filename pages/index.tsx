@@ -71,7 +71,7 @@ const Home: NextPage = ({ additionalPageData }: any) => {
     } catch (err: any) {
       const errorMessage = err.message.substring(err.message.indexOf("(") + 1, err.message.indexOf(")"));
       toast({
-        title: mapErrors(errorMessage),
+        title: mapErrors(errorMessage).message,
         position: "top",
         duration: 4000,
         status: "error",

@@ -162,7 +162,6 @@ const DesktopNav = () => {
 };
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
-  console.log("Desktop subnav");
   return (
     <ChakraLink
       href={href ?? "/"}
@@ -211,7 +210,6 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
-  console.log("MobileNav subnav");
   return (
     <Stack spacing={4} onClick={children && onToggle}>
       <ChakraLink as={Link} href={href ?? "#"}>
