@@ -55,6 +55,17 @@ interface MechanismOfAction {
   supportingEmpiricalEvidence?: string;
 }
 
+interface TherapyTags {
+  evidenceLevel?: string[];
+  icfDomains?: string[];
+  aphasiaType?: string[];
+  aphasiaSeverity?: string[];
+  aphasiaAetiology?: string[];
+  timeSinceOnset?: string[];
+  setting?: string[];
+  delivery?: string[];
+}
+
 export interface TherapyInfoProps {
   id: string | number;
   therapyname?: string;
@@ -68,4 +79,5 @@ export interface TherapyInfoProps {
   therapyTargets?: TherapyTargets;
   therapyResources?: TherapyResources;
   keywords?: string;
+  tags?: TherapyTags;
 }

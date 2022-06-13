@@ -53,13 +53,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
   };
 
   const resetForm = () => {
-    setFirstname("");
-    setLastname("");
-    setEmailAddress("");
-    setPassword("");
-    setRetypePassword("");
-    setPasswordsMatch(false);
-    router.push("/");
+    location.reload();
   };
 
   const signUpUser = async (e: React.MouseEvent) => {
@@ -71,18 +65,22 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
       const updatedProfile = await updateProfile(data.user, { displayName: `${firstname} ${lastname}` }).catch((err) =>
         console.error(err)
       );
-      const docRef = await addDoc(collection(db, "users"), {
-        firstname: firstname,
-        lastname: lastname,
-        lastLogin: metadata.lastSignInTime,
-        uid: uid,
-        email: email
-      }).catch((err) => {
-        console.log("Database Error", err);
-      });
+
+      /** TODO: add user data to firestore
+       *
+       */
+      // const docRef = await addDoc(collection(db, "users"), {
+      //   firstname: firstname,
+      //   lastname: lastname,
+      //   lastLogin: metadata.lastSignInTime,
+      //   uid: uid,
+      //   email: email
+      // }).catch((err) => {
+      //   console.log("Database Error", err);
+      // });
       toast({
         title: "Account created.",
-        description: "We've created your account for you.",
+        description: "We've created your account for you, you will be navigated to login",
         status: "success",
         duration: 9000,
         isClosable: true,
@@ -187,7 +185,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
           Signup with Facebook
         </Button>
       </GridItem>
-      <GridItem colStart={4} colEnd={12} mt='5'>
+      <GridItem colStart={5} colEnd={12} mt='5'>
         <ChakraLink color='blue.500' onClick={loginAccount}>
           Already have an account?
         </ChakraLink>

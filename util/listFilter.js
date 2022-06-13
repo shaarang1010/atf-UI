@@ -9,3 +9,10 @@ export const searchByKey = (key, searchTerm) => {
 export const replaceNewLineChar = (el) => {
   return el.replace(/(\r\n|\n|\r)/gm, ",").toLowerCase();
 };
+
+export const replaceBreakTags = (el) => {
+  return el
+    .replace(/&lt;br&gt;/g, "")
+    .toLowerCase()
+    .trim();
+};
