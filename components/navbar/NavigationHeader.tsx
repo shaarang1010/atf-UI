@@ -162,6 +162,7 @@ const DesktopNav = () => {
 };
 
 const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
+  console.log("Desktop subnav");
   return (
     <ChakraLink
       href={href ?? "/"}
@@ -210,23 +211,22 @@ const MobileNav = () => {
 
 const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
-
+  console.log("MobileNav subnav");
   return (
     <Stack spacing={4} onClick={children && onToggle}>
-      <Flex
-        py={2}
-        as={ChakraLink}
-        href={href ?? "#"}
-        justify={"space-between"}
-        align={"center"}
-        _hover={{
-          textDecoration: "none"
-        }}
-      >
-        <Text fontWeight={800} color={useColorModeValue("gray.600", "gray.200")}>
-          {label}
-        </Text>
-        {children && (
+      <ChakraLink as={Link} href={href ?? "#"}>
+        <Flex
+          py={2}
+          justify={"space-between"}
+          align={"center"}
+          _hover={{
+            textDecoration: "none"
+          }}
+        >
+          <Text fontWeight={800} color={useColorModeValue("gray.600", "gray.200")}>
+            {label}
+          </Text>
+
           <Icon
             as={ChevronDownIcon}
             transition={"all .25s ease-in-out"}
@@ -234,8 +234,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
             w={6}
             h={6}
           />
-        )}
-      </Flex>
+        </Flex>
+      </ChakraLink>
 
       <Collapse in={isOpen} animateOpacity style={{ marginTop: "0!important" }}>
         <Stack
@@ -248,9 +248,11 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
         >
           {children &&
             children.map((child) => (
-              <ChakraLink as={Link} key={child.label} py={2} href={child.href}>
-                {child.label}
-              </ChakraLink>
+              <Link href={child.href ?? "#"} passHref>
+                <ChakraLink key={child.label} py={2}>
+                  {child.label}
+                </ChakraLink>
+              </Link>
             ))}
         </Stack>
       </Collapse>
