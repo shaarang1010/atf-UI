@@ -70,8 +70,8 @@ export default function WithSubnavigation() {
             aria-label={"Toggle Navigation"}
           />
         </Flex>
-        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }}>
-          <ChakraLink as={Link} href={isAuthenticated ? "/dashboard" : "/"} style={{ cursor: "pointer" }}>
+        <Flex flex={{ base: 1 }} justify={{ base: "center", md: "start" }} style={{ cursor: "pointer" }}>
+          <ChakraLink as={Link} href={isAuthenticated ? "/dashboard" : "/"}>
             <Image
               width='180px'
               height='60px'
@@ -81,7 +81,7 @@ export default function WithSubnavigation() {
           </ChakraLink>
         </Flex>
         <Stack flex={{ base: 1, md: 0 }} justify={"flex-end"} direction={"row"} spacing={6}>
-          <Flex display={{ base: "none", md: "flex" }} ml={10}>
+          <Flex display={{ base: "none", md: "flex" }} ml={10} mt={3}>
             <DesktopNav />
           </Flex>
           {isAuthenticated && (
@@ -119,9 +119,7 @@ const DesktopNav = () => {
   const linkHoverColor = useColorModeValue("gray.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const { isAuthenticated } = useContext(UserContext);
-  const navItems = isAuthenticated
-    ? NAV_ITEMS
-    : NAV_ITEMS.filter((items) => items.label === "About" || items.label === "Legal");
+  const navItems = isAuthenticated ? NAV_ITEMS : NAV_ITEMS.filter((items) => items.label === "About");
 
   return (
     <Stack direction={"row"} spacing={4}>
@@ -196,9 +194,7 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
 
 const MobileNav = () => {
   const { isAuthenticated } = useContext(UserContext);
-  const navItems = isAuthenticated
-    ? NAV_ITEMS
-    : NAV_ITEMS.filter((items) => items.label === "About" || items.label === "Legal");
+  const navItems = isAuthenticated ? NAV_ITEMS : NAV_ITEMS.filter((items) => items.label === "About");
   return (
     <Stack bg={useColorModeValue("white", "gray.800")} p={4} display={{ md: "none" }}>
       {navItems.map((navItem) => (

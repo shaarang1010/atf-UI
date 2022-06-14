@@ -2,7 +2,7 @@ import React from "react";
 import { TherapyInfoProps } from "./TherapyProps";
 import AccordianComponent from "../accordian/Accordian";
 import ReactPlayer from "react-player";
-import { Grid, GridItem, Text, Heading, Badge, SimpleGrid, Box, Spacer } from "@chakra-ui/react";
+import { Grid, GridItem, Text, Heading, Badge, SimpleGrid, Box, Wrap, WrapItem } from "@chakra-ui/react";
 import Link from "next/link";
 import RenderMarkdownToHTML from "../markdown/RenderMarkdown";
 import { replaceNewLineChar, searchByKey } from "../../util/listFilter";
@@ -265,22 +265,14 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
     {
       accordianTitle: "Therapy resources",
       accordianChildNode: (
-        <>
+        <Box width={["xs", "4xl"]}>
           <Heading as='h4' size='lg' mb='4'>
             Literature
           </Heading>{" "}
           <Box>
             <RenderMarkdownToHTML markdownText={therapyResources?.literature ? therapyResources?.literature : ""} />
           </Box>
-          {therapyResources?.videoFile?.url && (
-            <Box>
-              <Heading as='h4' size='lg' mb='4'>
-                Video
-              </Heading>{" "}
-              <ReactPlayer url={therapyResources?.videoFile?.url} controls={true} width='360px' />
-            </Box>
-          )}
-        </>
+        </Box>
       )
     }
   ];
@@ -318,6 +310,13 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
               </Link>
             );
           })}
+      </GridItem>
+      <GridItem colSpan={12}>
+        {therapyResources?.videoFile?.url && (
+          <Box width={["xs", "lg"]}>
+            <ReactPlayer url={therapyResources?.videoFile?.url} controls={true} width='360px' />
+          </Box>
+        )}
       </GridItem>
       <GridItem colSpan={12}>
         <AccordianComponent currentKey={0} accordianItems={accordianItems} />

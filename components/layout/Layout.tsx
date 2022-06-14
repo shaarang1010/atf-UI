@@ -1,7 +1,5 @@
 import React from "react";
-import NavBar from "../navbar/Navbar";
 import Footer from "../footer/Footer";
-import { Container } from "@chakra-ui/react";
 import WithSubnavigation from "../navbar/NavigationHeader";
 
 interface LayoutProps {
@@ -9,42 +7,33 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const navOptions = [
-    {
-      optionName: "Login",
-      optionLink: "/",
-      optionColor: "blue"
-    },
-    {
-      optionName: "About",
-      optionLink: "/about",
-      optionColor: "blue"
-    }
-  ];
-
-  const accountOptions = [
-    {
-      optionName: "Account Settings",
-      optionLink: "/login",
-      optionColor: "blue"
-    },
-    {
-      optionName: "Logout",
-      optionLink: "/about",
-      optionColor: "blue"
-    }
-  ];
-
   const footerLinkOptions = [
     {
-      footerHeader: "Page1",
+      footerHeader: "Additional Links",
       footerLinks: [
         {
           footerLinkName: "Terms and Conditions",
           footerLinkUrl: "/termsandconditions"
+        },
+        {
+          footerLinkName: "About Us",
+          footerLinkUrl: "/about"
         }
       ]
     }
+    // {
+    //   footerHeader: "Contact",
+    //   footerLinks: [
+    //     {
+    //       footerLinkName: "Contact us",
+    //       footerLinkUrl: "/termsandconditions"
+    //     },
+    //     {
+    //       footerLinkName: "About Us",
+    //       footerLinkUrl: "/about"
+    //     }
+    //   ]
+    // }
   ];
 
   const footerOptions = {

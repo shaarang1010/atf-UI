@@ -1,5 +1,17 @@
-import { Box, Button, Flex, Spacer, SimpleGrid, Stack, Image, Text, Container } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Icon,
+  Spacer,
+  SimpleGrid,
+  Stack,
+  Image,
+  Text,
+  Container,
+  Link as ChakraLink
+} from "@chakra-ui/react";
 import { ReactNode } from "react";
+import { MdMailOutline } from "react-icons/md";
 import Link from "next/link";
 
 interface FooterLinks {
@@ -30,7 +42,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 const Footer: React.FC<FooterProps> = ({ footerLogo, footerLinkInfo, footerBGColor, footerLinkColor }) => {
   return (
     <Box bg={footerBGColor} color={footerLinkColor} mt='40'>
-      <Container as={Stack} maxW={"6xl"} py={10}>
+      <Container maxW={"container.xl"} py={10}>
         <SimpleGrid templateColumns={{ sm: "1fr 1fr", md: "2fr 1fr 1fr 1fr 1fr" }} spacing={8}>
           <Stack spacing={6}>
             <Box>
@@ -42,20 +54,28 @@ const Footer: React.FC<FooterProps> = ({ footerLogo, footerLinkInfo, footerBGCol
             <Text fontSize={"sm"}>{`© ${new Date().getFullYear()} Aphasia Therapy Finder. All rights reserved`}</Text>
           </Stack>
           <Spacer />
-          {/* {footerLinkInfo.map((footerInfo, index) => {
+          {footerLinkInfo.map((footerInfo, index) => {
             return (
               <Stack align={"flex-start"} key={index}>
                 <ListHeader>{footerInfo.footerHeader}</ListHeader>
                 {footerInfo.footerLinks.map((link, i) => {
                   return (
-                    <Link href={link.footerLinkUrl} key={i}>
+                    <ChakraLink as={Link} href={link.footerLinkUrl} key={i}>
                       {link.footerLinkName}
-                    </Link>
+                    </ChakraLink>
                   );
                 })}
               </Stack>
             );
-          })} */}
+          })}
+          <Stack align={"flex-start"}>
+            <ListHeader>Contact Us</ListHeader>
+            <ChakraLink as={Link} href='mailto: aphasiatherapyfinder@gmail.com'>
+              <Flex style={{ cursor: "pointer" }}>
+                <Icon as={MdMailOutline} mt='1' mr='1' /> Aphasia Therapy Finder
+              </Flex>
+            </ChakraLink>
+          </Stack>
         </SimpleGrid>
       </Container>
     </Box>

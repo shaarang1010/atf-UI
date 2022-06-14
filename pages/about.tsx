@@ -12,7 +12,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ pageData }) => {
   return (
     <Container maxW={"container.lg"}>
       <Heading as='h1' size='3xl' mr='10' my='10'>
-        About Aphasia Therapy Finder
+        About the Aphasia Therapy Finder
       </Heading>
       {additionalPages.aboutpage && <ReactMarkdownRender text={additionalPages.aboutpage} />}
     </Container>

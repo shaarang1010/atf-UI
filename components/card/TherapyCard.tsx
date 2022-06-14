@@ -1,6 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import { Box, Heading, Flex, Input, Text, Icon, Image, Badge, SimpleGrid, Link as ChakraLink } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Flex,
+  Input,
+  Text,
+  IconButton,
+  Image,
+  Badge,
+  SimpleGrid,
+  Link as ChakraLink
+} from "@chakra-ui/react";
 import theme from "../../styles/theme";
 import PopOverComponent from "../popovers/Popovers";
 import { replaceNewLineChar, searchByKey } from "../../util/listFilter";
@@ -34,13 +45,7 @@ const TherapyCard: React.FC<TherapyCardProps> = ({
             {cardTitle}
           </Heading>
         </ChakraLink>
-        {videoSrc && (
-          <Box mt='1' w='20'>
-            <Badge onClick={openModal}>
-              <Icon as={BsCameraVideoFill} />
-            </Badge>
-          </Box>
-        )}
+        {videoSrc && <IconButton colorScheme='gray' aria-label='Video' size='lg' icon={<BsCameraVideoFill />} />}
       </Box>
       <Box mt='5'>
         <Badge p='2' mr='2' colorScheme='gray' textTransform='uppercase' fontSize='0.8em'>
