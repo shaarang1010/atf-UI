@@ -275,15 +275,7 @@ const NAV_ITEMS: Array<NavItem> = [
     href: "/about"
   },
   {
-    label: "Glossary",
-    href: "/resources/glossary"
-  },
-  {
-    label: "Tools",
+    label: "Resources",
     href: "/resources/tools"
-  },
-  {
-    label: "Legal",
-    href: "/legal"
   }
 ];

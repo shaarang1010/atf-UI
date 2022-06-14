@@ -40,33 +40,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       footerHeader: "Page1",
       footerLinks: [
         {
-          footerLinkName: "Page 123",
-          footerLinkUrl: "/home"
-        },
-        {
-          footerLinkName: "Page 123",
-          footerLinkUrl: "/home"
-        },
-        {
-          footerLinkName: "Page 123",
-          footerLinkUrl: "/home"
-        }
-      ]
-    },
-    {
-      footerHeader: "Page2",
-      footerLinks: [
-        {
-          footerLinkName: "Page 123",
-          footerLinkUrl: "/home"
-        },
-        {
-          footerLinkName: "Page 123",
-          footerLinkUrl: "/home"
-        },
-        {
-          footerLinkName: "Page 123",
-          footerLinkUrl: "/home"
+          footerLinkName: "Terms and Conditions",
+          footerLinkUrl: "/termsandconditions"
         }
       ]
     }
