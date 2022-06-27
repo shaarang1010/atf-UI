@@ -8,7 +8,7 @@ import LoginComponent from "../components/forms/login/Login";
 import InformationPane from "../components/infopane/InformationPane";
 import { Signup } from "../components/forms/signup/Signup";
 import { auth } from "../util/firebase/firebase";
-import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence } from "firebase/auth";
 import { getAdditionalPages } from "../util/graphql-queries";
 import client from "../util/apollo-client";
 import UserContext from "../context/UserContext";
@@ -18,6 +18,7 @@ import get from "lodash/get";
 import AppContext from "../context/AppContext";
 import { AdditionalPages } from "../models/ComponentModel";
 import RenderMarkdownToHTML from "../components/markdown/RenderMarkdown";
+import { checkSession } from "../context/Session";
 
 const mapErrors = (error: string) => {
   const errorObject = { ...firebaseErrors };
@@ -38,6 +39,7 @@ const Home: NextPage = ({ additionalPageData }: any) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   const { additionalPages, setAdditionalPages } = useContext(AppContext);
   const toast = useToast();
+  setIsAuthenticated(checkSession("firebase"));
 
   if (additionalPageData) {
     setAdditionalPages(additionalPageData[0]);
@@ -55,7 +57,24 @@ const Home: NextPage = ({ additionalPageData }: any) => {
   const router = useRouter();
   const userLogin = async (username: string, password: string) => {
     try {
-      const data = await signInWithEmailAndPassword(auth, username, password);
+      const persistence = setPersistence(getAuth(), browserSessionPersistence)
+        .then(() => {
+          return signInWithEmailAndPassword(auth, username, userPassword);
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          toast({
+            title: "Authentication Error",
+            position: "top",
+            duration: 4000,
+            status: "error",
+            isClosable: true,
+            onCloseComplete: () => router.push("/")
+          });
+        });
+      console.log(persistence);
+      const data = await persistence;
+      console.log("data", data);
       // const data = true;
       if (data) {
         onLoginSuccess(username);
@@ -121,7 +140,10 @@ const Home: NextPage = ({ additionalPageData }: any) => {
                   setUserEmail={(e) => setUserEmail(e.target.value)}
                   setUserPassword={(e) => setUserPassword(e.target.value)}
                   forgotPassword={forgotPassword}
-                  setForgotPassword={() => setForgotPassword(!forgotPassword)}
+                  setForgotPassword={() => {
+                    setForgotPassword(!forgotPassword);
+                    setUserPassword("");
+                  }}
                   createAccount={toggleLogin}
                   loginUser={() => userLogin(userEmail, userPassword)}
                   errorMessage={error}

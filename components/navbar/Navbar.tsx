@@ -22,6 +22,7 @@ import Image from "next/image";
 import logo from "../../assets/Aphasia-logo.png";
 import { useContext } from "react";
 import UserContext from "../../context/UserContext";
+import { checkSession } from "../../context/Session";
 
 type NavOptions = {
   optionName: string;
@@ -37,7 +38,9 @@ type NavbarProps = {
 
 const NavBar: React.FC<NavbarProps> = ({ navOptions, navColor, protectedNavOptions, accountOptions }) => {
   const router = useRouter();
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
+  //setIsAuthenticated(checkSession("firebase"));
+
   const onClickNavigate = (e: any, link: string) => {
     e.preventDefault();
     router.push(link);
