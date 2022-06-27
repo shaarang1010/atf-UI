@@ -13,7 +13,7 @@ import { TherapyInfoProps } from "../components/therapyinfo/TherapyProps";
 import { NotAuthenticated } from "../components/error-message/NotAuthenticated";
 import { ModalComponent } from "../components/modal/Modal";
 import ReactPlayer from "react-player";
-import { checkSession } from "../context/Session";
+//import { checkSession } from "../context/Session";
 
 type SelectedVideo = {
   src: string;
@@ -29,7 +29,7 @@ const TherapySearch = ({ data }: any) => {
   const [selectedVideo, setSelectedVideo] = useState<SelectedVideo>({ src: "", title: "" });
   const [openVideoPlayer, setOpenVideoPlayer] = useState(false);
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
-  setIsAuthenticated(checkSession("firebase"));
+  //setIsAuthenticated(checkSession("firebase"));
 
   const showSkeleton = () => {
     setIsLoading(false);

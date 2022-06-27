@@ -39,7 +39,7 @@ const Home: NextPage = ({ additionalPageData }: any) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   const { additionalPages, setAdditionalPages } = useContext(AppContext);
   const toast = useToast();
-  setIsAuthenticated(checkSession("firebase"));
+  //setIsAuthenticated(checkSession("firebase"));
 
   if (additionalPageData) {
     setAdditionalPages(additionalPageData[0]);

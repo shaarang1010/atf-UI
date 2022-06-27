@@ -22,7 +22,7 @@ import Image from "next/image";
 import logo from "../../assets/Aphasia-logo.png";
 import { useContext } from "react";
 import UserContext from "../../context/UserContext";
-import { checkSession } from "../../context/Session";
+//import { checkSession } from "../../context/Session";
 
 type NavOptions = {
   optionName: string;

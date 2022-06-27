@@ -9,12 +9,12 @@ import { Container, Box, Flex } from "@chakra-ui/react";
 import UserContext from "../../context/UserContext";
 import { NotAuthenticated } from "../../components/error-message/NotAuthenticated";
 import { TherapyProfileSearch } from "../../models/ComponentModel";
-import { checkSession } from "../../context/Session";
+//import { checkSession } from "../../context/Session";
 
 const TherapyProfile: NextPage = ({ data }: any) => {
   const { isAuthenticated, setIsAuthenticated } = useContext(UserContext);
   // const isAuthenticated = true;
-  setIsAuthenticated(checkSession("firebase"));
+  //setIsAuthenticated(checkSession("firebase"));
   return (
     <Container maxW={"container.lg"}>
       {isAuthenticated ? (

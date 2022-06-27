@@ -23,7 +23,7 @@ import { auth, db } from "../../../util/firebase/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore";
 import UserContext from "../../../context/UserContext";
-import { checkSession } from "../../../context/Session";
+//import { checkSession } from "../../../context/Session";
 
 interface SignupProps {
   loginAccount(): void;
@@ -41,7 +41,7 @@ export const Signup: React.FC<SignupProps> = ({ loginAccount }) => {
 
   const { username, isAuthenticated, setIsAuthenticated } = useContext(UserContext);
 
-  setIsAuthenticated(checkSession("firebase"));
+  //setIsAuthenticated(checkSession("firebase"));
 
   const router = useRouter();
   const onClickNavigate = (e: any, link: string) => {
