@@ -258,7 +258,7 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
           {therapyIngredients?.frequentClinicalQuestions && (
             <Box mt='5'>
               <Heading as='h4' size='lg' mb='4'>
-                Frequent Clinical Questions
+                Frequent clinical questions
               </Heading>{" "}
               <RenderMarkdownToHTML
                 markdownText={
