@@ -15,3 +15,7 @@ a {
 * {
   box-sizing: border-box;
 }
+a{
+  outline: none !important;
+  box-shadow: none !important;
+} 

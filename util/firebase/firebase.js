@@ -5,13 +5,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGING_ID,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyDIjNc1JVgmUGtqHubkxW7N1gznDU0Rbvs",
+  authDomain: "atf-therapy.firebaseapp.com",
+  projectId: "atf-therapy",
+  storageBucket: "atf-therapy.appspot.com",
+  messagingSenderId: "84942944294",
+  appId: "1:84942944294:web:0ea87d2c1c55cc2702cee7",
+  measurementId: "G-ZN5EN4V0E3"
 };
 
 // Initialize Firebase

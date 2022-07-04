@@ -116,7 +116,7 @@ export default function WithSubnavigation() {
 
 const DesktopNav = () => {
   const linkColor = useColorModeValue("gray.600", "gray.200");
-  const linkHoverColor = useColorModeValue("gray.800", "white");
+  const linkHoverColor = useColorModeValue("blue.800", "white");
   const popoverContentBgColor = useColorModeValue("white", "gray.800");
   const { isAuthenticated } = useContext(UserContext);
   const navItems = isAuthenticated ? NAV_ITEMS : NAV_ITEMS.filter((items) => items.label === "About");
@@ -129,10 +129,12 @@ const DesktopNav = () => {
             <PopoverTrigger>
               <Link href={navItem.href ?? "#"} passHref>
                 <ChakraLink
-                  p={2}
-                  fontSize={"md"}
+                  p={1}
+                  fontSize={"lg"}
                   fontWeight={800}
                   color={linkColor}
+                  mr={10}
+                  _activeLink={{ borderBottom: "5px red" }}
                   _hover={{
                     textDecoration: "none",
                     color: linkHoverColor

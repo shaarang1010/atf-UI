@@ -72,9 +72,7 @@ const Home: NextPage = ({ additionalPageData }: any) => {
             onCloseComplete: () => router.push("/")
           });
         });
-      console.log(persistence);
       const data = await persistence;
-      console.log("data", data);
       // const data = true;
       if (data) {
         onLoginSuccess(username);

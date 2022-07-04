@@ -79,6 +79,18 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                 <Heading as='h4' size='lg' mb='4'>
                   Client selection
                 </Heading>
+                {therapyTargets?.clientSelection?.clientSelection && (
+                  <Box mt='5'>
+                    <Text as='b'>Client selection</Text>
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.clientSelection
+                          ? therapyTargets?.clientSelection?.clientSelection
+                          : "-"
+                      }
+                    />
+                  </Box>
+                )}
                 {therapyTargets?.clientSelection?.aphasiaTypeList && (
                   <Box mt='5'>
                     <Text as='b'>Aphasia type</Text>
@@ -144,6 +156,10 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                           : "-"
                       }
                     />
+                  </Box>
+                )}
+                {therapyTargets?.clientSelection?.timeSinceOnset && (
+                  <Box>
                     <RenderMarkdownToHTML
                       markdownText={
                         therapyTargets?.clientSelection?.timeSinceOnset
@@ -153,13 +169,24 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
                     />
                   </Box>
                 )}
-                {therapyTargets?.clientSelection?.clientSelection && (
-                  <Box mt='5'>
-                    <Text as='b'>Other considerations</Text>
+                {therapyTargets?.clientSelection?.timeSinceOnsetText && (
+                  <Box>
                     <RenderMarkdownToHTML
                       markdownText={
-                        therapyTargets?.clientSelection?.clientSelection
-                          ? therapyTargets?.clientSelection?.clientSelection
+                        therapyTargets?.clientSelection?.timeSinceOnsetText
+                          ? therapyTargets?.clientSelection?.timeSinceOnsetText
+                          : "-"
+                      }
+                    />
+                  </Box>
+                )}
+                {therapyTargets?.clientSelection?.otherClientSelectionText && (
+                  <Box mt='5'>
+                    <Text as='b'>Other client Selection</Text>
+                    <RenderMarkdownToHTML
+                      markdownText={
+                        therapyTargets?.clientSelection?.otherClientSelectionText
+                          ? therapyTargets?.clientSelection?.otherClientSelectionText
                           : "-"
                       }
                     />
@@ -228,6 +255,22 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
               />
             </Box>
           </Box>
+          {therapyIngredients?.materials && (
+            <Box mt='5'>
+              <b>Materials</b>
+              <RenderMarkdownToHTML markdownText={therapyIngredients?.materials ? therapyIngredients?.materials : ""} />
+            </Box>
+          )}
+          {therapyIngredients?.frequentClinicalQuestions && (
+            <Box mt='5'>
+              <b>Frequent Clinal Questions </b>
+              <RenderMarkdownToHTML
+                markdownText={
+                  therapyIngredients?.frequentClinicalQuestions ? therapyIngredients?.frequentClinicalQuestions : ""
+                }
+              />
+            </Box>
+          )}
         </>
       )
     },

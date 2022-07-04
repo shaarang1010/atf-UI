@@ -38,6 +38,8 @@ const getTherapyDetailsById = (id) => {
             aphasiaAetiologyList
             clientSelection
             timeSinceOnset
+            timeSinceOnsetText
+            otherClientSelectionText
           }
         }
     	therapyIngredients{

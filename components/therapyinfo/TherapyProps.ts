@@ -34,6 +34,7 @@ interface ClientSelection {
   timeSinceOnsetList?: string;
   timeSinceOnsetText?: string;
   clientSelection?: string;
+  otherClientSelectionText?: string;
 }
 
 interface TherapyIngredients {
@@ -42,6 +43,7 @@ interface TherapyIngredients {
   therapyMode?: TherapyMode;
   therapyMethod?: string;
   materials?: string;
+  frequentClinicalQuestions?: string;
 }
 
 interface TherapyTargets {
