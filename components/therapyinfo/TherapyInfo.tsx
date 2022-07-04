@@ -255,15 +255,11 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
               />
             </Box>
           </Box>
-          {therapyIngredients?.materials && (
-            <Box mt='5'>
-              <b>Materials</b>
-              <RenderMarkdownToHTML markdownText={therapyIngredients?.materials ? therapyIngredients?.materials : ""} />
-            </Box>
-          )}
           {therapyIngredients?.frequentClinicalQuestions && (
             <Box mt='5'>
-              <b>Frequent Clinal Questions </b>
+              <Heading as='h4' size='lg' mb='4'>
+                Frequent Clinical Questions
+              </Heading>{" "}
               <RenderMarkdownToHTML
                 markdownText={
                   therapyIngredients?.frequentClinicalQuestions ? therapyIngredients?.frequentClinicalQuestions : ""
@@ -309,7 +305,15 @@ const TherapyInfo: React.FC<TherapyInfoProps> = ({
       accordianTitle: "Therapy resources",
       accordianChildNode: (
         <Box width={["xs", "4xl"]}>
-          <Heading as='h4' size='lg' mb='4'>
+          {therapyIngredients?.materials && (
+            <Box mt='5'>
+              <Heading as='h4' size='lg' mb='4'>
+                Materials
+              </Heading>{" "}
+              <RenderMarkdownToHTML markdownText={therapyIngredients?.materials ? therapyIngredients?.materials : ""} />
+            </Box>
+          )}
+          <Heading as='h4' size='lg' mb='4' mt='5'>
             Literature
           </Heading>{" "}
           <Box>
